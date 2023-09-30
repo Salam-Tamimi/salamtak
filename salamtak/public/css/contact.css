@@ -1,0 +1,12 @@
+.contactus:hover{
+    scale: 1.1;  
+}
+*{
+    direction: rtl !important;
+}
+input{
+    text-align: right;
+}
+label {
+    text-align: right;
+  }

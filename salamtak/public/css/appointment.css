@@ -1,0 +1,210 @@
+:root {
+
+    --primary: #0d51ac;
+    --light: #B3CDE6;
+    --dark: #FE8325;
+}
+*{
+    direction: rtl !important;
+}
+
+
+
+.doctorscard{
+    background-color: rgba(179, 205, 230,0.7);
+    border: 1px solid rgba(39, 37, 180,0.5);
+    border-radius: 20px;
+    box-shadow: 5px 5px 12px rgba(39, 37, 180,0.5);
+    min-width: 200px;
+    max-width: 400px;
+    max-height: 650px;
+}
+
+
+
+.nextbtn, .prevbtn{
+    border: none;
+    background: none;
+    margin-top: 1.5%;
+}
+.pagenum{
+    margin-top: 3.5%;
+    color: var(--primary);
+}
+#blur.active {
+  filter: blur(10px) !important;
+}
+.btn.btn-primary{
+    color: #FFFFFF;
+    background-color: #FE8325;
+    border-color: #FE8325;
+}
+.btns_reserve{
+    width: 120%;
+    justify-content: space-between !important;
+    position: relative;
+}
+.btn.btn-primary:hover {
+    scale: 1.05;
+    background-color: var(--dark);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    outline: none;
+}
+.btn-info:hover{
+    scale: 1.05;
+    box-shadow: 0px 5px 8px #9f9fa7;
+    background-color: var(--primary);
+}
+
+.btn-link:hover{
+    scale: 1.1;
+}
+
+.pagination-outer{ text-align: center; }
+.pagination{
+    /* font-family: 'Agdasima', sans-serif; */
+    display: inline-flex;
+    position: relative;
+}
+.pagination li a.page-link{
+    color: #fff;
+    background: transparent;
+    font-size: 23px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    width: 33px;
+    padding: 0;
+    margin: 0 7px;
+    border: none;
+    border-radius: 0;
+    display: block;
+    position: relative;
+    z-index: 0;
+    transition: all 0.1s ease 0s;
+}
+.pagination li:first-child a.page-link,
+.pagination li:last-child a.page-link{
+    font-size: 23px;
+    line-height: 37px;
+}
+.pagination li a.page-link:hover,
+.pagination li a.page-link:focus,
+.pagination li.active a.page-link:hover,
+.pagination li.active a.page-link{
+    color: #fff;
+    background: transparent;
+}
+.pagination li a.page-link:before{
+    content: '';
+    background-color: #2f3542;
+    height: 100%;
+    width: 100%;
+    box-shadow: 3px 3px rgba(0,0,0,0.2);
+    transform-origin: center center;
+    transform: perspective(75px) rotateX(30deg);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.3s ease 0s;
+}
+.pagination li a.page-link:hover:before,
+.pagination li a.page-link:focus:before,
+.pagination li.active a.page-link:hover:before,
+.pagination li.active a.page-link:before{
+    background-color: var(--dark);
+    box-shadow: -3px -3px rgba(0,0,0,0.2);
+    transform: perspective(75px) rotateX(-30deg);
+}
+
+.demo{
+    margin-top: 2%;
+    margin-right: -3%;
+}
+@media only screen and (max-width: 480px){
+    .pagination{
+        font-size: 0;
+        display: inline-block;
+    }
+    .pagination li{
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 15px;
+    }
+}
+
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap'); */
+
+.reserve, .popup_box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+.reserve{
+  background: #2981bc;
+  color: white;
+  font-size: 22px;
+  /* font-family: arial; */
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  border: 1px solid #0059b3;
+}
+.popup_box{
+  width: 400px;
+  background: #f2f2f2;
+  text-align: center;
+  align-items: center;
+  padding: 40px;
+  border: 1px solid #b3b3b3;
+  box-shadow: 0px 5px 10px rgba(0,0,0,.2);
+  z-index: 9999;
+  display: none;
+}
+.popup_box i{
+  font-size: 60px;
+  color: #eb9447;
+  border: 5px solid #eb9447;
+  padding: 20px 40px;
+  border-radius: 50%;
+  margin: -10px 0 20px 0;
+}
+.popup_box h1{
+  font-size: 30px;
+  color: #1b2631;
+  margin-bottom: 5px;
+}
+.popup_box label{
+  font-size: 23px;
+  color: #404040;
+}
+.popup_box .btns{
+  margin: 40px 0 0 0;
+}
+.btns .btn1, .btns .btn2{
+  background: #999999;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #808080;
+  padding: 10px 13px;
+}
+.btns .btn2{
+  margin-left: 20px;
+  background: #3da546;
+  border: 1px solid #3da546;
+}
+.btns .btn1:hover{
+  transition: .5s;
+  background: #8c8c8c;
+}
+.btns .btn2:hover{
+  transition: .5s;
+  background: #3da546;
+}
