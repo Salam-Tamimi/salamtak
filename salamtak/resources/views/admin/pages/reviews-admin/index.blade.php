@@ -12,8 +12,8 @@
 							<div class="col-sm-12">
 								<h3 class="page-title">التقييمات</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Dashboard</a></li>
-									<li class="breadcrumb-item active">Reviews</li>
+									<li class="breadcrumb-item"><a href="{{ url('/admin') }}">لوحة التحكم</a></li>
+									<li class="breadcrumb-item active">التقييمات</li>
 								</ul>
 							</div>
 						</div>
@@ -28,51 +28,95 @@
 										<table class="datatable table table-hover table-center mb-0">
 											<thead>
 												<tr>
-													<th>Patient Name</th>
-													<th>Doctor Name</th>
-													<th>Ratings</th>
-													<th>Description</th>
-													<th>Date</th>
-													<th class="text-right">Actions</th>
+													<th>اسم المريض</th>
+													<th>اسم الطبيب</th>
+													<th>اسم المستشفى</th>
+													<th>التقييم</th>
+													<th>التعليق</th>
+													{{-- <th>التاريخ</th> --}}
+													{{-- <th class="text-right">الإجراءات</th> --}}
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												@foreach ($reviews as $review)
+													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient1.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Charlene Reed </a>
+															<img class="avatar-img rounded-circle" src="{{ asset($review->appointment->user->image) }}" alt="User Image">
+															<p>{{ $review->appointment->user->name }}</p>
 														</h2>
 													</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-01.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Ruby Perrin</a>
+															<img class="avatar-img rounded-circle" src="{{ asset($review->appointment->doctor->image) }}" alt="User Image">
+															<p>{{ $review->appointment->doctor->name }}</p>
 														</h2>
 													</td>
-													
+
 													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
+														<p>{{ $review->appointment->hospital->name }}</p>
 													</td>
 													
 													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
+														<div class="form-group">
+															<label for="rating">Rating:</label>
+															<select name="rating" id="rating" class="form-control">
+																<option value="1" {{ $ratingFromDatabase == 1 ? 'selected' : '' }}>														
+																	<i class="fe fe-star text-warning"></i>
+														            <i class="fe fe-star-o text-secondary"></i>
+														            <i class="fe fe-star-o text-secondary"></i>
+														            <i class="fe fe-star-o text-secondary"></i>
+														            <i class="fe fe-star-o text-secondary"></i>
+																</option>
+																<option value="2" {{ $ratingFromDatabase == 2 ? 'selected' : '' }}>														
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star-o text-secondary"></i>
+																	<i class="fe fe-star-o text-secondary"></i>
+																	<i class="fe fe-star-o text-secondary"></i>
+																</option>
+																<option value="3" {{ $ratingFromDatabase == 3 ? 'selected' : '' }}>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star-o text-secondary"></i>
+																	<i class="fe fe-star-o text-secondary"></i>
+																</option>
+																<option value="4" {{ $ratingFromDatabase == 4 ? 'selected' : '' }}>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star-o text-secondary"></i>
+																</option>
+																<option value="5" {{ $ratingFromDatabase == 5 ? 'selected' : '' }}>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																	<i class="fe fe-star text-warning"></i>
+																</option>
+															</select>
+														</div>
 													</td>
-														<td>3 Nov 2019 <br><small>09.59 AM</small></td>
-													<td class="text-right">
+													
+													<td>
+														{{ $review->comment }}
+													{{-- </td>
+														<td>3 Nov 2019 <br><small>09.59 AM</small>
+													</td> --}}
+													{{-- <td class="text-right">
 														<div class="actions">
 															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
 																<i class="fe fe-trash"></i> Delete
 															</a>
 															
 														</div>
-													</td>
+													</td> --}}
 												</tr>
-												<tr>
+												@endforeach
+												
+												{{-- <tr>
 													<td>
 														<h2 class="table-avatar">
 															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient2.jpg') }}" alt="User Image"></a>
@@ -391,7 +435,7 @@
 															
 														</div>
 													</td>
-												</tr>
+												</tr> --}}
 											</tbody>
 										</table>
 									</div>

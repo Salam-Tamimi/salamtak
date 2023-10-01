@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $doctors=Doctor::all();
+        return view('admin.pages.doctors-list.index', compact('doctors'));
     }
 
     /**
@@ -24,7 +26,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        $departments=Department::all();
+        return view('admin.pages.doctors-list.create', ['departments' => $departments]);
     }
 
     /**
@@ -35,7 +38,18 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+          $validatedData = $request->validate([
+            'name' => 'required',
+            'image' => 'required',
+            'price' => 'required', 
+            'experience' => 'required', 
+            'depatment_id' => 'required', 
+        ]);
+
+        Doctor::create($validatedData);
+
+        return  redirect()->route('doctors-list.index')->with('success', 'تمت عملية الإنشاء بنجاح');
     }
 
     /**
@@ -44,9 +58,9 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show()
     {
-        //
+     //
     }
 
     /**
@@ -55,9 +69,10 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit($id)
     {
-        //
+        $doctor = Doctor::findOrFail($id);
+        return view('admin.pages.doctors-list.edit', compact('doctor'));
     }
 
     /**
@@ -67,9 +82,22 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, $id)
     {
-        //
+          // Validate the request data
+          $validatedData = $request->validate([
+            'name' => 'required',
+            'image' => 'required',
+            'price' => 'required', 
+            'experience' => 'required', 
+            'depatment_id' => 'required', 
+        ]);
+
+        $doctor = Doctor::findOrFail($id);
+
+        $doctor->update($validatedData);
+
+        return redirect()->route('doctors-list.index')->with('success', 'تمت عملية التعديل بنجاح');
     }
 
     /**
@@ -78,8 +106,9 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy($id)
     {
-        //
+        Doctor::destroy($id);
+        return back()->with('success', 'تمت عملية الحذف بنجاح');
     }
 }

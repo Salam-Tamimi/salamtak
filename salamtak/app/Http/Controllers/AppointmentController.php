@@ -17,11 +17,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments=Appointment::all();
-        $doctor=Doctor::first();
-        $department=Department::first();
-        $user=User::first();
-       return view('admin.pages.appointments-admin.index', compact('appointments,doctor,department,user'));
+       $appointments=Appointment::all();
+       return view('admin.pages.appointments-admin.index', compact('appointments'));
     }
 
     /**

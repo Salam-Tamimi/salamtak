@@ -19,13 +19,13 @@
 								<a href="{{ url('departments-admin') }}"><i class="fe fe-users"></i> <span>الأقسام</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('/doctor-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
+								<a href="{{ url('/doctors-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
 							</li>
 							<li> 
 								<a href="{{ url('/patient-list') }}"><i class="fe fe-user"></i> <span>المرضى</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('/reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>
+								<a href="{{ url('reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>
 							</li>
 							<li> 
 								<a href="{{ url('/transactions-list') }}"><i class="fe fe-activity"></i> <span>المعاملات</span></a>

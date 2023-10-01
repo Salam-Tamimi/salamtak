@@ -66,10 +66,10 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
-        $departments = Department::all();
-        return view('admin.pages.departments-admin.edit', compact('departments'));
+        $department = Department::findOrFail($id);
+        return view('admin.pages.departments-admin.edit', compact('department'));
     }
 
     /**

@@ -17,7 +17,7 @@
 								</ul>
 							</div>
 							<div class="col-sm-5 col">
-								<a href="#Add_Specialities_details" data-toggle="modal" class="btn btn-primary float-right mt-2">إضافة</a>
+								<a href="{{ route('departments-admin.create') }}" data-toggle="modal" class="btn btn-primary float-right mt-2">إضافة</a>
 							</div>
 						</div>
 					</div>
@@ -36,121 +36,48 @@
 												</tr>
 											</thead>
 											<tbody>
+												@php
+												  $i = 1;
+											    @endphp
+												@foreach ($departments as $department)
 												<tr>
-													<td>#SP001</td>
-													
+													<td>{{ $i }}</td>
 													<td>
-														<h2 class="table-avatar">
+														<h5>{{ $department->name }}</h5>
+														{{-- <h2 class="table-avatar">
 															<a href="profile.html" class="avatar avatar-sm mr-2">
 																<img class="avatar-img" src="{{ asset('images/specialities-01.png') }}" alt="Speciality">
 															</a>
-															<a href="profile.html">باطني</a>
-														</h2>
+														</h2> --}}
 													</td>
-												
 													<td class="text-right">
 														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> تعديل
-															</a>
-															<a  data-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> حذف
-															</a>
+															<div style="margin-bottom: 5px; width: 100px;"> 
+																<a class="btn btn-info btn-sm" href="{{ route('departments-admin.edit', $department->id) }}" style="width: 100%;">
+																	<i class="fas fa-pencil-alt"></i>
+																	تعديل
+																</a>
+															</div>
+															<div style="margin-bottom: 5px; width: 100px;"> 
+															<form action="{{ route('departments-admin.destroy', $department->id) }}" method="POST" style="display: inline;">
+																@method('DELETE')
+																@csrf
+																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">
+																	<i class="fas fa-trash"></i> 
+																	حذف
+																</button>
+															</form>
+															</div>
 														</div>
 													</td>
 												</tr>
-												<tr>
-													<td>#SP002</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2">
-																<img class="avatar-img" src="{{ asset('images/specialities-02.png') }}" alt="Speciality">
-															</a>
-															<a href="profile.html">قلب</a>
-														</h2>
-													</td>
+												@php
+                                                  $i++;
+                                                @endphp
+												@endforeach
 												
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> تعديل
-															</a>
-															<a  data-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> حذف
-															</a>
-														</div>
-													</td>
-												</tr>	
-												<tr>
-													<td>#SP003</td>
 													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2">
-																<img class="avatar-img" src="{{ asset('images/specialities-03.png') }}" alt="Speciality">
-															</a>
-															<a href="profile.html">جلدية</a>
-														</h2>
-													</td>
 												
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> تعديل
-															</a>
-															<a  data-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> حذف
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#SP004</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2">
-																<img class="avatar-img" src="{{ asset('images/specialities-04.png') }}" alt="Speciality">
-															</a>
-															<a href="profile.html">مفاصل</a>
-														</h2>
-													</td>
-												
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> تعديل
-															</a>
-															<a  data-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> حذف
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#SP005</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2">
-																<img class="avatar-img" src="{{ asset('images/specialities-05.png') }}" alt="Speciality">
-															</a>
-															<a href="profile.html">أطفال</a>
-														</h2>
-													</td>
-												
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> تعديل
-															</a>
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> حذف
-															</a>
-														</div>
-													</td>
-												</tr>
 											</tbody>
 										</table>
 									</div>

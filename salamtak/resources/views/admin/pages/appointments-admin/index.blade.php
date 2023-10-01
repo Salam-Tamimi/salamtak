@@ -50,132 +50,33 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ $appointments->$doctors->image }}" alt="Doctor Image"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointments->$doctor->name }}  </a>
+															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->doctors->image) }}" alt="Doctor Image"></a>
+															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->doctors->name }}  </a>
 														</h2>
 													</td>
-													<td>{{ $appointments->$department->name }}</td>
+													<td>{{ $appointment->departments->name }}</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ $appointments->$users->image }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}"class="mx-2"> {{ $appointments->$user->name }}</a>
+															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointments->users->image) }}" alt="User Image"></a>
+															<a href="{{ url('/admin-profile') }}"class="mx-2"> {{ $appointment->users->name }}</a>
 														</h2>
 													</td>
-													<td>{{ $appointments->date }}</td>
+													<td>{{ $appointment->date }}</td>
 													<td>
 														<div class="status-toggle">
 															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<label for="status_1" class="checktoggle">الحالة</label>
 														</div>
 													</td>
 													<td class="text-right">
-														{{ $appointments->$doctor->price }}JOD
+														{{ $appointment->doctors->price }} JOD
 													</td>
 												</tr>
 												@endforeach
 												@else
 												<p style="margin-left:50%;">لا يوجد حجوزات لحد الآن</p>
 											    @endif												
-												{{-- <tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-02.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">د. محمد محمود</a>
-														</h2>
-													</td>
-													<td>أذن وانف وحنجرة</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient2.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}"class="mx-2">حسان محمود</a>
-														</h2>
-													</td>
-													<td>٩ تشرين الأول ٢٠٢٣ <span class="text-primary d-block">١١.٠٠ص -  ١١.٣٠ص</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														٢٠٠$
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-03.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">د. يقين مازن</a>
-														</h2>
-													</td>
-													<td>باطني</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient3.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}"class="mx-2">عمر أحمد</a>
-														</h2>
-													</td>
-													<td>٩ تشرين الثاني ٢٠٢٣ <span class="text-primary d-block">١١.٠٠ص -  ١١.٣٠ص</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														١٥٠$
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-04.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">د. ربا محمد</a>
-														</h2>
-													</td>
-													<td>جلدي</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient4.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}"class="mx-2">لين صالح</a>
-														</h2>
-													</td>
-													<td>٣ كانون الثاني ٢٠٢٣ <span class="text-primary d-block">١١.٠٠ص -  ١١.٣٠ص</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														١٥٠$
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-05.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">د. صالح محمود</a>
-														</h2>
-													</td>
-													<td>قلب</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient5.jpg') }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}"class="mx-2">راما سعيد</a>
-														</h2>
-													</td>
-													<td>٩ تشرين الثاني ٢٠٢٣ <span class="text-primary d-block">١١.٠٠ص -  ١١.٣٠ص</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														١٠٠$
-													</td>
-												</tr> --}}
+												
 											</tbody>
 										</table>
 									</div>

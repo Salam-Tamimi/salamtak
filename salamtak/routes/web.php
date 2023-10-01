@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Appointment;
 use App\Models\Department;
 use Illuminate\Support\Facades\Route;
@@ -55,20 +58,15 @@ Route::get('/admin', function () {
 Route::resource('appointments-admin', AppointmentController::class);
 Route::resource('hospitals-admin', HospitalController::class);
 Route::resource('departments-admin', DepartmentController::class);
+Route::resource('reviews-admin', ReviewController::class);
+Route::resource('doctors-list', DoctorController::class);
 
 
-// Route::get('/specialities-admin', function () {
-//     return view('admin.pages.specialities');
-// });
-Route::get('/doctor-list', function () {
-    return view('admin.pages.doctor-list');
-});
+
 Route::get('/patient-list', function () {
     return view('admin.pages.patient-list');
 });
-Route::get('/reviews-admin', function () {
-    return view('admin.pages.reviews');
-});
+
 Route::get('/transactions-list', function () {
     return view('admin.pages.transactions-list');
 });
