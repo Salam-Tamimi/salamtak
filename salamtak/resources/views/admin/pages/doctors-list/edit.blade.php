@@ -17,17 +17,26 @@
             <label for="image">صورة الطبيب:</label>
             <input type="file" class="form-control" name="image" accept="image/*" required>
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="department"> القسم:</label>
             <input type="text" name="department" id="department" class="form-control" required value="{{ old('department', $doctor->department) }}">
+        </div> --}}
+        <div class="form-group">
+            <label> القسم:</label> <br>
+                <select name="department_id" id="department" class="form-control">
+                    <option value="{{ old('department', $doctor->department) }}">{{ old('department', $doctor->departments->name) }} </option>
+                    @foreach ($departments as $department)
+                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
         </div>
         <div class="form-group">
             <label for="experience"> الخبرة:</label>
-            <input type="text" name="experience" id="experience" class="form-control" required value="{{ old('experience', $doctor->department) }}">
+            <input type="text" name="experience" id="experience" class="form-control" required value="{{ old('experience', $doctor->experience) }}">
         </div>
         <div class="form-group">
             <label for="price"> الكشفية:</label>
-            <input type="number" name="price" id="price" class="form-control" required value="{{ old('price', $doctor->name) }}">
+            <input type="number" name="price" id="price" class="form-control" required value="{{ old('price', $doctor->price) }}">
         </div>
 
         <button type="submit" class="btn btn-primary">تعديل </button>

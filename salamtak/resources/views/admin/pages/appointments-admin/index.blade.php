@@ -50,7 +50,7 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->doctors->image) }}" alt="Doctor Image"></a>
+															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->doctor->image) }}" alt="Doctor Image"></a>
 															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->doctors->name }}  </a>
 														</h2>
 													</td>

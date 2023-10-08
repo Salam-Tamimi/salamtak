@@ -23,8 +23,7 @@
             <label>أقسام المستشفى:</label> <br>
             @foreach ($departments as $department)
                 <input type="hidden" name="departments[{{ $department->id }}][id]" value="{{ $department->id }}">
-                <input type="checkbox" name="departments[{{ $department->id }}][name]" value="{{ $department->name }}"
-                       {{ $department->is_active ? 'checked' : '' }}>
+                <input type="checkbox" name="departments[{{ $department->id }}][name]" value="{{ $department->name }}">
                 {{ $department->name }}<br>
             @endforeach
         </div>

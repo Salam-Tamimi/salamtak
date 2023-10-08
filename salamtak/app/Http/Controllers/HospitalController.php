@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Doctor;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -29,7 +30,8 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        return View::make('admin.pages.hospitals-admin.create');
+        $doctors = Doctor::all();
+        return View::make('admin.pages.hospitals-admin.create',compact('doctors'));
     }
 
     /**

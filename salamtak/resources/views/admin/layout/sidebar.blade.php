@@ -22,7 +22,7 @@
 								<a href="{{ url('/doctors-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('/patient-list') }}"><i class="fe fe-user"></i> <span>المرضى</span></a>
+								<a href="{{ url('patients-list') }}"><i class="fe fe-user"></i> <span>المرضى</span></a>
 							</li>
 							<li> 
 								<a href="{{ url('reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>

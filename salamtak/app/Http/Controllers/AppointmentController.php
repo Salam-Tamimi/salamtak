@@ -28,7 +28,17 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.appointments-admin.create');
+    //    $doctors=Doctor::all();
+       $departments = Department::all();
+     // Retrieve all departments and their associated doctors
+    $departments = Department::with('doctors')->get();
+
+    // Prepare the data for the JavaScript object
+    $departmentDoctorMap = [];
+    foreach ($departments as $department) {
+        $departmentDoctorMap[$department->id] = $department->doctors;
+    }
+        return view('admin.pages.appointments-admin.create', compact('departments', 'departmentDoctorMap'));
     }
 
     /**

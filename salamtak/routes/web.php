@@ -5,6 +5,7 @@ use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 use App\Models\Appointment;
 use App\Models\Department;
 use Illuminate\Support\Facades\Route;
@@ -60,12 +61,21 @@ Route::resource('hospitals-admin', HospitalController::class);
 Route::resource('departments-admin', DepartmentController::class);
 Route::resource('reviews-admin', ReviewController::class);
 Route::resource('doctors-list', DoctorController::class);
+Route::resource('patients-list', UserController::class);
 
+// Route::middleware(['auth'])->group(function () {
+//     // Common dashboard routes for all roles
+//     Route::resource('dashboard', DashboardController::class);
 
+//     // Additional routes for specific roles (e.g., admin, hospital, doctor)
+//     Route::resource('admin/dashboard', AdminDashboardController::class)->middleware('admin');
+//     Route::resource('hospital/dashboard', HospitalDashboardController::class)->middleware('hospital');
+//     Route::resource('doctor/dashboard', DoctorDashboardController::class)->middleware('doctor');
+// });
 
-Route::get('/patient-list', function () {
-    return view('admin.pages.patient-list');
-});
+// Route::get('/patient-list', function () {
+//     return view('admin.pages.patient-list');
+// });
 
 Route::get('/transactions-list', function () {
     return view('admin.pages.transactions-list');

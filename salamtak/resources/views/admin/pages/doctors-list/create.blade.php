@@ -21,11 +21,12 @@
 
         <div class="form-group">
             <label> القسم:</label> <br>
-            @foreach ($departments as $department)
-                <input type="hidden" name="department_id" value="{{ $department->id }}">
-                <input type="radio" name="department_id" value="{{ $department->id }}">
-                {{ $department->name }}<br>
-            @endforeach
+                <select name="department_id" id="department" class="form-control">
+                    <option value="">اختر القسم</option>
+                    @foreach ($departments as $department)
+                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
         </div>
         
         <div class="form-group">

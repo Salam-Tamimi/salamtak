@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
-use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class DoctorController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors=Doctor::all();
-        return view('admin.pages.doctors-list.index', compact('doctors'));
+        $users = User::where('role', 'user')->get();
+        return view('admin.pages.patients-list.index', compact('users'));
     }
 
     /**
@@ -26,9 +25,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        $departments=Department::all();
-        // return view('admin.pages.doctors-list.create', ['departments' => $departments]);
-        return view('admin.pages.doctors-list.create', compact('departments'));
+        //
 
     }
 
@@ -40,18 +37,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
-          $validatedData = $request->validate([
-            'name' => 'required',
-            'image' => 'required',
-            'price' => 'required', 
-            'experience' => 'required', 
-            'department_id' => 'required', 
-        ]);
-
-        Doctor::create($validatedData);
-
-        return  redirect('doctors-list')->with('success', 'تمت عملية الإنشاء بنجاح');
+//
     }
 
     /**
@@ -73,9 +59,7 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        $departments=Department::all();
-        $doctor = Doctor::findOrFail($id);
-        return view('admin.pages.doctors-list.edit', ['departments' => $departments, 'doctor' => $doctor]);
+       //
     }
 
     /**
@@ -87,20 +71,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-          // Validate the request data
-          $validatedData = $request->validate([
-            'name' => 'required',
-            'image' => 'required',
-            'price' => 'required', 
-            'experience' => 'required', 
-            'department_id' => 'required', 
-        ]);
-
-        $doctor = Doctor::findOrFail($id);
-
-        $doctor->update($validatedData);
-
-        return redirect('doctors-list')->with('success', 'تمت عملية التعديل بنجاح');
+       //
     }
 
     /**
@@ -111,7 +82,7 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        Doctor::destroy($id);
+        User::destroy($id);
         return back()->with('success', 'تمت عملية الحذف بنجاح');
     }
 }
