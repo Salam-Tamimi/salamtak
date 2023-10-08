@@ -52,6 +52,7 @@ class HospitalController extends Controller
         ]);
 
         // Create a new hospital with the validated data
+        // $validatedData['role'] = 'hospital';
         Hospital::create($validatedData);
 
         // Redirect to the index page with a success message

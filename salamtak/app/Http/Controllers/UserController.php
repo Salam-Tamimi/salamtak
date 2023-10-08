@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.patients-list.create');
 
     }
 
@@ -37,7 +37,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-//
+     // Validate the request data
+     $validatedData = $request->validate([
+        'name' => 'required',
+        'image' => 'required',
+        'mobile' => 'required', 
+        'email' => 'required', 
+    ]);
+    
+    $user = User::create($validatedData);
+    if ($user->role == 'hospital') {
+        $user->hospital_id = $request->input('hospital_id');
+    } elseif ($user->role == 'doctor') {
+        $user->doctor_id = $request->input('doctor_id');
+    }
+    return  redirect('patients-list')->with('success', 'تمت عملية الإنشاء بنجاح');
     }
 
     /**

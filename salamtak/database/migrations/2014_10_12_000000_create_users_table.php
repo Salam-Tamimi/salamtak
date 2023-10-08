@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum('role', ['user', 'admin', 'hospital', 'doctor'])->default('user');
             $table->string('image')->nullable();
             $table->bigInteger('mobile')->nullable();
-            $table->unsignedBigInteger('doctor_id')->nullable();
+            // $table->unsignedBigInteger('doctor_id')->nullable();
             $table->unsignedBigInteger('hospital_id')->nullable();
             $table->unsignedBigInteger('appointment_id')->nullable();
             $table->timestamps();
@@ -33,10 +33,10 @@ return new class extends Migration
             ->references('id')
             ->on('hospitals')
             ->onDelete('cascade');
-            $table->foreign('doctor_id')
-            ->references('id')
-            ->on('doctors')
-            ->onDelete('cascade');
+            // $table->foreign('doctor_id')
+            // ->references('id')
+            // ->on('doctors')
+            // ->onDelete('cascade');
             $table->foreign('appointment_id')
             ->references('id')
             ->on('appointments')

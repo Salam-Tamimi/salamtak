@@ -20,16 +20,16 @@ class Doctor extends Model
     ];
 
 
-    public function users() 
-    {
-        return $this->belongsTo(User::class, 'doctor_id');
-    }
+    // public function users() 
+    // {
+    //     return $this->belongsTo(User::class, 'doctor_id');
+    // }
     
     public function departments() 
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
-
+ 
     public function appointments() 
     {
         return $this->hasMany(Appointment::class, 'doctor_id');
