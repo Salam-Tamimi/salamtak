@@ -14,45 +14,20 @@
         </div>
 
         <div class="form-group">
-            <label>أقسام المستشفى:</label> <br>
-            @foreach ($departments as $department)
-                <input type="hidden" name="departments[{{ $department->id }}][id]" value="{{ $department->id }}">
-                <input type="checkbox" name="departments[{{ $department->id }}][name]" value="{{ $department->name }}"
-                       {{ $department->is_active ? 'checked' : '' }}>
-                {{ $department->name }}<br>
-            @endforeach
-        </div>
-
-        {{-- <div class="form-group">
-            <label>أقسام المستشفى:</label> <br>
-            @foreach ($departments as $department)
-                @php
-                    $checked = $hospital->departments->contains('id', $department->id);
-                @endphp
-                <input type="checkbox" name="departments[{{ $department->id }}][id]" value="{{ $department->id }}"
-                       {{ $checked ? 'checked' : '' }}>
-                {{ $department->name }}<br>
-            @endforeach
-        </div> --}}
-
-        <div class="form-group">
-            <label for="location">موقع المستشفى:</label>
-            <input type="text" name="location" id="location" class="form-control" required value="{{ old('location', $hospital->location) }}">
-        </div>
-
-        <div class="form-group">
-            <label for="image">صورة للمستشفى:</label>
+            <label for="image">صورة المستشفى:</label>
             <input type="file" class="form-control" name="image" accept="image/*" required>
         </div>
 
+        
         <div class="form-group">
-            <label for="video">فيديو للمستشفى:</label>
-            <input type="text" name="video" id="video" class="form-control" required value="{{ old('video', $hospital->video) }}">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" name="email" id="email" class="form-control" required value="{{ old('email', $hospital->email) }}">
         </div>
 
+
         <div class="form-group">
-            <label for="virtual_tour">جولة إفتراضية:</label>
-            <input type="text" name="virtual_tour" id="virtual_tour" class="form-control" required value="{{ old('virtual_tour', $hospital->virtual_tour) }}">
+            <label for="mobile">رقم الهاتف المحمول :</label>
+            <input type="string" name="mobile" id="mobile" class="form-control" required value="{{ old('mobile', $hospital->mobile) }}">
         </div>
 
         <button type="submit" class="btn btn-primary">تعديل المستشفى</button>

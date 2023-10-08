@@ -1,7 +1,7 @@
 @extends('admin.Layout.master')
 @section('title', 'المستشفيات')
 @section('content')
-			{{-- l --}}
+			
 			<!-- Page Wrapper -->
             <div class="page-wrapper">
                 <div class="content container-fluid">
@@ -37,11 +37,9 @@
 											<thead>
 												<tr>
 													<th>اسم المستشفى </th>
-													<th>الأقسام </th>
-													<th> الموقع</th>
-													<th> فيديو</th>
-													<th>صورة </th>
-													<th>جولة إفتراضية </th>
+													<th> صورة المستشفى</th>
+													<th>البريد الإلكتروني </th>
+													<th> رقم الهاتف المحمول</th>
 													<th> الإجراء </th>
 												</tr>
 											</thead>
@@ -52,21 +50,16 @@
 													<td>
 														{{ $hospital->name }}
 													</td>
+													
 													<td>
-                                                    @foreach ($activeDepartments as $activeDepartment)
-                                                        <li>{{ $activeDepartment->name }}</li>
-                                                    @endforeach
-                                                    </td>
-													<td>
-														{{ $hospital->location }}
+														{{ $hospital->image }}
 													</td>
 													<td>                                
-                                                        <iframe width="150" src="{{ $hospital->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>  
+														{{ $hospital->email }}
                                                     </td>
-                                                    <td><img src="{{ asset($hospital->image) }}" alt="" width="100px" height="100px"></td>
-													
-                                                    <td>                                
-                                                        <iframe loading="lazy" style="width:150px;" src="{{ $hospital->virtual_tour }}"></iframe>
+                                                    <td>
+														{{ $hospital->mobile }}													
+                                                                                 
                                                     </td>
                                                     <td>                                
 														<div style="margin-bottom: 5px; width: 100px;"> 

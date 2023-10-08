@@ -1,4 +1,4 @@
-@extends('admin.Layout.master')
+{{-- @extends('admin.Layout.master')
 @section('title', ' إضافة مستشفى جديد ')
 @section('content')
 <br> <br> 
@@ -12,12 +12,6 @@
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
 
-        {{-- <div class="form-group">
-            <label>أقسام المستشفى:</label> <br>
-            @foreach ($departments as $department)
-            <input type="checkbox" name="departments[]" value="{{ $department->name }}"> {{ $department->name }}<br>
-            @endforeach
-        </div> --}}
 
         <div class="form-group">
             <label>أقسام المستشفى:</label> <br>
@@ -77,4 +71,4 @@
 </html>
           
      
-      
+       --}}

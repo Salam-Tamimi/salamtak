@@ -3,49 +3,36 @@
 @section('content')
 <br> <br> 
 
-<div class="container">
+
+<div class="container"> <br> <br>
     <h1>إضافة مستشفى جديد</h1>
     <form method="POST" action="{{ route('hospitals-admin.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
         @csrf
+        @method('post')
         <div class="form-group">
             <label for="name">اسم المستشفى:</label>
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
-
-        {{-- <div class="form-group">
-            <label>أقسام المستشفى:</label> <br>
-            @foreach ($departments as $department)
-            <input type="checkbox" name="departments[]" value="{{ $department->name }}"> {{ $department->name }}<br>
-            @endforeach
-        </div> --}}
-
+        
         <div class="form-group">
-            <label>أقسام المستشفى:</label> <br>
-            @foreach ($departments as $department)
-                <input type="hidden" name="departments[{{ $department->id }}][id]" value="{{ $department->id }}">
-                <input type="checkbox" name="departments[{{ $department->id }}][name]" value="{{ $department->name }}">
-                {{ $department->name }}<br>
-            @endforeach
-        </div>
-
-        <div class="form-group">
-            <label for="location">موقع المستشفى:</label>
-            <input type="text" name="location" id="location" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="image">صورة للمستشفى:</label>
+            <label for="image">صورة المستشفى:</label>
             <input type="file" class="form-control" name="image" accept="image/*" required>
         </div>
 
+        
         <div class="form-group">
-            <label for="video">فيديو للمستشفى:</label>
-            <input type="text" name="video" id="video" class="form-control" required>
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" name="email" id="email" class="form-control" required>
         </div>
 
         <div class="form-group">
-            <label for="virtual_tour">جولة إفتراضية:</label>
-            <input type="text" name="virtual_tour" id="virtual_tour" class="form-control" required>
+            <label for="password">كلمة المرور:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">رقم الهاتف المحمول :</label>
+            <input type="string" name="mobile" id="mobile" class="form-control" required>
         </div>
 
         <button type="submit" class="btn btn-primary">إضافة المستشفى</button>
@@ -53,6 +40,9 @@
 </div>
 <!-- /Main Wrapper -->
 @endsection
+</div>
+<!-- /Main Wrapper -->
+
 
 		<!-- jQuery -->
         <script src="assets/js/jquery-3.2.1.min.js"></script>
