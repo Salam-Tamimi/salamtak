@@ -5,8 +5,8 @@
 <br> <br> 
 
 <div class="container">
-    <h1>إضافة طبيب جديد</h1>
-    <form method="POST" action="{{ route('patients-list.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
+    <h1>إضافة مريض جديد</h1>
+    <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
         @csrf
         @method('post')
         <div class="form-group">
@@ -24,6 +24,12 @@
             <label for="email">البريد الإلكتروني:</label>
             <input type="email" name="email" id="email" class="form-control" required>
         </div>
+
+        <div class="form-group">
+            <label for="password">كلمة المرور:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+        
 
         <div class="form-group">
             <label for="mobile">رقم الهاتف المحمول :</label>

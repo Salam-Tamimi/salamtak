@@ -20,7 +20,7 @@
 					</div>
 					<!-- /Page Header -->
 					<div class="row my-4 mx-2">
-						<a href="{{ route('patients-list.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2">إضافة</a>
+						<a href="{{ route('users.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2">إضافة</a>
 					</div>
 
 					
@@ -54,7 +54,7 @@
 													
 													<td class="text-right">
 															<div style="margin-bottom: 5px; width: 100px;"> 
-															<form action="{{ route('patients-list.destroy', $user->id) }}" method="POST" style="display: inline;">
+															<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
 																@method('DELETE')
 																@csrf
 																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">

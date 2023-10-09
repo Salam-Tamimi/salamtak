@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -14,8 +16,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', 'user')->get();
+        $users = User::where('role', 'admin')->get();
         return view('admin.pages.patients-list.index', compact('users'));
+        // $user = User::all();
+        // if ($user->role === 'admin') {
+        //     return redirect()->route('admin.pages.patients-list.index', compact('users'));
+        // } elseif ($user->role === 'user') {
+        //     return redirect('/');
+        // }
     }
 
     /**
@@ -23,9 +31,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        return view('admin.pages.patients-list.create');
+        if ($user->role === 'admin') {
+            return view('admin.pages.patients-list.create');
+        } elseif ($user->role === 'user') {
+            return redirect('/');
+        }
+        // return view('admin.pages.patients-list.create');
 
     }
 
@@ -37,22 +50,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-     // Validate the request data
      $validatedData = $request->validate([
-        'name' => 'required',
-        'image' => 'required',
-        'mobile' => 'required', 
-        'email' => 'required', 
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'mobile' => 'nullable|numeric',
     ]);
     
-    $user = User::create($validatedData);
-    if ($user->role == 'hospital') {
-        $user->hospital_id = $request->input('hospital_id');
-    } elseif ($user->role == 'doctor') {
-        $user->doctor_id = $request->input('doctor_id');
+    // Handle image upload
+    $imagePath = null;
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('images', 'public');
     }
-    return  redirect('patients-list')->with('success', 'تمت عملية الإنشاء بنجاح');
-    }
+
+    User::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => bcrypt($request->input('password')),
+        'role' => 'user', 
+        'image' => $imagePath, // Store image path
+        'mobile' => $request->input('mobile'),
+    ]);
+    return redirect()->route('users.index')->with('success', 'تمت عملية الإنشاء بنجاح');
+}
 
     /**
      * Display the specified resource.
@@ -62,7 +83,7 @@ class UserController extends Controller
      */
     public function show()
     {
-     //
+     return view('admin.pages.patients-list.index', compact('users'));
     }
 
     /**
@@ -71,9 +92,14 @@ class UserController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-       //
+        if ($user->role === 'admin') {
+            return view('admin.pages.patients-list.edit', compact('user'));
+        } elseif ($user->role === 'user') {
+            return redirect('/');
+        }
+        // return view('admin.pages.patients-list.edit', compact('user'));
     }
 
     /**
@@ -83,9 +109,42 @@ class UserController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-       //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:6',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image upload
+            'mobile' => 'nullable|numeric', 
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete the previous image if it exists
+            if ($user->image) {
+                Storage::disk('public')->delete($user->image);
+            }
+            // Store the new image
+            $imagePath = $request->file('image')->store('images', 'public');
+        } else {
+            $imagePath = $user->image; // Keep the existing image path
+        }
+
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->filled('password') ? bcrypt($request->input('password')) : $user->password,
+            'image' => $imagePath, // Store image path
+            'mobile' => $request->input('mobile'),
+        ]);
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.pages.patients-list.edit', $user->id)->with('success', 'تمت عملية التعديل بنجاح');
+        } elseif ($user->role === 'user') {
+            return redirect('/');
+        }
+        // return redirect()->route('users', $user->id)->with('success', 'تمت عملية التعديل بنجاح');
     }
 
     /**
@@ -96,6 +155,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        // return $user->role === 'admin' && $user->id !== $targetUser->id;
         User::destroy($id);
         return back()->with('success', 'تمت عملية الحذف بنجاح');
     }

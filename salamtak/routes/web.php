@@ -1,12 +1,13 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\Hospital_detailsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 /*
@@ -20,9 +21,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,9 +36,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-
 
 
 Route::get('/', function () {
@@ -72,6 +70,38 @@ Route::get('/hospital-single', function () {
 });
 
 //////// *********     ADMIN ROUTES     *********** /////////
+
+// Route::prefix('admin')->group(function () {
+//     Route::resource('users', 'AdminController');
+// });
+
+// Route::prefix('hospital')->group(function () {
+//     Route::resource('users', 'HospitalController');
+// });
+
+// Route::prefix('doctor')->group(function () {
+//     Route::resource('users', 'DoctorController');
+// });
+
+// Route::resource('users', 'UserController'); // For the "user" role
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('users', AdminController::class);
+});
+
+Route::prefix('hospital')->middleware(['auth'])->group(function () {
+    Route::resource('users', HospitalController::class);
+});
+
+Route::prefix('doctor')->middleware(['auth'])->group(function () {
+    Route::resource('users', DoctorController::class);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserController::class);
+});
+
+
 Route::get('/admin', function () {
     return view('admin.pages.index');
 });
@@ -80,25 +110,27 @@ Route::resource('appointments-admin', AppointmentController::class);
 // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])->name('hospitals-admin.store2');
 // Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])->name('hospitals-admin.create2');
 
+// Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
 
-Route::middleware(['auth'])->group(function () {
-    // Routes for HospitalController with 'hospital' role
-    Route::resource('hospitals-admin', HospitalController::class)->middleware('role:hospital');
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::resource('hospitals-admin', HospitalController::class)->middleware('role:admin');
+//     Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
     
-    // Custom routes for 'store2' and 'create2' with 'hospital' role
-    Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
-        ->name('hospitals-admin.store2')
-        ->middleware('role:hospital');
+//     // // Custom routes for 'store2' and 'create2' with 'hospital' role
+//     // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
+//     //     ->name('hospitals-admin.store2')
+//     //     ->middleware('role:hospital');
     
-    // Routes for 'create2', 'store2', and 'update2' with 'admin' role
-    Route::middleware('role:admin')->group(function () {
-        Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])
-            ->name('hospitals-admin.create2');
+//     // // Routes for 'create2', 'store2', and 'update2' with 'admin' role
+//     // Route::middleware('role:admin')->group(function () {
+//     //     Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])
+//     //         ->name('hospitals-admin.create2');
             
-        Route::put('hospitals-admin/{id}/update2', [HospitalController::class, 'update2'])
-            ->name('hospitals-admin.update2');
-    });
-});
+//     //     Route::put('hospitals-admin/{id}/update2', [HospitalController::class, 'update2'])
+//     //         ->name('hospitals-admin.update2');
+//     // });
+// });
 
 // Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 
@@ -107,7 +139,7 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('departments-admin', DepartmentController::class);
 Route::resource('reviews-admin', ReviewController::class);
 Route::resource('doctors-list', DoctorController::class);
-Route::resource('patients-list', UserController::class);
+// Route::resource('patients-list', UserController::class);
 
 // Route::middleware(['auth'])->group(function () {
 //     // Common dashboard routes for all roles

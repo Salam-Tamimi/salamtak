@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Doctor;
@@ -8,9 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
-class HospitalController extends Controller
+class Hospital_detailsController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,35 +42,33 @@ class HospitalController extends Controller
     //             return view('admin.pages.hospitals-admin.index', compact('hospitals'));
     //         }
     //     }
-    //  }
+    // }
+    
     public function index()
-{
-    if (Auth::check()) {
-        $role = Auth()->user()->role;
-        if ($role == 'admin') {
+     {
             $hospitals = Hospital::all();
-
-            if ($hospitals->isEmpty()) {
-                return view('admin.pages.hospitals-admin.index')->with('error', 'Data not found');
-            }
-            return view('admin.pages.hospitals-admin.index', compact('hospitals'));
+            $activeDepartments = Department::where('is_active', true)->get();
+            $departments = Department::all();
+            return view('hospital.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
         }
-    }
+    
 
-    return redirect()->route('login');
-}
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
-        // $doctors = Doctor::all();
-        return View::make('admin.pages.hospitals-admin.create');
+        $activeDepartments = Department::where('is_active', true)->get();
+        $hospitals = Hospital::all();
+        $departments = Department::all();
+        $doctors = Doctor::all();
+        return View::make('hospital.pages.hospitals-admin.create',compact('doctors','hospitals', 'activeDepartments', 'departments'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -77,32 +76,22 @@ class HospitalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    
     public function store(Request $request)
     {
         // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'location' => 'required',
+            'video' => 'nullable',
+            'virtual_tour' => 'nullable',
             'image' => 'required|image',
-            'mobile' => 'nullable',
         ]);
-        $validatedData['role'] = 'hospital';
+        Hospital::create($validatedData);
 
-        // Create a new hospital with the validated data
-        // $validatedData['role'] = 'hospital';
-        User::create($validatedData);
-        // Redirect to the index page with a success message
         return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Hospital  $hospital
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function show(Hospital $hospital)
     {  
         //
