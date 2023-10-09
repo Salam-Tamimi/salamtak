@@ -1,4 +1,4 @@
-{{-- @extends('admin.Layout.master')
+@extends('admin.Layout.master')
 @section('title', ' إضافة مستشفى جديد ')
 @section('content')
 <br> <br> 
@@ -71,4 +71,4 @@
 </html>
           
      
-       --}}
+      

@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Hospital;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class HospitalController extends Controller
@@ -15,12 +15,32 @@ class HospitalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+//     public function __construct()
+// {
+//     $this->middleware('auth');
+//     $this->middleware('role:hospital')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+//     $this->middleware('role:admin')->only(['index','create2', 'store2',]);
+// }
+
     public function index()
     {
-        $activeDepartments = Department::where('is_active', true)->get();
-        $hospitals = Hospital::all();
-        $departments = Department::all();
-        return View::make('admin.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
+        if (Auth::id()) {
+            $role = Auth()->user()->role;
+            if ($role == 'hospital') {
+                // $id = Auth::user()->id;
+                // $user = User::find($id);
+                // $hospitaluser = Hospital::where('id', $user)->get();
+                // return view('hospital.pages.hospitals-admin.index', compact('hospitaluser'));
+                $activeDepartments = Department::where('is_active', true)->get();
+                $hospitals = Hospital::all();
+                $departments = Department::all();
+                return View::make('hospital.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
+            } elseif ($role == 'admin') {
+                $hospitals = Hospital::all();
+                return view('admin.pages.hospitals-admin.index', compact('hospitals'));
+            }
+        }
     }
 
     /**
@@ -30,8 +50,16 @@ class HospitalController extends Controller
      */
     public function create()
     {
+        $activeDepartments = Department::where('is_active', true)->get();
+        $hospitals = Hospital::all();
+        $departments = Department::all();
         $doctors = Doctor::all();
-        return View::make('admin.pages.hospitals-admin.create',compact('doctors'));
+        return View::make('hospital.pages.hospitals-admin.create',compact('doctors','hospitals', 'activeDepartments', 'departments'));
+    }
+    public function create2()
+    {
+        // $doctors = Doctor::all();
+        return View::make('admin.pages.hospitals-admin.create');
     }
 
     /**
@@ -50,15 +78,29 @@ class HospitalController extends Controller
             'virtual_tour' => 'nullable',
             'image' => 'required|image',
         ]);
+        Hospital::create($validatedData);
+
+        return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
+    }
+    
+    public function store2(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'image' => 'required|image',
+            'mobile' => 'nullable',
+        ]);
+        $validatedData['role'] = 'hospital';
 
         // Create a new hospital with the validated data
         // $validatedData['role'] = 'hospital';
-        Hospital::create($validatedData);
-
+        User::create($validatedData);
         // Redirect to the index page with a success message
         return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }
-
     /**
      * Display the specified resource.
      *
@@ -66,8 +108,8 @@ class HospitalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Hospital $hospital)
-    {
-        // 
+    {  
+        //
     }
 
     /**

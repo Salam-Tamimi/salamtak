@@ -1,25 +1,44 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
-use App\Models\Appointment;
-use App\Models\Department;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+
+
+
 
 Route::get('/', function () {
     return view('index');
@@ -57,7 +76,34 @@ Route::get('/admin', function () {
     return view('admin.pages.index');
 });
 Route::resource('appointments-admin', AppointmentController::class);
-Route::resource('hospitals-admin', HospitalController::class);
+// Route::resource('hospitals-admin', HospitalController::class);
+// Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])->name('hospitals-admin.store2');
+// Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])->name('hospitals-admin.create2');
+
+
+Route::middleware(['auth'])->group(function () {
+    // Routes for HospitalController with 'hospital' role
+    Route::resource('hospitals-admin', HospitalController::class)->middleware('role:hospital');
+    
+    // Custom routes for 'store2' and 'create2' with 'hospital' role
+    Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
+        ->name('hospitals-admin.store2')
+        ->middleware('role:hospital');
+    
+    // Routes for 'create2', 'store2', and 'update2' with 'admin' role
+    Route::middleware('role:admin')->group(function () {
+        Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])
+            ->name('hospitals-admin.create2');
+            
+        Route::put('hospitals-admin/{id}/update2', [HospitalController::class, 'update2'])
+            ->name('hospitals-admin.update2');
+    });
+});
+
+// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+
+
+
 Route::resource('departments-admin', DepartmentController::class);
 Route::resource('reviews-admin', ReviewController::class);
 Route::resource('doctors-list', DoctorController::class);
@@ -138,4 +184,5 @@ Route::get('/data-tables', function () {
     return view('admin.pages.data-tables');
 });
 //////// *********    END ADMIN ROUTES     *********** /////////
+
 

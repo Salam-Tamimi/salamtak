@@ -6,7 +6,7 @@
 
 <div class="container"> <br> <br>
     <h1>إضافة مستشفى جديد</h1>
-    <form method="POST" action="{{ route('hospitals-admin.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
+    <form method="POST" action="{{ route('hospitals-admin.store2') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
         @csrf
         @method('post')
         <div class="form-group">
