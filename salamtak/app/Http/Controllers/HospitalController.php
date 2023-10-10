@@ -6,6 +6,8 @@ use App\Models\Hospital;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class HospitalController extends Controller
@@ -16,56 +18,23 @@ class HospitalController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-//     public function __construct()
-// {
-//     $this->middleware('auth');
-//     $this->middleware('role:hospital')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-//     $this->middleware('role:admin')->only(['index','create2', 'store2',]);
-// }
+    public function __construct()
+{
+    $this->middleware('admin'); 
+}
 
-    // public function index()
-    // {
-    //     if (Auth::id()) {
-    //         $role = Auth()->user()->role;
-    //         if ($role == 'hospital') {
-    //             // $id = Auth::user()->id;
-    //             // $user = User::find($id);
-    //             // $hospitaluser = Hospital::where('id', $user)->get();
-    //             // return view('hospital.pages.hospitals-admin.index', compact('hospitaluser'));
-    //             $activeDepartments = Department::where('is_active', true)->get();
-    //             $hospitals = Hospital::all();
-    //             $departments = Department::all();
-    //             return View::make('hospital.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
-    //         } elseif ($role == 'admin') {
-    //             $hospitals = Hospital::all();
-    //             return view('admin.pages.hospitals-admin.index', compact('hospitals'));
-    //         }
-    //     }
-    //  }
     public function index()
 {
-    if (Auth::check()) {
-        $role = Auth()->user()->role;
-        if ($role == 'admin') {
-            $hospitals = Hospital::all();
-
-            if ($hospitals->isEmpty()) {
-                return view('admin.pages.hospitals-admin.index')->with('message', 'لا توجد بيانات');
-            }
-            return view('admin.pages.hospitals-admin.index', compact('hospitals'));
-        }
-    }
-
-    $user = auth()->user();
-
-    if ($user->role === 'admin') {
-        $hospitals = Hospital::all();
-
-            if ($hospitals->isEmpty()) {
-                return view('admin.pages.hospitals-admin.index')->with('error', 'Data not found');
-            }
-            return view('admin.pages.hospitals-admin.index', compact('hospitals'));
-}
+//     $user = auth()->user();
+//     if ($user->role === 'admin') {
+//         $hospitals = User::where('role', 'hospital')->get();
+//         dd($hospitals);
+//         return view('admin.pages.hospitals-admin.index', compact('hospitals'));
+//     }else{
+//         return redirect('/');
+// }
+    $hospitals = User::where('role', 'hospital')->get();
+    return view('admin.pages.hospitals-admin.index', compact('hospitals'));
 }
     /**
      * Show the form for creating a new resource.
@@ -89,16 +58,19 @@ class HospitalController extends Controller
     
     public function store(Request $request)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'image' => 'required|image',
             'mobile' => 'nullable',
         ]);
+        $validatedData['password'] = Hash::make($validatedData['password']);
         $validatedData['role'] = 'hospital';
-
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $validatedData['image'] = $imagePath; 
+        }
         User::create($validatedData);
         return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }

@@ -16,14 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::where('role', 'admin')->get();
-        // return view('admin.pages.patients-list.index', compact('users'));
-        // $user = User::all();
-        // if ($user->role === 'admin') {
-        //     return redirect()->route('admin.pages.patients-list.index', compact('users'));
-        // } elseif ($user->role === 'user') {
-        //     return redirect('/');
-        // }
+       
         $user = auth()->user();
 
         if ($user->role === 'admin') {

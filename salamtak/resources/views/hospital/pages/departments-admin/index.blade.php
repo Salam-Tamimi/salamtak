@@ -32,6 +32,7 @@
 												<tr>
 													<th>#</th>
 													<th>الأقسام</th>
+													<th>الحالة</th>
 													<th class="text-right">الإجراءات</th>
 												</tr>
 											</thead>
@@ -49,6 +50,13 @@
 																<img class="avatar-img" src="{{ asset('images/specialities-01.png') }}" alt="Speciality">
 															</a>
 														</h2> --}}
+													</td>
+													<td>
+														@if ($department->is_active)
+															فعال
+														@else
+															غير فعال
+														@endif
 													</td>
 													<td class="text-right">
 														<div class="actions">

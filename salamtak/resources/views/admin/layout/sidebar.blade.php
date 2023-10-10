@@ -9,15 +9,15 @@
 							<li> 
 								<a href="{{ url('/admin') }}"><i class="fe fe-home"></i> <span>لوحة التحكم</span></a>
 							</li>
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('appointments-admin') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
-							</li>
+							</li> --}}
 							<li> 
 								<a href="{{ url('hospitals-admin') }}"><i class="fe fe-layout"></i> <span>المستشفيات</span></a>
 							</li>
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('departments-admin') }}"><i class="fe fe-users"></i> <span>الأقسام</span></a>
-							</li>
+							</li> --}}
 							<li> 
 								<a href="{{ url('/doctors-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
 							</li>

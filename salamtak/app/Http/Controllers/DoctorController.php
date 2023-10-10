@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -13,11 +14,51 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $doctors=Doctor::all();
-        return view('admin.pages.doctors-list.index', compact('doctors'));
+//     public function getDoctorsByHospital($hospitalId)
+// {
+//     $doctors = Doctor::where('hospital_id', $hospitalId)->get();
+//     return response()->json($doctors);
+// }
+//     public function index()
+//     {
+//         // $doctors = User::where('role', 'doctor')->get();
+//         // return view('admin.pages.doctors-list.index', compact('doctors'));
+//         $user = auth()->user();
+//         // $doctors = User::where('role', 'doctor')->get();
+//         if ($user->role === 'admin') {
+//             $hospitals = User::where('role', 'hospital')->get();
+//             return view('admin.pages.doctors-list.index', compact('hospitals','doctors'));
+//         }elseif ($user->role === 'hospital'){
+//             return view('hospital.pages.doctors-hospital.index', compact('doctors'));
+//         }else{
+//             return redirect('/');
+// }
+//     }
+
+public function getDoctorsByHospital($hospitalId)
+{
+    $doctors = Doctor::where('hospital_id', $hospitalId)->get();
+    
+    return view('your_view_name', compact('doctors'));
+}
+
+public function index()
+{
+    $user = auth()->user();
+    $doctors = []; // Initialize an empty array
+    
+    if ($user->role === 'admin') {
+        $hospitals = User::where('role', 'hospital')->get();
+        // Retrieve doctors based on your logic and store them in the $doctors array
+    } elseif ($user->role === 'hospital') {
+        // Retrieve doctors based on your logic and store them in the $doctors array
+    } else {
+        return redirect('/');
     }
+
+    return view('admin.pages.doctors-list.index', compact('hospitals', 'doctors'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,9 +68,7 @@ class DoctorController extends Controller
     public function create()
     {
         $departments=Department::all();
-        // return view('admin.pages.doctors-list.create', ['departments' => $departments]);
-        return view('admin.pages.doctors-list.create', compact('departments'));
-
+        return view('hospital.pages.doctors-hospital.create', compact('departments'));
     }
 
     /**
@@ -40,18 +79,19 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
           $validatedData = $request->validate([
             'name' => 'required',
-            'image' => 'required',
+            'image' => 'required|image',
             'price' => 'required', 
             'experience' => 'required', 
             'department_id' => 'required', 
         ]);
-
-        Doctor::create($validatedData);
-
-        return  redirect('doctors-list')->with('success', 'تمت عملية الإنشاء بنجاح');
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $validatedData['image'] = $imagePath; 
+        }
+        User::create($validatedData);
+        return  redirect('doctors-hospital')->with('success', 'تمت عملية الإنشاء بنجاح');
     }
 
     /**
@@ -74,7 +114,7 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $departments=Department::all();
-        $doctor = Doctor::findOrFail($id);
+        $doctor = User::findOrFail($id);
         return view('admin.pages.doctors-list.edit', ['departments' => $departments, 'doctor' => $doctor]);
     }
 
@@ -90,17 +130,17 @@ class DoctorController extends Controller
           // Validate the request data
           $validatedData = $request->validate([
             'name' => 'required',
-            'image' => 'required',
+            'image' => 'required|image', 
             'price' => 'required', 
             'experience' => 'required', 
             'department_id' => 'required', 
         ]);
 
-        $doctor = Doctor::findOrFail($id);
+        $doctor = User::findOrFail($id);
 
         $doctor->update($validatedData);
 
-        return redirect('doctors-list')->with('success', 'تمت عملية التعديل بنجاح');
+        return redirect('doctors-hospital')->with('success', 'تمت عملية التعديل بنجاح');
     }
 
     /**
@@ -111,7 +151,7 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        Doctor::destroy($id);
+        User::destroy($id);
         return back()->with('success', 'تمت عملية الحذف بنجاح');
     }
 }

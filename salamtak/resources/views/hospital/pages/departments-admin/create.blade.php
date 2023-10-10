@@ -13,6 +13,11 @@
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
 
+        <div class="form-group">
+            <label for="is_active">الحالة:</label>
+            <input type="checkbox" class="form-control" id="is_active" name="is_active" value="1">
+        </div>
+
         <button type="submit" class="btn btn-primary">إضافة القسم</button>
     </form> <br> <br> <br>
 </div>

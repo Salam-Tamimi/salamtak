@@ -105,7 +105,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/admin', function () {
     return view('admin.pages.index');
 });
-Route::resource('appointments-admin', AppointmentController::class);
 // Route::resource('hospitals-admin', HospitalController::class);
 // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])->name('hospitals-admin.store2');
 // Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])->name('hospitals-admin.create2');
@@ -116,7 +115,14 @@ Route::resource('appointments-admin', AppointmentController::class);
 Route::middleware(['auth'])->group(function () {
     // Route::resource('hospitals-admin', HospitalController::class)->middleware('role:admin');
     Route::resource('hospitals-admin', HospitalController::class);
-    Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
+    Route::resource('hospitals-details', Hospital_detailsController::class);
+    Route::resource('doctors-list', DoctorController::class);
+    Route::get('/get-doctors-by-hospital/{hospitalId}', 'DoctorController@getDoctorsByHospital');
+    Route::resource('doctors-hospital', DoctorController::class);
+    Route::resource('appointments-admin', AppointmentController::class);
+    Route::resource('departments-admin', DepartmentController::class);
+    Route::resource('reviews-admin', ReviewController::class);
+    Route::resource('patients-list', UserController::class);
     
     // // Custom routes for 'store2' and 'create2' with 'hospital' role
     // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
@@ -137,10 +143,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::resource('departments-admin', DepartmentController::class);
-Route::resource('reviews-admin', ReviewController::class);
-Route::resource('doctors-list', DoctorController::class);
-// Route::resource('patients-list', UserController::class);
 
 // Route::middleware(['auth'])->group(function () {
 //     // Common dashboard routes for all roles

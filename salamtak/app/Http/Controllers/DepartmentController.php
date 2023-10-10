@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Hospital;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -12,10 +14,33 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $departments = Department::all();
-        return view('admin.pages.departments-admin.index', compact('departments'));
+        // Retrieve the hospital ID from the URL parameters
+        // $hospitalId = $request->route('hospitalId');
+        
+        // $hospital = Hospital::find($hospitalId);
+        // if ($hospital) {
+        //     $departments = $hospital->departments;
+        // } else {
+        //     $departments = [];
+        // }
+        $user = auth()->user();
+        if ($user->role === 'admin') {
+            // $selectedHospital = Hospital::find($hospitalId);
+
+            // if ($selectedHospital) {
+            //     $departments = $selectedHospital->departments;
+            // } else {
+            //     // Handle the case where the hospital is not found.
+            // }
+            return view('admin.pages.hospitals-admin.index', compact('departments'));
+        }elseif ($user->role === 'hospital'){
+            return redirect('hospital.pages.departments-admin.index', compact('hospitals'));
+        }else{
+            return redirect('/');
+}
     }
 
     /**
@@ -25,7 +50,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.departments-admin.create');
+        return view('hospital.pages.departments-admin.create');
     }
 
     /**
@@ -36,16 +61,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required',
             'is_active' => 'boolean', 
         ]);
-
-        // Create a new department with the validated data
+        $validatedData['is_active'] = $request->has('is_active');
         Department::create($validatedData);
-
-        // Redirect to the index page with a success message
         return  redirect()->route('departments-admin.index')->with('success', 'تم إنشاء القسم بنجاح');
     }
 
@@ -69,7 +90,7 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         $department = Department::findOrFail($id);
-        return view('admin.pages.departments-admin.edit', compact('department'));
+        return view('hospital.pages.departments-admin.edit', compact('department'));
     }
 
     /**

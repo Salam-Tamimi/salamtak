@@ -47,27 +47,22 @@
 												@if(isset($hospitals) && count($hospitals) > 0)
 												@foreach ($hospitals as $hospital)
 													<tr>
+													<td>{{ $hospital->name }}</td>
 													<td>
-														{{ $hospital->name }}
-													</td>
-													
-													<td>
-														{{ $hospital->image }}
-													</td>
-													<td>                                
-														{{ $hospital->email }}
-                                                    </td>
-                                                    <td>
-														{{ $hospital->mobile }}													
-                                                                                 
-                                                    </td>
+														@if($hospital->image)
+															<img src="{{ asset($hospital->image) }}" alt="Hospital Image" width="100px">
+														@else
+															No Image Available
+														@endif
+													</td>																										<td>{{ $hospital->email }}</td>                              
+                                                    <td>{{ $hospital->mobile }}</td>	
                                                     <td>                                
-														<div style="margin-bottom: 5px; width: 100px;"> 
+														{{-- <div style="margin-bottom: 5px; width: 100px;"> 
 															<a class="btn btn-info btn-sm" href="{{ route('hospitals-admin.edit', $hospital->id) }}" style="width: 100%;">
 																<i class="fas fa-pencil-alt"></i>
 																تعديل
 															</a>
-														</div>
+														</div> --}}
 													
 														<div style="margin-bottom: 5px; width: 100px;"> 
 															<form action="{{ route('hospitals-admin.destroy', $hospital->id) }}" method="POST" style="display: inline;">
@@ -80,7 +75,6 @@
 															</form>
 														</div>                                                    
 													</td>
-						
 												</tr>
 												@endforeach
 												@else
