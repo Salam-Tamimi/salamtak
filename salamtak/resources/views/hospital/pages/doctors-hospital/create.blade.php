@@ -6,7 +6,7 @@
 
 <div class="container">
     <h1>إضافة طبيب جديد</h1>
-    <form method="POST" action="{{ route('doctors-list.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
+    <form method="POST" action="{{ route('doctors-hospital.store') }}" style="width: 80%; margin: 50px auto;" enctype="multipart/form-data">
         @csrf
         @method('post')
         <div class="form-group">
@@ -37,6 +37,9 @@
         <div class="form-group">
             <label for="price">الكشفية :</label>
             <input type="number" name="price" id="price" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="hospital_id" id="hospital_id" class="form-control" value="{{ $departments->first()->hospital_department->hospital_id }}">
         </div>
 
         <button type="submit" class="btn btn-primary">إضافة الطبيب</button>

@@ -20,7 +20,7 @@
 					</div>
 					<!-- /Page Header -->
 					<div class="row my-4 mx-2">
-						<a href="{{ route('doctors-list.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2">إضافة</a>
+						<a href="{{ route('doctors-hospital.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2">إضافة</a>
 					</div>
 
 					
@@ -71,13 +71,13 @@
 													<td class="text-right">
 														<div class="actions">
 															<div style="margin-bottom: 5px; width: 100px;"> 
-																<a class="btn btn-info btn-sm" href="{{ route('doctors-list.edit', $doctor->id) }}" style="width: 100%;">
+																<a class="btn btn-info btn-sm" href="{{ route('doctors-hospital.edit', $doctor->id) }}" style="width: 100%;">
 																	<i class="fas fa-pencil-alt"></i>
 																	تعديل
 																</a>
 															</div>
 															<div style="margin-bottom: 5px; width: 100px;"> 
-															<form action="{{ route('doctors-list.destroy', $doctor->id) }}" method="POST" style="display: inline;">
+															<form action="{{ route('doctors-hospital.destroy', $doctor->id) }}" method="POST" style="display: inline;">
 																@method('DELETE')
 																@csrf
 																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">
@@ -125,5 +125,5 @@
 		
     </body>
 
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-hospital.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
 </html>

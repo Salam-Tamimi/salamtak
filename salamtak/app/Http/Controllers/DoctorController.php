@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Hospital;
+use App\Models\Hospital_department;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,28 +37,28 @@ class DoctorController extends Controller
 // }
 //     }
 
-public function getDoctorsByHospital($hospitalId)
-{
-    $doctors = Doctor::where('hospital_id', $hospitalId)->get();
+// public function getDoctorsByHospital($hospitalId)
+// {
+//     $doctors = Doctor::where('hospital_id', $hospitalId)->get();
     
-    return view('your_view_name', compact('doctors'));
-}
+//     return view('hospital.pages.doctors-hospital.index', compact('doctors'));
+// }
 
 public function index()
 {
     $user = auth()->user();
-    $doctors = []; // Initialize an empty array
-    
+    $doctors = []; 
+    $doctors = Doctor::all();
     if ($user->role === 'admin') {
         $hospitals = User::where('role', 'hospital')->get();
-        // Retrieve doctors based on your logic and store them in the $doctors array
+    return view('admin.pages.doctors-list.index', compact('hospitals', 'doctors'));
+
     } elseif ($user->role === 'hospital') {
-        // Retrieve doctors based on your logic and store them in the $doctors array
+        return view('hospital.pages.doctors-hospital.index', compact('doctors'));
     } else {
         return redirect('/');
     }
 
-    return view('admin.pages.doctors-list.index', compact('hospitals', 'doctors'));
 }
 
 
@@ -65,9 +67,10 @@ public function index()
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $departments=Department::all();
+        // $departments=Department::all();
+        $departments = Department::where('id', $request->input('department_id'))->get();
         return view('hospital.pages.doctors-hospital.create', compact('departments'));
     }
 
@@ -90,7 +93,11 @@ public function index()
             $imagePath = $request->file('image')->store('public/images');
             $validatedData['image'] = $imagePath; 
         }
-        User::create($validatedData);
+        $hospital = Hospital::findOrFail($request->input('hospital_id'));
+
+        $validatedData['id'] = $hospital->id;
+
+        Doctor::create($validatedData);
         return  redirect('doctors-hospital')->with('success', 'تمت عملية الإنشاء بنجاح');
     }
 
@@ -115,7 +122,7 @@ public function index()
     {
         $departments=Department::all();
         $doctor = User::findOrFail($id);
-        return view('admin.pages.doctors-list.edit', ['departments' => $departments, 'doctor' => $doctor]);
+        return view('hospital.pages.doctors-hospital.edit', ['departments' => $departments, 'doctor' => $doctor]);
     }
 
     /**
