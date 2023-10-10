@@ -113,24 +113,25 @@ Route::resource('appointments-admin', AppointmentController::class);
 // Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
 
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::resource('hospitals-admin', HospitalController::class)->middleware('role:admin');
-//     Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
+Route::middleware(['auth'])->group(function () {
+    // Route::resource('hospitals-admin', HospitalController::class)->middleware('role:admin');
+    Route::resource('hospitals-admin', HospitalController::class);
+    Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
     
-//     // // Custom routes for 'store2' and 'create2' with 'hospital' role
-//     // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
-//     //     ->name('hospitals-admin.store2')
-//     //     ->middleware('role:hospital');
+    // // Custom routes for 'store2' and 'create2' with 'hospital' role
+    // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
+    //     ->name('hospitals-admin.store2')
+    //     ->middleware('role:hospital');
     
-//     // // Routes for 'create2', 'store2', and 'update2' with 'admin' role
-//     // Route::middleware('role:admin')->group(function () {
-//     //     Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])
-//     //         ->name('hospitals-admin.create2');
+    // // Routes for 'create2', 'store2', and 'update2' with 'admin' role
+    // Route::middleware('role:admin')->group(function () {
+    //     Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])
+    //         ->name('hospitals-admin.create2');
             
-//     //     Route::put('hospitals-admin/{id}/update2', [HospitalController::class, 'update2'])
-//     //         ->name('hospitals-admin.update2');
-//     // });
-// });
+    //     Route::put('hospitals-admin/{id}/update2', [HospitalController::class, 'update2'])
+    //         ->name('hospitals-admin.update2');
+    // });
+});
 
 // Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 

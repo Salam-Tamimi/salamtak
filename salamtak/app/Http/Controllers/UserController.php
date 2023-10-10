@@ -24,10 +24,11 @@ class UserController extends Controller
         // } elseif ($user->role === 'user') {
         //     return redirect('/');
         // }
-        $user = auth()->user(); // Get the currently authenticated user
+        $user = auth()->user();
 
         if ($user->role === 'admin') {
-            return redirect()->route('admin.pages.patients-list.index');
+            $users = User::where('role', 'admin')->get();
+            return view('admin.pages.patients-list.index', compact('users'));
         } elseif ($user->role === 'user') {
             return redirect('/');
         }

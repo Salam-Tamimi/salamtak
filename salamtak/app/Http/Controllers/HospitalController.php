@@ -50,15 +50,23 @@ class HospitalController extends Controller
             $hospitals = Hospital::all();
 
             if ($hospitals->isEmpty()) {
-                return view('admin.pages.hospitals-admin.index')->with('error', 'Data not found');
+                return view('admin.pages.hospitals-admin.index')->with('message', 'لا توجد بيانات');
             }
             return view('admin.pages.hospitals-admin.index', compact('hospitals'));
         }
     }
 
-    return redirect()->route('login');
-}
+    $user = auth()->user();
 
+    if ($user->role === 'admin') {
+        $hospitals = Hospital::all();
+
+            if ($hospitals->isEmpty()) {
+                return view('admin.pages.hospitals-admin.index')->with('error', 'Data not found');
+            }
+            return view('admin.pages.hospitals-admin.index', compact('hospitals'));
+}
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -91,10 +99,7 @@ class HospitalController extends Controller
         ]);
         $validatedData['role'] = 'hospital';
 
-        // Create a new hospital with the validated data
-        // $validatedData['role'] = 'hospital';
         User::create($validatedData);
-        // Redirect to the index page with a success message
         return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }
     /**
