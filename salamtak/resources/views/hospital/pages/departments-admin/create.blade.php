@@ -8,6 +8,7 @@
     <h1>إضافة قسم جديد</h1>
     <form method="POST" action="{{ route('departments-admin.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
         @csrf
+        <input type="hidden" name="hospital_id" value="{{ auth()->user()->hospital_id }}">
         <div class="form-group">
             <label for="name">اسم القسم:</label>
             <input type="text" name="name" id="name" class="form-control" required>
@@ -19,7 +20,8 @@
         </div>
 
         <button type="submit" class="btn btn-primary">إضافة القسم</button>
-    </form> <br> <br> <br>
+    </form>
+     <br> <br> <br>
 </div>
 <!-- /Main Wrapper -->
 @endsection

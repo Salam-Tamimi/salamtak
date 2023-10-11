@@ -50,7 +50,7 @@ class Hospital_detailsController extends Controller
             $activeDepartments = Department::where('is_active', true)->get();
             $departments = Department::all();
             return view('hospital.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
-        }
+     }
     
 
 
@@ -92,9 +92,13 @@ class Hospital_detailsController extends Controller
     }
     
     
-    public function show(Hospital $hospital)
+    public function show($id)
     {  
-        //
+        $departments = Department::where('id', $id)->get();
+        // $hospital = Hospital::findOrFail($id);
+        // $doctors = Doctor::where('id', $id)->get();
+        return view('admin.pages.departments_doctors', compact('departments'));
+
     }
 
     /**

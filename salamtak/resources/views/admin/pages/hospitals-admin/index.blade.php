@@ -47,7 +47,7 @@
 												@if(isset($hospitals) && count($hospitals) > 0)
 												@foreach ($hospitals as $hospital)
 													<tr>
-													<td>{{ $hospital->name }}</td>
+													<td><a href="{{ route('hospitals-doctors', $hospital->id) }}">{{ $hospital->name }}</a></td>
 													<td>
 														@if($hospital->image)
 															<img src="{{ asset($hospital->image) }}" alt="Hospital Image" width="100px">

@@ -25,16 +25,16 @@ class HospitalController extends Controller
 
     public function index()
 {
-//     $user = auth()->user();
-//     if ($user->role === 'admin') {
-//         $hospitals = User::where('role', 'hospital')->get();
-//         dd($hospitals);
-//         return view('admin.pages.hospitals-admin.index', compact('hospitals'));
-//     }else{
-//         return redirect('/');
-// }
-    $hospitals = User::where('role', 'hospital')->get();
-    return view('admin.pages.hospitals-admin.index', compact('hospitals'));
+    $user = auth()->user();
+    if ($user->role === 'admin') {
+        $hospitals = User::where('role', 'hospital')->get();
+        // dd($hospitals);
+        return view('admin.pages.hospitals-admin.index', compact('hospitals'));
+    }else{
+        return redirect('/');
+}
+    // $hospitals = User::where('role', 'hospital')->get();
+    // return view('admin.pages.hospitals-admin.index', compact('hospitals'));
 }
     /**
      * Show the form for creating a new resource.
