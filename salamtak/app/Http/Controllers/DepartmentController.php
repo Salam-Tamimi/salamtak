@@ -83,6 +83,7 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
+        
         $department = Department::findOrFail($id);
         return view('hospital.pages.departments-admin.edit', compact('department'));
     }
