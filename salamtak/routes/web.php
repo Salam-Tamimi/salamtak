@@ -21,9 +21,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -101,52 +98,20 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
 });
 
-
 Route::get('/admin', function () {
     return view('admin.pages.index');
 });
-// Route::resource('hospitals-admin', HospitalController::class);
-// Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])->name('hospitals-admin.store2');
-// Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])->name('hospitals-admin.create2');
-
-// Route::resource('hospitals-details', Hospital_detailsController::class)->middleware('role:hospital');
-
 
 Route::middleware(['auth'])->group(function () {
-    // Route::resource('hospitals-admin', HospitalController::class)->middleware('role:admin');
     Route::resource('hospitals-admin', HospitalController::class);
     Route::resource('hospitals-details', Hospital_detailsController::class);
-    // Route::get('/hospitals-doctors/{id}', [Hospital_detailsController::class, 'show'])->name('hospitals-doctors');    // Route::get('/hospitals-doctors/{id}', 'Hospital_detailsController@show')->name('hospitals-doctors');
     Route::resource('doctors-list', DoctorController::class);
-    // Route::get('/get-doctors-by-hospital/{hospitalId}', 'DoctorController@getDoctorsByHospital');
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('appointments-admin', AppointmentController::class);
     Route::resource('departments-admin', DepartmentController::class);
-    // Route::resource('departments-admin', HospitalDepartmentController::class);
-    // Route::get('departments-admin/{id}', [DepartmentController::class, 'index']);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);
-    
-    // // Custom routes for 'store2' and 'create2' with 'hospital' role
-    // Route::post('hospitals-admin/store2', [HospitalController::class, 'store2'])
-    //     ->name('hospitals-admin.store2')
-    //     ->middleware('role:hospital');
-    
-    // // Routes for 'create2', 'store2', and 'update2' with 'admin' role
-    // Route::middleware('role:admin')->group(function () {
-    //     Route::post('hospitals-admin/create2', [HospitalController::class, 'create2'])
-    //         ->name('hospitals-admin.create2');
-            
-    //     Route::put('hospitals-admin/{id}/update2', [HospitalController::class, 'update2'])
-    //         ->name('hospitals-admin.update2');
-    // });
 });
-
-// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-
-
-
-
 // Route::middleware(['auth'])->group(function () {
 //     // Common dashboard routes for all roles
 //     Route::resource('dashboard', DashboardController::class);
