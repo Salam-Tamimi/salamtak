@@ -10,6 +10,14 @@
         @csrf
         @method('post')
         <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" name="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <input type="password" name="password" class="form-control" id="password" required>
+        </div>
+        <div class="form-group">
             <label for="name">اسم الطبيب:</label>
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
@@ -29,7 +37,7 @@
                 </select>
         </div>
         
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="experience">خبرة الطبيب:</label>
             <input type="text" name="experience" id="experience" class="form-control" required>
         </div>
@@ -37,10 +45,8 @@
         <div class="form-group">
             <label for="price">الكشفية :</label>
             <input type="number" name="price" id="price" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <input type="hidden" name="hospital_id" id="hospital_id" class="form-control" value="{{ $departments->first()->hospital_department->hospital_id }}">
-        </div>
+        </div> --}}
+       
 
         <button type="submit" class="btn btn-primary">إضافة الطبيب</button>
     </form> <br> <br> <br>

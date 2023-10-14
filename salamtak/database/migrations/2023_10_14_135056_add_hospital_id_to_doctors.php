@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('departments', function (Blueprint $table) {
-        //     $table->unsignedBigInteger('hospital_id'); 
-        //     $table->foreign('hospital_id')->references('id')->on('hospitals'); 
-        // });
+        Schema::table('doctors', function (Blueprint $table) {
+            $table->unsignedBigInteger('hospital_id')->after('department_id')->nullable();
+
+            $table->foreign('hospital_id')
+                ->references('id')
+                ->on('hospitals')
+                ->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,7 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('departments', function (Blueprint $table) {
+        Schema::table('doctors', function (Blueprint $table) {
             $table->dropForeign(['hospital_id']);
             $table->dropColumn('hospital_id');
         });

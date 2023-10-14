@@ -16,7 +16,7 @@ class Doctor extends Model
         'department_id', 
         'image',
         'review_id',
-        'doctor_id'
+        'hospital_id'
     ];
 
 
@@ -29,16 +29,20 @@ class Doctor extends Model
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
+    public function hospitals() 
+    {
+        return $this->belongsTo(Hospital::class, 'id');
+    }
  
     public function appointments() 
     {
         return $this->hasMany(Appointment::class, 'doctor_id');
     }
 
-    public function hospital_departments() 
-    {
-        return $this->hasMany(Hospital_department::class, 'hospital_id');
-    }
+    // public function hospital_departments() 
+    // {
+    //     return $this->hasMany(Hospital_department::class, 'hospital_id');
+    // }
 
     public function doctor_schaduales() 
     {

@@ -14,7 +14,7 @@ class Hospital extends Model
         'location', 
         'video', 
         'virtual_tour', 
-        'image', 
+        'image',  
     ];
 
 
@@ -28,9 +28,13 @@ public function users()
 //     return $this->hasMany(Hospital_department::class, 'hospital_id');
 // }
 
-public function doctor_hospitals() 
+// public function doctor_hospitals() 
+// {
+//     return $this->hasMany(Doctor_hospital::class, 'hospital_id');
+// }
+public function doctors() 
 {
-    return $this->hasMany(Doctor_hospital::class, 'hospital_id');
+    return $this->hasMany(Doctor::class, 'hospital_id');
 }
 public function departments() 
 {

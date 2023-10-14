@@ -20,7 +20,8 @@
 					</div>
 					<!-- /Page Header -->
 					<div class="row my-4 mx-2">
-						<a href="{{ route('doctors-hospital.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2">إضافة</a>
+						<a href="{{ route('hospitals-details.index') }}"class="btn btn-success float-right mt-2 mx-2"><svg width="24px" height="24px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#ffffff" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"></path><path fill="#ffffff" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"></path></g></svg>الرجوع الى تفاصيل المستشفى</a>
+						<a href="{{ route('doctors-hospital.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2 mx-2">إضافة طبيب</a>
 					</div>
 
 					
@@ -34,7 +35,7 @@
 												<tr>
 													<th> الطبيب</th>
 													<th>القسم</th>
-													<th>الخبرة</th>
+													{{-- <th>الخبرة</th> --}}
 													{{-- <th>مشترك منذ</th> --}}
 													{{-- <th>التحصيل</th> --}}
 													<th>الكشفية</th>
@@ -44,6 +45,7 @@
 												</tr>
 											</thead>
 											<tbody>
+												@if ($doctors)
 												@foreach ($doctors as $doctor)
 													<tr>
 													<td>
@@ -52,13 +54,15 @@
 															<a href="profile.html" class="mx-2">&nbsp;{{ $doctor->name }}</a>
 														</h2>
 													</td>
-													<td>{{ $doctor->departments->name }}</td>
+													<td>
+														{{-- {{ $doctor->department->name }} --}}
+													</td>
 													{{-- <td>{{ $doctor->department ? $doctor->department->name : 'N/A' }}</td> --}}
 
 													
 													{{-- <td>١١ تشرين الثاني ٢٠٢٣ <br><small>١٢.٣٠م</small></td> --}}
 													
-													<td>{{ $doctor->experience }}</td>
+													{{-- <td>{{ $doctor->experience }}</td> --}}
 													<td>{{ $doctor->price }} JOD</td>
 													
 													<td>
@@ -90,6 +94,12 @@
 													</td>
 												</tr>
 												@endforeach
+												@else
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												@endif
 												
 											</tbody>
 										</table>

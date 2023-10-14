@@ -6,41 +6,43 @@
 
 <div class="container">
     <h1>تعديل معلومات الطبيب </h1>
-    <form method="POST" action="{{ route('doctors-list.update', $doctor->id) }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
+    <form method="POST" action="{{ route('doctors-hospital.update', Auth::user()->id) }}" style="width: 80%; margin: 50px auto;" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+        @method('PUT') 
+
+        <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" name="email" class="form-control" id="email" value="{{ $doctor->email }}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="******">
+        </div>
         <div class="form-group">
             <label for="name">اسم الطبيب:</label>
-            <input type="text" name="name" id="name" class="form-control" required value="{{ old('name', $doctor->name) }}">
-        </div>
-        <div class="form-group">
-            <label for="image">صورة الطبيب:</label>
-            <input type="file" class="form-control" name="image" accept="image/*" required>
-        </div>
-        {{-- <div class="form-group">
-            <label for="department"> القسم:</label>
-            <input type="text" name="department" id="department" class="form-control" required value="{{ old('department', $doctor->department) }}">
-        </div> --}}
-        <div class="form-group">
-            <label> القسم:</label> <br>
-                <select name="department_id" id="department" class="form-control">
-                    <option value="{{ old('department', $doctor->department) }}">{{ old('department', $doctor->departments->name) }} </option>
-                    @foreach ($departments as $department)
-                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                    @endforeach
-                </select>
-        </div>
-        <div class="form-group">
-            <label for="experience"> الخبرة:</label>
-            <input type="text" name="experience" id="experience" class="form-control" required value="{{ old('experience', $doctor->experience) }}">
-        </div>
-        <div class="form-group">
-            <label for="price"> الكشفية:</label>
-            <input type="number" name="price" id="price" class="form-control" required value="{{ old('price', $doctor->price) }}">
+            <input type="text" name="name" id="name" class="form-control" value="{{ $doctor->name }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">تعديل </button>
-    </form> <br> <br> <br>
+        <div class="form-group">
+            <label for="image">صورة الطبيب:</label>
+            <input type="file" class="form-control" name="image" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label> القسم:</label> <br>
+            <select name="department_id" id="department" class="form-control">
+                <option value="">اختر القسم</option>
+                @foreach ($departments as $department)
+                    <option value="{{ $department->id }}" {{ $doctor->department_id == $department->id ? 'selected' : '' }}>
+                        {{ $department->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+    </form>
+     <br> <br> <br>
 </div>
 <!-- /Main Wrapper -->
 @endsection

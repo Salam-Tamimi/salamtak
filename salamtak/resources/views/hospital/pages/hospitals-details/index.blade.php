@@ -26,8 +26,11 @@
 							<div class="card card-table">
 								<div class="card-header">
 									<h4 class="card-title">لائحة المستشفيات</h4>
-										<a class="btn btn-primary btn-sm float-left" href="{{ route('departments-admin.index') }}">
+										<a class="btn btn-primary btn-sm float-left mx-4" href="{{ route('departments-admin.index') }}">
 											<i class="fas fa-th nav-icon"></i> أقسام المستشفى
+										</a>
+										<a class="btn btn-primary btn-sm float-left" href="{{ route('doctors-hospital.index') }}">
+											<i class="fas fa-th nav-icon"></i> قائمة أطباء المستشفى
 										</a>
 									</div>
 								</div>
