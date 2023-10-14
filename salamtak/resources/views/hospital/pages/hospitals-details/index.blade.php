@@ -7,7 +7,7 @@
                 <div class="content container-fluid">
 				
 					<!-- Page Header -->
-					<div class="page-header">
+					{{-- <div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
 								<h3 class="page-title">المستشفيات</h3>
@@ -17,7 +17,7 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<!-- /Page Header -->
 					<div class="row">
 						<div class="col-md-12">
@@ -25,12 +25,12 @@
 							<!-- Recent Orders -->
 							<div class="card card-table">
 								<div class="card-header">
-									<h4 class="card-title">لائحة المستشفيات</h4>
+									<h4 class="card-title">لوحة تحكم {{ $hospital->name }}</h4>
 										<a class="btn btn-primary btn-sm float-left mx-4" href="{{ route('departments-admin.index') }}">
 											<i class="fas fa-th nav-icon"></i> أقسام المستشفى
 										</a>
 										<a class="btn btn-primary btn-sm float-left" href="{{ route('doctors-hospital.index') }}">
-											<i class="fas fa-th nav-icon"></i> قائمة أطباء المستشفى
+											<i class="fas fa-th nav-icon"></i> أطباء المستشفى
 										</a>
 									</div>
 								</div>

@@ -48,8 +48,13 @@
     <!-- doctors card start-->
   <div class="m-4 justify-content-center">
     <div class="row m-4">
-            <div class="card  col-lg-3 col-md-6 col-sm-12" style="border:none;text-align: right;">
-        <div class="p-3 doctorscard">
+        @php
+            use App\Models\Department;
+            $departments = Department::all();
+        @endphp
+        @foreach ($collection as $item)
+        <div class="card  col-lg-3 col-md-6 col-sm-12" style="border:none;text-align: right;">
+          <div class="p-3 doctorscard">
             <div>
                 <h5 class="card-title">مستشفى  الراهبات الوردية</h5>
                 <img src="{{ asset('/images/doctor1.png') }}" class="img-fluid rounded-start" style="height:300px;" alt="doctor image" >
@@ -75,7 +80,8 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
+{{-- 
         <div class="card col-lg-3 col-md-6 col-sm-12" style="border:none;text-align: right;">
             <div class=" p-3 doctorscard">
                 <div>
@@ -161,7 +167,7 @@
                                 </div>
                         </div>
                 </div>
-            </div>
+            </div> --}}
 
      </div>
 

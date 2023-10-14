@@ -55,6 +55,11 @@
                     <h2 class="mb-5">الأقسام الرئيسية </h2>
                 </div>
                 <div class="row g-4 mx-4">
+                @php
+                    use App\Models\Department;
+                    $departments = Department::all();
+                @endphp
+                    @foreach ($departments as $department)
                     <div class="col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay="0.1s">
                         <div class="service-item rounded h-100">
                             <div class="d-flex justify-content-between">
@@ -66,12 +71,13 @@
                                 </a>
                             </div>
                             <div class="p-5">
-                                <h4 class="mb-3">قسم العيون</h4>
-                               <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب عيون</span></a> 
+                                <h4 class="mb-3">{{ $department->name }}</h4>
+                               <a href="{{ url('/appointments') }}"><span>احجز موعد عند {{ $department->name }}</span></a> 
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    @endforeach
+                    {{-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item rounded h-100">
                             <div class="d-flex justify-content-between">
                                 <div class="service-icon">
@@ -246,7 +252,7 @@
                                 <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب نفسي</span></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

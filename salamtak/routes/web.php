@@ -38,6 +38,13 @@ require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('index');
 });
+// Route::get('/', function () {
+//     $departments = App\Http\Controllers\DepartmentController.php::getData();
+//     $doctors = App\Http\Controllers\PostController::getData();
+
+//     return view('index', compact('departments', 'doctors'));
+// });
+
 Route::get('/filter', function () {
     return view('pages.filter');
 });
