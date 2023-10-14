@@ -8,6 +8,7 @@ use App\Models\Hospital_department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
@@ -47,17 +48,22 @@ class DepartmentController extends Controller
     
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:departments',
-            'is_active' => 'boolean',
+        // $validatedData = $request->validate([
+        //     'name' => 'required|unique:departments',
+        //     'is_active' => 'boolean',
+        // ]);
+    
+        // $validatedData['is_active'] = $request->has('is_active');
+        // $validatedData['hospital_id'] = Auth::user()->hospital_id;
+        // // $validatedData['hospital_id'] = Auth::hospital()->id;
+    
+        $department = Department::create([
+            'name' => $request->name,
+            'is_active' => $request->is_active,
+            'hospital_id' => Auth::user()->hospital_id,
         ]);
-    
-        $validatedData['is_active'] = $request->has('is_active');
-        $validatedData['hospital_id'] = auth()->user()->hospital_id;
-    
-        $department = Department::create($validatedData);
         $departments = Department::all();
-        return view('hospital.pages.departments-admin.index', compact('departments'))->with('success', 'تم إنشاء القسم بنجاح');
+        return redirect()->route('departments-admin.index')->with('success', 'تم إنشاء القسم بنجاح');
     }
     
 
@@ -92,11 +98,12 @@ class DepartmentController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:departments,name,' . $id,
             'is_active' => 'boolean',
+            // 'hospital_id' => Auth::user()->hospital_id,
         ]);
         
         $validatedData['is_active'] = $request->has('is_active');
         $validatedData['hospital_id'] = auth()->user()->hospital_id;
-        $department = Department::where('hospital_id', $hospital_id)->findOrFail($id);
+        $department = Department::where('hospital_id', Auth::user()->hospital_id)->findOrFail($id);
     
         $department->update($validatedData);
     

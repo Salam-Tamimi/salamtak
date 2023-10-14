@@ -9,14 +9,14 @@ class Hospital_department extends Model
 {
     use HasFactory;
 
-    public function departments() 
-    {
-        return $this->belongsTo(Department::class,'department_id');
-    }
+    // public function departments() 
+    // {
+    //     return $this->belongsTo(Department::class,'department_id');
+    // }
 
-    public function hospitals() 
-    {
-        return $this->belongsTo(Hospital::class,'hospital_id');
-    }
+    // public function hospitals() 
+    // {
+    //     return $this->belongsTo(Hospital::class,'hospital_id');
+    // }
     
 }

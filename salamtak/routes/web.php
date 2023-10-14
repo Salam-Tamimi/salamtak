@@ -121,8 +121,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/get-doctors-by-hospital/{hospitalId}', 'DoctorController@getDoctorsByHospital');
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('appointments-admin', AppointmentController::class);
-    // Route::resource('departments-admin', DepartmentController::class);
-    Route::resource('departments-admin', HospitalDepartmentController::class);
+    Route::resource('departments-admin', DepartmentController::class);
+    // Route::resource('departments-admin', HospitalDepartmentController::class);
     // Route::get('departments-admin/{id}', [DepartmentController::class, 'index']);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);

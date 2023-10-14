@@ -24,12 +24,12 @@
 						
 							<!-- Recent Orders -->
 							<div class="card card-table">
-								{{-- <div class="card-header">
+								<div class="card-header">
 									<h4 class="card-title">لائحة المستشفيات</h4>
-										<a class="btn btn-primary btn-sm float-left" href="{{ route('hospitals-details.create') }}">
-											<i class="fas fa-th nav-icon"></i> إضافة مستشفى
+										<a class="btn btn-primary btn-sm float-left" href="{{ route('departments-admin.index') }}">
+											<i class="fas fa-th nav-icon"></i> أقسام المستشفى
 										</a>
-									</div> --}}
+									</div>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -37,7 +37,7 @@
 											<thead>
 												<tr>
 													<th>اسم المستشفى </th>
-													<th>الأقسام </th>
+													{{-- <th>الأقسام </th> --}}
 													<th> الموقع</th>
 													<th> فيديو</th>
 													<th>صورة </th>
@@ -95,11 +95,25 @@
 											    @endif												 --}}
 											<tr>
 												<td>{{ Auth::user()->name }}</td>
-												<td></td>
+												@if ($hospital)
+													
+												{{-- <td>
+													@foreach ($departments as $department)
+														<li>{{ $department ->name }}</li>
+													@endforeach
+												</td> --}}
 												<td>{{ $hospital->location }}</td>
 												<td>{{ $hospital->video }}</td>
 												<td>{{ $hospital->image }}</td>
 												<td>{{ $hospital->virtual_tour }}</td>
+												@else
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+
+												@endif
 												<td>
 													<div style="margin-bottom: 5px; width: 100px;"> 
 														<a class="btn btn-info btn-sm" href="{{ route('hospitals-details.edit', Auth::user()->id ) }}" style="width: 100%;">
@@ -107,12 +121,12 @@
 															تعديل
 														</a>
 													</div>
-													<div style="margin-bottom: 5px; width: 100px;"> 
-														<a class="btn btn-info btn-sm" href="{{ route('hospitals-details.edit', Auth::user()->id ) }}" style="width: 100%;">
+													{{-- <div style="margin-bottom: 5px; width: 100px;"> 
+														<a class="btn btn-info btn-sm" href="{{ route('departments-admin.create', Auth::user()->id ) }}" style="width: 100%;">
 															<i class="fas fa-pencil-alt"></i>
 															اضافة أقسام
 														</a>
-													</div>
+													</div> --}}
 												</td>
 											</tr>
 											</tbody>

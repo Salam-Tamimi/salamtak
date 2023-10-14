@@ -54,8 +54,8 @@ class Hospital_detailsController extends Controller
             $hospital = Hospital::where('id',Auth::user()->hospital_id)->first();
             // dd($hospital);
             // $activeDepartments = Department::where('is_active', true)->get();
-            // $departments = Department::all();
-            return view('hospital.pages.hospitals-details.index', compact('hospital'));
+            $departments = Department::where('hospital_id',Auth::user()->hospital_id)->get();
+            return view('hospital.pages.hospitals-details.index', compact('hospital', 'departments'));
      }else {
         return redirect('/');
      }

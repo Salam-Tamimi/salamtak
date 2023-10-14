@@ -12,6 +12,7 @@ class Department extends Model
     protected $fillable = [
         'name', 
         'is_active',
+        'hospital_id',
     ];
 
     public function doctors() 
@@ -23,9 +24,13 @@ class Department extends Model
     {
         return $this->hasMany(Appointment::class, 'department_id');
     }
-
-    public function hospital_departments() 
+    public function hospitals() 
     {
-        return $this->hasMany(Hospital_department::class, 'department_id');
+        return $this->belongsTo(Hospital::class, 'id');
     }
+
+    // public function hospital_departments() 
+    // {
+    //     return $this->hasMany(Hospital_department::class, 'department_id');
+    // }
 }
