@@ -56,24 +56,27 @@ class HospitalController extends Controller
      */
 
     
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:8',
-            'image' => 'required|image',
-            'mobile' => 'nullable',
-        ]);
-        $validatedData['password'] = Hash::make($validatedData['password']);
-        $validatedData['role'] = 'hospital';
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
-            $validatedData['image'] = $imagePath; 
-        }
-        User::create($validatedData);
-        return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
-    }
+     public function store( Request $request)
+     {
+         $validatedData = $request->validate([
+             'name' => 'required',
+             'email' => 'required',
+             'password' => 'required|min:8',
+             'image' => 'required|image',
+             'mobile' => 'nullable',
+         ]);
+         $user = auth()->user();
+         $validatedData['password'] = Hash::make($validatedData['password']);
+         $validatedData['role'] = 'hospital';
+              
+         if ($request->hasFile('image')) {
+             $imagePath = $request->file('image')->store('public/images');
+             $validatedData['image'] = $imagePath;
+         }
+         User::create($validatedData);
+     
+         return redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
+     }
     /**
      * Display the specified resource.
      *
@@ -144,7 +147,7 @@ class HospitalController extends Controller
      */
     public function destroy($id)
     {
-        Hospital::destroy($id);
+        User::destroy($id);
         return back()->with('success', 'تم حذف المستشفى بنجاح');
     }
 }

@@ -6,7 +6,7 @@
 
 <div class="container">
     <h1>إضافة قسم جديد</h1>
-    <form method="POST" action="{{ route('departments-admin.store') }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
+    <form method="POST" action="{{ route('departments-admin.store', ['hospitalId' => $hospital->id]) }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
         @csrf
         <input type="hidden" name="hospital_id" value="{{ auth()->user()->hospital_id }}">
         <div class="form-group">

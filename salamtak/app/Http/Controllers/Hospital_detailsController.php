@@ -46,11 +46,20 @@ class Hospital_detailsController extends Controller
     
     public function index()
      {
-            $hospitals = Hospital::all();
-            $activeDepartments = Department::where('is_active', true)->get();
-            $departments = Department::all();
-            return view('hospital.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
+        // dd('2');
+        $user = Auth::user();
+
+        if ($user->role === 'hospital') {
+            // $hospital_id= User::where('id',Auth::user()->id)->get('hospital_id');
+            $hospital = Hospital::where('id',Auth::user()->hospital_id)->first();
+            // dd($hospital);
+            // $activeDepartments = Department::where('is_active', true)->get();
+            // $departments = Department::all();
+            return view('hospital.pages.hospitals-details.index', compact('hospital'));
+     }else {
+        return redirect('/');
      }
+    }
     
 
 
@@ -64,9 +73,9 @@ class Hospital_detailsController extends Controller
     {
         $activeDepartments = Department::where('is_active', true)->get();
         $hospitals = Hospital::all();
-        $departments = Department::all();
+        // $departments = Department::all();
         $doctors = Doctor::all();
-        return View::make('hospital.pages.hospitals-admin.create',compact('doctors','hospitals', 'activeDepartments', 'departments'));
+        return View::make('hospital.pages.hospitals-details.create',compact('doctors','hospitals', 'activeDepartments'));
     }
     
 
@@ -78,6 +87,9 @@ class Hospital_detailsController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
+        if ($user->role === 'hospital') {
         // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required',
@@ -87,8 +99,9 @@ class Hospital_detailsController extends Controller
             'image' => 'required|image',
         ]);
         Hospital::create($validatedData);
+    }
 
-        return  redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
+        return  redirect()->route('hospitals-details.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }
     
     
@@ -109,9 +122,10 @@ class Hospital_detailsController extends Controller
      */
     public function edit($id)
     {
-        $departments = Department::all();
-        $hospital = Hospital::findOrFail($id);
-        return view('admin.pages.hospitals-admin.edit', compact('hospital', 'departments'));
+        // dd('2');
+        // $departments = Department::all();
+        // $hospital = Hospital::findOrFail($id);
+        return view('hospital.pages.hospitals-details.edit');
     }
 
     /**
@@ -123,32 +137,51 @@ class Hospital_detailsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $validatedData = $request->validate([
+        //     'name' => 'required',
+        //     'location' => 'required',
+        //     'video' => 'nullable', 
+        //     'virtual_tour' => 'nullable', 
+        //     'image' => 'required|image', 
+        // ]);
+
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('images'); 
+        //     $validatedData['image'] = $imagePath;
+        // }
+
+        // foreach ($request->input('departments') as $departmentData) {
+        //     $department = Department::find($departmentData['id']);
+
+        //     if ($department) {
+        //         $department->update([
+        //             'is_active' => isset($departmentData['name']),
+        //         ]);
+        //     }
+        // }
+        // $hospital = Hospital::findOrFail($id); 
+        // $hospital->update($validatedData);
+
+        // return redirect()->route('hospitals-admin.index')->with('success', 'تم تعديل المستشفى بنجاح');
+        $user = Auth::user();
+
+        if ($user->role === 'hospital') {
+        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required',
             'location' => 'required',
-            'video' => 'nullable', 
-            'virtual_tour' => 'nullable', 
-            'image' => 'required|image', 
+            'video' => 'nullable',
+            'virtual_tour' => 'nullable',
+            'image' => 'required|image',
         ]);
+         // Create a new hospital record
+         $hospital = Hospital::create($validatedData);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images'); 
-            $validatedData['image'] = $imagePath;
-        }
+         // Update the hospital_id of the currently logged-in user with the new hospital's ID
+         User::where('id', $user->id)->update(['hospital_id' => $hospital->id]);
+    }
 
-        foreach ($request->input('departments') as $departmentData) {
-            $department = Department::find($departmentData['id']);
-
-            if ($department) {
-                $department->update([
-                    'is_active' => isset($departmentData['name']),
-                ]);
-            }
-        }
-        $hospital = Hospital::findOrFail($id); 
-        $hospital->update($validatedData);
-
-        return redirect()->route('hospitals-admin.index')->with('success', 'تم تعديل المستشفى بنجاح');
+        return  redirect()->route('hospitals-details.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }
     
 
@@ -161,6 +194,6 @@ class Hospital_detailsController extends Controller
     public function destroy($id)
     {
         Hospital::destroy($id);
-        return back()->with('success', 'تم حذف المستشفى بنجاح');
+        return redirect()->route('hospitals-details.index')->with('success', 'تم حذف المستشفى بنجاح');
     }
 }

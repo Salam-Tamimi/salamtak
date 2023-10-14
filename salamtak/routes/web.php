@@ -115,12 +115,14 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->group(function () {
     // Route::resource('hospitals-admin', HospitalController::class)->middleware('role:admin');
     Route::resource('hospitals-admin', HospitalController::class);
-    Route::get('/hospitals-doctors/{id}', [Hospital_detailsController::class, 'show'])->name('hospitals-doctors');    // Route::get('/hospitals-doctors/{id}', 'Hospital_detailsController@show')->name('hospitals-doctors');
+    Route::resource('hospitals-details', Hospital_detailsController::class);
+    // Route::get('/hospitals-doctors/{id}', [Hospital_detailsController::class, 'show'])->name('hospitals-doctors');    // Route::get('/hospitals-doctors/{id}', 'Hospital_detailsController@show')->name('hospitals-doctors');
     Route::resource('doctors-list', DoctorController::class);
     // Route::get('/get-doctors-by-hospital/{hospitalId}', 'DoctorController@getDoctorsByHospital');
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('appointments-admin', AppointmentController::class);
-    Route::resource('departments-admin', DepartmentController::class);
+    // Route::resource('departments-admin', DepartmentController::class);
+    Route::resource('departments-admin', HospitalDepartmentController::class);
     // Route::get('departments-admin/{id}', [DepartmentController::class, 'index']);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);
