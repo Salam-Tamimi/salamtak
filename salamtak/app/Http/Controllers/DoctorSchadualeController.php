@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor_schaduale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorSchadualeController extends Controller
 {
@@ -14,7 +15,10 @@ class DoctorSchadualeController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->role === 'doctor') {
+            $schedules = Doctor_schaduale::where('doctor_id', Auth::user()->id)->get();
+            return view('doctor-schaduale.index', compact('schedules'));
+        }
     }
 
     /**
@@ -24,7 +28,10 @@ class DoctorSchadualeController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->role === 'doctor') {
+            // dd('2');
+            return redirect()->route('doctor-schaduale.create');
+        }
     }
 
     /**
@@ -35,7 +42,19 @@ class DoctorSchadualeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::user()->role === 'doctor') {
+            $data = $request->validate([
+                'day_of_week' => 'required',
+                'start_time' => 'required',
+                'end_time' => 'required',
+            ]);
+
+            $data['doctor_id'] = Auth::user()->id;
+
+            Doctor_schaduale::create($data);
+
+            return redirect()->route('doctor-schaduale.index')->with('success', 'Doctor schedule created successfully.');
+        }
     }
 
     /**
@@ -44,9 +63,14 @@ class DoctorSchadualeController extends Controller
      * @param  \App\Models\Doctor_schaduale  $doctor_schaduale
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor_schaduale $doctor_schaduale)
+    public function show($id)
     {
-        //
+        // if (Auth::user()->role === 'doctor') {
+        //     $schedule = Doctor_schaduale::findOrFail($id);
+        //     return view('doctor-schaduale.show', compact('schedule'));
+        // } else {
+        //     return redirect()->back()->with('error', 'You do not have permission to access this page.');
+        // }
     }
 
     /**
@@ -55,9 +79,12 @@ class DoctorSchadualeController extends Controller
      * @param  \App\Models\Doctor_schaduale  $doctor_schaduale
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor_schaduale $doctor_schaduale)
+    public function edit($id)
     {
-        //
+        if (Auth::user()->role === 'doctor') {
+            $schedule = Doctor_schaduale::findOrFail($id);
+            return view('doctor-schaduale.edit', compact('schedule'));
+        }
     }
 
     /**
@@ -67,9 +94,20 @@ class DoctorSchadualeController extends Controller
      * @param  \App\Models\Doctor_schaduale  $doctor_schaduale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor_schaduale $doctor_schaduale)
+    public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->role === 'doctor') {
+            $data = $request->validate([
+                'day_of_week' => 'required',
+                'start_time' => 'required',
+                'end_time' => 'required',
+            ]);
+
+            $schedule = Doctor_schaduale::findOrFail($id);
+            $schedule->update($data);
+
+            return redirect()->route('doctor-schaduale.index')->with('success', 'Doctor schedule updated successfully.');
+        }
     }
 
     /**
@@ -78,8 +116,13 @@ class DoctorSchadualeController extends Controller
      * @param  \App\Models\Doctor_schaduale  $doctor_schaduale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor_schaduale $doctor_schaduale)
+    public function destroy($id)
     {
-        //
+        if (Auth::user()->role === 'doctor') {
+            $schedule = Doctor_schaduale::findOrFail($id);
+            $schedule->delete();
+
+            return redirect()->route('doctor-schaduale.index')->with('success', 'Doctor schedule deleted successfully.');
+        }
     }
 }

@@ -118,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('departments-admin', DepartmentController::class);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);
+    Route::resource('doctor-schaduale', DoctorSchadualeController::class);
+
 });
 // Route::middleware(['auth'])->group(function () {
 //     // Common dashboard routes for all roles
