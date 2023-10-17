@@ -30,7 +30,7 @@ class DoctorSchadualeController extends Controller
     {
         if (Auth::user()->role === 'doctor') {
             // dd('2');
-            return redirect()->route('doctor-schaduale.create');
+            return view('doctor-schaduale.create');
         }
     }
 
@@ -49,14 +49,12 @@ class DoctorSchadualeController extends Controller
                 'end_time' => 'required',
             ]);
 
-            $data['doctor_id'] = Auth::user()->id;
-
+            $data['doctor_id'] = auth()->user()->id;
             Doctor_schaduale::create($data);
 
             return redirect()->route('doctor-schaduale.index')->with('success', 'Doctor schedule created successfully.');
         }
     }
-
     /**
      * Display the specified resource.
      *

@@ -48,15 +48,15 @@ class DoctorController extends Controller
 
 public function index()
 {
-    // $user = auth()->user();
+    $user = auth()->user();
     // // $doctors = []; 
     // // $doctors = User::where('role','doctor')->get();
-    // if ($user->role === 'doctor') {
-    //     return view('admin.pages.doctors-list.index', compact('hospitals', 'doctors'));
+    if ($user->role === 'doctor') {
+        return view('doctor-schaduale.index');
 
-    // }else {
-    //     return redirect('/');
-    // }
+    }else {
+        return redirect('/');
+    }
 }
 
 
@@ -97,6 +97,7 @@ public function index()
                 'department_id' => $request->input('department_id'),
                 'role' => 'doctor',
                 'hospital_id' => Auth::user()->hospital_id,
+                'doctor_id' => Auth::user()->doctor_id,
             ]);
             // dd($request->all());
             
@@ -109,6 +110,9 @@ public function index()
                 'experience' => 'required|string|max:255',
                 'price' => 'required|numeric',
             ]);
+            $validatedData['hospital_id'] = auth()->user()->hospital_id;
+            $validatedData['doctor_id'] = auth()->user()->doctor_id;
+
             $imagePath = $request->file('image')->store('public/images');
     
             $validatedData['image'] = $imagePath;

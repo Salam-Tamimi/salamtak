@@ -11,13 +11,13 @@ class Doctor_schaduale extends Model
 
     protected $fillable = [
         'day_of_week', 
-        'doctor_id', 
         'start_time', 
         'end_time', 
+        'doctor_id', 
     ];
 
     public function doctors() 
     {
-        return $this->belongsTo(Doctor::class, 'id');
+        return $this->belongsTo(Doctor::class);
     }
 }

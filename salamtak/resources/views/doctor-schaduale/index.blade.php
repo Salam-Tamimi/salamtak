@@ -1,12 +1,10 @@
 @extends('layout.master')
-
 @section('content')
 <br> <br> <br> <br>
     <div class="my-4 mx-3">
         <div class="container">
             <h3>جدول الطبيب</h3>
             <a href="{{ route('doctor-schaduale.create') }}" class="btn btn-primary mb-2">إضافة جدول</a>
-    
             @if (count($schedules) > 0)
                 <table class="table">
                     <thead>
