@@ -15,6 +15,11 @@ class DoctorSchadualeController extends Controller
      */
     public function index()
     {
+        // if ($user->role === 'doctor') {
+        //     return view('doctor-schaduale.index');
+        // else {
+        //     return redirect('/');
+        // }
         if (Auth::user()->role === 'doctor') {
             $schedules = Doctor_schaduale::where('doctor_id', Auth::user()->id)->get();
             return view('doctor-schaduale.index', compact('schedules'));

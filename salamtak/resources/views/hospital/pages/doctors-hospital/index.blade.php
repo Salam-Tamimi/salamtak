@@ -34,10 +34,11 @@
 											<thead>
 												<tr>
 													<th> الطبيب</th>
-													<th>القسم</th>
+													{{-- <th>القسم</th> --}}
 													{{-- <th>الخبرة</th> --}}
 													{{-- <th>مشترك منذ</th> --}}
 													{{-- <th>التحصيل</th> --}}
+													<th>البريد الإلكتروني</th>
 													<th>الكشفية</th>
 													<th>حالة الحساب</th>
 													<th> الإجراءات</th>
@@ -50,19 +51,20 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset($doctor->image) }}" alt="User Image">
+															<img class="avatar-img rounded-circle" src="{{ asset('storage/' . $doctor->image) }}" alt="{{ $doctor->name }}">
 															<a href="profile.html" class="mx-2">&nbsp;{{ $doctor->name }}</a>
 														</h2>
 													</td>
-													<td>
-														{{-- {{ $doctor->department->name }} --}}
-													</td>
+													{{-- <td>
+														{{ $doctor->department->name }}
+													</td> --}}
 													{{-- <td>{{ $doctor->department ? $doctor->department->name : 'N/A' }}</td> --}}
 
 													
 													{{-- <td>١١ تشرين الثاني ٢٠٢٣ <br><small>١٢.٣٠م</small></td> --}}
 													
 													{{-- <td>{{ $doctor->experience }}</td> --}}
+													<td>{{ $doctor->email }} JOD</td>
 													<td>{{ $doctor->price }} JOD</td>
 													
 													<td>
@@ -74,11 +76,11 @@
 
 													<td class="text-right">
 														<div class="actions">
-															<div style="margin-bottom: 5px; width: 100px;"> 
+															{{-- <div style="margin-bottom: 5px; width: 100px;"> 
 																<a class="btn btn-info btn-sm" href="{{ route('doctors-hospital.edit', $doctor->id) }}" style="width: 100%;">
 																	<i class="fas fa-pencil-alt"></i>
 																	تعديل
-																</a>
+																</a> --}}
 															</div>
 															<div style="margin-bottom: 5px; width: 100px;"> 
 															<form action="{{ route('doctors-hospital.destroy', $doctor->id) }}" method="POST" style="display: inline;">

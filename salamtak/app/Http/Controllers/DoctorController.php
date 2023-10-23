@@ -49,15 +49,23 @@ class DoctorController extends Controller
 public function index()
 {
     $user = auth()->user();
-    // // $doctors = []; 
-    // // $doctors = User::where('role','doctor')->get();
-    if ($user->role === 'doctor') {
-        return view('doctor-schaduale.index');
-
-    }else {
+    
+    if ($user->role === 'hospital') {
+        // Get all the doctors belonging to this hospital
+        $doctors = User::where('hospital_id', $user->hospital_id)
+            ->where('role', 'doctor')
+            ->get();
+        // Append the full image URL to each doctor object
+        $doctors->each(function ($doctor) {
+            $doctor->image = asset('storage/' . $doctor->image);
+        });
+        
+        return view('hospital.pages.doctors-hospital.index', compact('doctors'));
+    } else {
         return redirect('/');
     }
 }
+
 
 
     /**
@@ -81,28 +89,38 @@ public function index()
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
-    {
-        $user = auth()->user();
-    
-        
-        if ($user->role === 'hospital') {
-            $imagePath = $request->file('image')->store('doctor_images', 'public');
-            
-            User::create([
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-                'name' => $request->input('name'),
-                'image' => $imagePath,
-                'department_id' => $request->input('department_id'),
-                'role' => 'doctor',
-                'hospital_id' => Auth::user()->hospital_id,
-                'doctor_id' => Auth::user()->doctor_id,
-            ]);
-            // dd($request->all());
-            
-            return redirect()->route('doctors-hospital.index')->with('success', 'تمت عملية الإنشاء بنجاح');
-        } elseif ($user->role === 'doctor') {
+     public function store(Request $request)
+     {
+         $user = auth()->user();
+     
+         // Check if the authenticated user has the "hospital" role
+         if ($user->role === 'hospital') {
+             $request->validate([
+                 'name' => 'required|string',
+                 'email' => 'required|email|unique:users',
+                 'password' => 'required|min:6',
+                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the image validation as needed
+                 'department_id' => 'required',
+             ]);
+     
+             $hospitalId = $user->hospital_id;
+     
+             // Store the image in the 'public' disk
+             $imagePath = $request->file('image')->store('doctor_images', 'public');
+     
+             // Create a new user with the role "doctor" and associate them with the hospital
+             User::create([
+                 'email' => $request->input('email'),
+                 'password' => Hash::make($request->input('password')),
+                 'name' => $request->input('name'),
+                 'image' => $imagePath,
+                 'department_id' => $request->input('department_id'),
+                 'role' => 'doctor',
+                 'hospital_id' => $hospitalId,
+             ]);
+     
+             return redirect()->route('doctors-hospital.index')->with('success', 'تمت عملية الإنشاء بنجاح');
+         } elseif ($user->role === 'doctor') {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -142,12 +160,29 @@ public function index()
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
+    // public function edit($id)
+    // {
+    //     $hospitalId = auth()->user()->hospital_id;
+    //     $departments = Department::where('hospital_id', $hospitalId)->get();
+    //     $doctor = User::findOrFail($id);
+    //     return view('hospital.pages.doctors-hospital.edit', ['departments' => $departments, 'doctor' => $doctor]);
+    // }
     public function edit($id)
-    {
-        $departments=Department::all();
-        $doctor = User::findOrFail($id);
-        return view('hospital.pages.doctors-hospital.edit', ['departments' => $departments, 'doctor' => $doctor]);
+{
+    // Retrieve the doctor record based on the ID
+    $doctor = User::findOrFail($id); // Assuming you're using the "User" model
+
+    // Check if the authenticated user has permission to edit this doctor
+    if (auth()->user()->role === 'hospital' && $doctor->hospital_id === auth()->user()->hospital_id) {
+        $hospitalId = auth()->user()->hospital_id;
+        $departments = Department::where('hospital_id', $hospitalId)->get();
+
+        return view('hospital.pages.doctors-hospital.edit', compact('departments', 'doctor'));
     }
+
+    return redirect()->route('doctors-hospital.index')->with('error', 'You do not have permission to edit this doctor.');
+}
+
 
     /**
      * Update the specified resource in storage.
@@ -156,38 +191,80 @@ public function index()
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $user = auth()->user();
-        
-        if ($user->role === 'hospital') {
-            $doctor = Doctor::findOrFail($id);
+    // public function update(Request $request, $id)
+    // {
+    //     $user = auth()->user();
+    //     if ($user->role === 'hospital') {
+    //         $doctor = Doctor::findOrFail($id); // Update Doctor model, not User model
     
-            if ($doctor->hospital_id !== Auth::user()->hospital_id) {
-                return redirect()->route('doctors-hospital.index')->with('error', 'You do not have permission to update this doctor.');
-            }
-            $validatedData = $request->validate([
+    //         // Check if the hospital is authorized to update this doctor
+    //         // if ($doctor->hospital_id !== $user->hospital_id) {
+    //         //     return redirect()->route('doctors-hospital.index')->with('error', 'You do not have permission to update this doctor.');
+    //         // }
+
+    //         $validatedData = $request->validate([
+    //             'email' => 'required|email|unique:users,email,' . $doctor->id,
+    //             'name' => 'required|string',
+    //             'department_id' => 'required|numeric',
+    //             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+    //         ]);
+    
+    //         $doctor->email = $validatedData['email'];
+    //         $doctor->name = $validatedData['name'];
+    //         $doctor->department_id = $validatedData['department_id'];
+    
+    //         if ($request->hasFile('image')) {
+    //             $imagePath = $request->file('image')->store('doctor_images', 'public');
+    //             $doctor->image = $imagePath;
+    //         }
+    //         $doctor->save();
+    
+    //         $hospitalId = auth()->user()->hospital_id;
+    //         $departments = Department::where('hospital_id', $hospitalId)->get();
+    //         return redirect()->route('doctors-hospital.index', compact('departments'))->with('success', 'تمت عملية التحديث بنجاح');
+    //     }
+    // }
+    public function update(Request $request, $id)
+{
+    $user = auth()->user();
+    
+    if ($user->role === 'hospital') {
+        $doctor = User::findOrFail($id);
+
+        // Check if the hospital is authorized to update this doctor
+        if ($doctor->hospital_id === $user->hospital_id) {
+            $request->validate([
                 'email' => 'required|email|unique:users,email,' . $doctor->id,
                 'name' => 'required|string',
-                'department_id' => 'required|numeric',
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+                'department_id' => 'required',
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
-    
-            $doctor->email = $validatedData['email'];
-            $doctor->name = $validatedData['name'];
-            $doctor->department_id = $validatedData['department_id'];
-    
+
+            $doctor->email = $request->input('email');
+            $doctor->name = $request->input('name');
+            $doctor->department_id = $request->input('department_id');
+
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('doctor_images', 'public');
                 $doctor->image = $imagePath;
             }
-    
+
             $doctor->save();
+
             $hospitalId = auth()->user()->hospital_id;
             $departments = Department::where('hospital_id', $hospitalId)->get();
-            return redirect()->route('doctors-hospital.index', compact('departments'))->with('success', 'تمت عملية التحديث بنجاح');
+
+            return redirect()->route('doctors-hospital.index', compact('departments'))
+                ->with('success', 'تمت عملية التحديث بنجاح');
         }
-    } 
+
+        return redirect()->route('doctors-hospital.index')
+            ->with('error', 'You do not have permission to update this doctor.');
+    }
+}
+
+    
+    
     
 
     /**
@@ -198,7 +275,19 @@ public function index()
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return back()->with('success', 'تمت عملية الحذف بنجاح');
+        $user = auth()->user();
+    
+        if ($user->role === 'hospital') {
+            $doctor = User::findOrFail($id);
+    
+            // Check if the hospital is authorized to delete this doctor
+            if ($doctor->hospital_id === $user->hospital_id) {
+                $doctor->delete();
+                return back()->with('success', 'تمت عملية الحذف بنجاح');
+            } else {
+                return back()->with('error', 'لا تمتلك الصلاحية لحذف هذا الطبيب');
+            }
+        }
     }
+    
 }
