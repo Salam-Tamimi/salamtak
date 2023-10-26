@@ -25,7 +25,7 @@
 							<!-- Recent Orders -->
 							<div class="card card-table">
 								<div class="card-header">
-									<h4 class="card-title">لوحة تحكم {{ $hospital->name }}</h4>
+									<h4 class="card-title">لوحة تحكم {{ Auth::user()->name }}</h4>
 										<a class="btn btn-primary btn-sm float-left mx-4" href="{{ route('departments-admin.index') }}">
 											<i class="fas fa-th nav-icon"></i> أقسام المستشفى
 										</a>

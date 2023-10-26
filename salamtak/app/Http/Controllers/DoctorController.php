@@ -236,7 +236,7 @@ public function index()
             $request->validate([
                 'email' => 'required|email|unique:users,email,' . $doctor->id,
                 'name' => 'required|string',
-                'department_id' => 'required',
+                // 'department_id' => 'required',
                 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 

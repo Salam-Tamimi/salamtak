@@ -31,7 +31,7 @@ class Doctor extends Model
     }
     public function hospitals() 
     {
-        return $this->belongsTo(Hospital::class, 'id');
+        return $this->belongsTo(Hospital::class, 'hospital_id');
     }
  
     public function appointments() 
