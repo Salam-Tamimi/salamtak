@@ -21,7 +21,7 @@ class DoctorSchadualeController extends Controller
         //     return redirect('/');
         // }
         if (Auth::user()->role === 'doctor') {
-            $schedules = Doctor_schaduale::where('doctor_id', Auth::user()->id)->get();
+            $schedules = Doctor_schaduale::where('doctor_id', Auth::user()->doctor_id)->get();
             return view('doctor-schaduale.index', compact('schedules'));
         }
     }
@@ -34,8 +34,20 @@ class DoctorSchadualeController extends Controller
     public function create()
     {
         if (Auth::user()->role === 'doctor') {
-            // dd('2');
-            return view('doctor-schaduale.create');
+            $doctor = auth()->user()->doctor;
+            $createdDays = Doctor_schaduale::where('doctor_id', Auth::user()->doctor_id)->pluck('day_of_week')->toArray();
+            $allDays = [
+                'الأحد',
+                'الإثنين',
+                'الثلاثاء',
+                'الأربعاء',
+                'الخميس',
+                'الجمعة',
+                'السبت',
+            ];
+    
+            $availableDays = array_diff($allDays, $createdDays);
+            return view('doctor-schaduale.create', compact('availableDays'));
         }
     }
 
@@ -54,7 +66,7 @@ class DoctorSchadualeController extends Controller
                 'end_time' => 'required',
             ]);
 
-            $data['doctor_id'] = auth()->user()->id;
+            $data['doctor_id'] = auth()->user()->doctor_id;
             Doctor_schaduale::create($data);
 
             return redirect()->route('doctor-schaduale.index')->with('success', 'Doctor schedule created successfully.');

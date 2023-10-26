@@ -9,6 +9,7 @@
 @endsection
 @section('content') <br> <br> <br> <br> 
 <a href="{{ route('doctor-details.create') }}" class="btn btn-primary m-4">إضافة معلومات</a>
+<a href="{{ route('doctor-schaduale.create') }}" class="btn btn-primary m-4">إضافة جدول الدوام الأسبوعي</a>
 
         <div id="blur">
           <div class="d-flex justify-content-around flex-wrap mx-5 row ">
@@ -47,7 +48,7 @@
 @endif
 
    <div class="pt-5 col" >
-       <section id="availability" class="availability availability--profile">
+       {{-- <section id="availability" class="availability availability--profile">
      <div class="availability__calendar">
         <div class="availability__next">
             <span class="custom-arrow arrow--right"></span>
@@ -138,8 +139,10 @@
                             <span class="availability__info-date"> 01:00 م</span>
                         </div>
                     </a>
-                </section>
-   </div>
+                </section> --}}
+           
+   
+        </div>
 
     </div>
 @if ($doctor)
