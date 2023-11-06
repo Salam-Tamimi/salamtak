@@ -57,9 +57,15 @@ Route::get('/lab', function () {
 Route::get('/hospitals', function () {
     return view('pages.hospitals');
 });
-Route::get('/appointments', function () {
-    return view('pages.appointments');
-});
+// Route::get('/appointments', function () {
+//     return view('pages.appointments');
+// });
+// Route::get('/appointments', function () {
+//     $departmentId = request('department_id'); 
+//     return view('pages.appointments', ['department_id' => $departmentId]);
+// });
+route('appointments', ['department_id' => $department->id]);
+
 Route::get('/about', function () {
     return view('pages.about');
 });

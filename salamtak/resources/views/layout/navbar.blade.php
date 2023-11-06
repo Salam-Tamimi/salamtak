@@ -71,7 +71,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
+                                {{-- <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العظام</a>
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأشعة</a>
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم القلب</a>
@@ -80,7 +80,14 @@
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأطفال</a>
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العلاج الطبيعي</a>
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
+                                @php
+                                use App\Models\Department;
+                                $departments = Department::all();
+                                @endphp
+                                @foreach ($departments as $department)
+                                <a href="{{ url('/appointments', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
+                                @endforeach
                             </div>
                         </div>
                         <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
