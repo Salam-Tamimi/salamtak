@@ -10,6 +10,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\Hospital_detailsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
+use App\Models\Department;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,7 +65,13 @@ Route::get('/hospitals', function () {
 //     $departmentId = request('department_id'); 
 //     return view('pages.appointments', ['department_id' => $departmentId]);
 // });
-route('appointments', ['department_id' => $department->id]);
+// Route::get('/appointments/{department_id}', function ($departmentId) {
+//     return view('pages.appointments', ['department_id' => $departmentId]);
+// });
+Route::get('/appointments/{department_id}', function ($departmentId) {
+    return view('pages.appointments', ['departmentId' => $departmentId]);
+});
+
 
 Route::get('/about', function () {
     return view('pages.about');

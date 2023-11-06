@@ -1,4 +1,4 @@
-@extends('layout.master')
+{{-- @extends('layout.master')
 @section('title','سلامتك - حجز موعد')
 @section('css')
 
@@ -33,7 +33,7 @@
   </script>
 
 @endsection
-@section('content')
+@section('content') --}}
 <div id="blur">
     <div class="contain"style="width:90%;">
         <strong class="row mb-4">الرئيسية / المستشفيات الخاصة / قسم العظام</strong>
@@ -49,15 +49,21 @@
   <div class="m-4 justify-content-center">
     <div class="row m-4">
         @php
-            use App\Models\Department;
-            $departments = Department::all();
+    use App\Models\Department;
+    $department = Department::find($departmentId);
 
-            use App\Models\User;
-            $doctors = User::where('role', 'doctor')->get();
+    use App\Models\User;
+    // $doctors = User::where('role', 'doctor')->where('department_id', $department->id)->get();
+    $doctors = User::where('role', 'doctor')
+    ->whereHas('doctors', function ($query) use ($departmentId) {
+        $query->where('department_id', $departmentId);
+    })
+    ->get();
 
-            use App\Models\Doctor_schaduale;
-            $schaduales = Doctor_schaduale::all();
-            @endphp
+    use App\Models\Doctor_schaduale;
+    $schedules = Doctor_schaduale::all();
+@endphp
+
         @foreach ($doctors as $doctor)
         <div class="card  col-lg-3 col-md-6 col-sm-12" style="border:none;text-align: right;">
           <div class="p-3 doctorscard">
@@ -216,7 +222,7 @@
 <div class="scroll-to-top scroll-to-target" data-target=".header-top">
   <span class="icon fa fa-angle-up"></span>
 </div>
-@endsection
+{{-- @endsection
 @section('js')
 <!-- ********* confirmation popup ********* -->
 <div class="popup_box">
@@ -252,4 +258,4 @@
 
     
 @endsection
-
+ --}}
