@@ -114,6 +114,7 @@ public function index()
                  'password' => Hash::make($request->input('password')),
                  'name' => $request->input('name'),
                  'image' => $imagePath,
+                 
                  'department_id' => $request->input('department_id'),
                  'role' => 'doctor',
                  'hospital_id' => $hospitalId,

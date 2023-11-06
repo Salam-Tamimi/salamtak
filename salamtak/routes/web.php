@@ -101,15 +101,13 @@ Route::prefix('doctor')->middleware(['auth'])->group(function () {
     Route::resource('users', DoctorController::class);
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::resource('users', UserController::class);
-});
 
 Route::get('/admin', function () {
     return view('admin.pages.index');
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserController::class);
     Route::resource('hospitals-admin', HospitalController::class);
     Route::resource('hospitals-details', Hospital_detailsController::class);
     Route::resource('doctors-list', DoctorController::class);

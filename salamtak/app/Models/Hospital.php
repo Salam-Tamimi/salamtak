@@ -18,10 +18,11 @@ class Hospital extends Model
     ];
 
 
-public function users() 
-{
-    return $this->belongsTo(User::class, 'hospital_id');
-}
+    public function users() 
+    {
+        return $this->belongsTo(User::class, 'hospital_id');
+    }
+    
 
 // public function hospital_departments() 
 // {
