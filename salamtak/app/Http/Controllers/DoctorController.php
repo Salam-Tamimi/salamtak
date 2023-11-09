@@ -66,6 +66,11 @@ public function index()
     }
 }
 
+public function doctorSingle($doctor_id) {
+    $doctor = Doctor::find($doctor_id);
+    // dd($doctor_id);
+    return view('pages.doctor-single', compact('doctor', 'doctor_id'));
+}
 
 
     /**

@@ -19,7 +19,6 @@ class Doctor extends Model
         'hospital_id'
     ];
 
-
     public function users() 
     {
         return $this->belongsTo(User::class, 'doctor_id');

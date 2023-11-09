@@ -1,39 +1,18 @@
 {{-- @extends('layout.master')
-@section('title','سلامتك - حجز موعد')
+@section('title','لائحة الأطباء')
 @section('css')
-
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
-  <!-- FancyBox -->
-  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
-  
-  <!-- Stylesheets -->
-  <link href="{{ asset('/css/appointment.css') }}" rel="stylesheet">
-<script>
-    $(document).ready(function(){
-      $('.reserve').click(function(){
-        $('.popup_box').css("display", "block");
-        $('#blur').addClass("active");
-      });
-      $('.btn1').click(function(){
-        $('.popup_box').css("display", "none");
-        $('#blur').removeClass("active");
-      });
-      $('.btn2').click(function(){
-        $('.popup_box').css("display", "none");
-        $('#blur').removeClass("active");
-        window.location.href = "/pages/success.blade.php";
-      });
-    });
-  </script>
-
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="plugins/slick/slick.css">
+<link rel="stylesheet" href="plugins/slick/slick-theme.css">
+<!-- FancyBox -->
+<link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+<!-- Stylesheets -->
+<link href="{{ asset('/css/appointment.css') }}" rel="stylesheet">
+<!--bootstrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 @endsection
 @section('content') --}}
+
 <div id="blur">
     <div class="contain"style="width:90%;">
         <strong class="row mb-4">الرئيسية / المستشفيات الخاصة / قسم العظام</strong>
@@ -91,7 +70,7 @@
                     </p>
                         <div class="d-flex btns_reserve ">
                             {{-- <button class="btn btn-primary reserve">احجز &nbsp; &nbsp;</button>  --}}
-                            <a href="{{ url('/doctor-single') }}"><button class="btn btn-primary">احجز موعد </button></a>  
+                            <a href="{{ url('/doctor-single', ['doctor_id' => $doctor->doctors->id]) }}" ><button class="btn btn-primary">احجز موعد </button></a>  
                         </div>
                         </div>
                 </div>
@@ -222,25 +201,10 @@
 <div class="scroll-to-top scroll-to-target" data-target=".header-top">
   <span class="icon fa fa-angle-up"></span>
 </div>
+
 {{-- @endsection
+
 @section('js')
-<!-- ********* confirmation popup ********* -->
-<div class="popup_box">
-    <i class="fas fa-exclamation"></i>
-    <h1>هل انت متأكد من تثبيت الحجز؟</h1>
-    <label for="email">أدخل بريدك الإلكتروني</label>
-    <input type="email" name="email" id="email"placeholder="example@gmail.com">
-    <div class="btns">
-        <a href="#" class="btn1">إلغاء</a>
-        <a href="#" class="btn2">تأكيد الحجز</a>
-    </div>
-</div>
-<!-- *********  end confirmation popup ********* -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="plugins/jquery.js"></script>
 <script src="plugins/bootstrap.min.js"></script>
 <script src="plugins/bootstrap-select.min.js"></script>
 <!-- Slick Slider -->
@@ -255,7 +219,6 @@
 <script src="plugins/wow.js"></script>
 <script src="plugins/jquery-ui.js"></script>
 <script src="plugins/timePicker.js"></script>
-
-    
-@endsection
- --}}
+<script src="js/script.js"></script>
+@endsection --}}
+  
