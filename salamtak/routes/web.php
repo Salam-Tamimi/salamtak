@@ -131,7 +131,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctors-list', DoctorController::class);
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('doctor-details', Doctor_detailsController::class);
-    Route::resource('appointments-admin', AppointmentController::class);
+    Route::resource('appointments', AppointmentController::class);
     Route::resource('departments-admin', DepartmentController::class);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);

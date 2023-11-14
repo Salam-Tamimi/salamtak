@@ -29,7 +29,7 @@ class AppointmentController extends Controller
     public function create()
     {
     //    $doctors=Doctor::all();
-       $departments = Department::all();
+    $departments = Department::all();
      // Retrieve all departments and their associated doctors
     $departments = Department::with('doctors')->get();
 
@@ -49,21 +49,25 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-         // Validate the request data
-           $validatedData = $request->validate([
-            'date' => 'required',
+        $validatedData = $request->validate([
+            'day_of_week' => 'required',
             'time' => 'required',
-            'hospital_id' => 'required',
-            'department_id' => 'required',
-            'doctor_id' => 'required',
+            'doctor_id' => 'required',  // Assuming you have a select for doctors in your form
+            'payment_id' => 'required',
+            'review_id' => 'required',
         ]);
 
-        // Create a new appointment with the validated data
+        // Fetch the related doctor record
+        $doctor = Doctor::findOrFail($validatedData['doctor_id']);
+
+        // Fill in the related data from the doctor record
+        $validatedData['department_id'] = $doctor->department_id;
+        $validatedData['hospital_id'] = $doctor->hospital_id;
+
+        // Create the appointment
         Appointment::create($validatedData);
 
-        // Redirect to the index page with a success message
-        return view('admin.pages.appointments-admin.index')->with('success', 'Appointment created successfully');
-     
+        return redirect()->route('appointments.index');
     }
 
     /**

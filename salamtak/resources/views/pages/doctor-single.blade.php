@@ -8,7 +8,7 @@
   <link href="{{ asset('/css/doctor-single.css') }}" rel="stylesheet">
 @endsection
 @section('content') --}}
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
             <div id="blur">
           <div class="d-flex justify-content-around flex-wrap mx-5 row ">
     <img src="{{ asset('/images/doctor2.png') }}" alt="صورة الدكتور" style="width: 24%;">
@@ -70,34 +70,19 @@
         </table>
     
         <h4>حجز موعد</h4>
-        <form action="{{ route('appointments-admin.store') }}" method="post">
+        <form action="{{ route('appointments.store') }}" method="post" id="appointmentForm">
             @csrf
             <label for="day">اختر يوم الحجز:</label>
             <select name="day" id="day">
                 @foreach ($schedules as $schedule)
-                    <option value="{{ $schedule->day_of_week }}">{{ $schedule->day_of_week }}</option>
+                    <option value="{{ $schedule->day_of_week }}" data-start="{{ $schedule->start_time }}" data-end="{{ $schedule->end_time }}">{{ $schedule->day_of_week }}</option>
                 @endforeach
             </select>
-    
+        
             <label for="time">اختر وقت الحجز:</label>
-            <select name="time" id="time">
-                @php
-                    $interval = 30; // 30 minutes
-                    $format = 'H:i';
-    
-                    foreach ($schedules as $schedule) {
-                        $startTime = strtotime($schedule->start_time);
-                        $endTime = strtotime($schedule->end_time);
-    
-                        while ($startTime < $endTime) {
-                            $time = date($format, $startTime);
-                            echo "<option value=\"$time\">$time</option>";
-                            $startTime += $interval * 60; // convert minutes to seconds
-                        }
-                    }
-                @endphp
+            <select name="time" id="time" disabled>
             </select>
-    
+        
             <button type="submit">حجز الموعد</button>
         </form>
     
@@ -105,7 +90,6 @@
         <p>لم يتم إضافة مواعيد الدوام لحد الآن</p>
     @endif
     
-{{-- @endsection --}}
 
        {{-- <section id="availability" class="availability availability--profile">
      <div class="availability__calendar">
@@ -277,49 +261,106 @@
     </div>
   </div>
 
-  <script>
-    // Set the value of the input field with the current page link
-    document.getElementById('pageLinkInput').value = window.location.href;
 
-    // Function to copy the link to the clipboard
-    function copyLink() {
-      var copyText = document.getElementById('pageLinkInput');
-      copyText.select();
-      document.execCommand('copy');
-      alert('تم نسخ الرابط: ' + copyText.value);
+
+{{-- @endsection
+
+@section('js') --}}
+
+
+{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Enable time dropdown when a day is selected
+        $('#day').change(function () {
+            var selectedDay = $(this).val();
+            var startTime = $('#day option:selected').data('start');
+            var endTime = $('#day option:selected').data('end');
+            var interval = 30;
+            var format = 'HH:mm';
+
+            // Populate time dropdown
+            $('#time').empty();
+            var currentTime = moment(startTime, format);
+            var endTimeMoment = moment(endTime, format);
+            while (currentTime.isBefore(endTimeMoment)) {
+                $('#time').append('<option value="' + currentTime.format(format) + '">' + currentTime.format(format) + '</option>');
+                currentTime.add(interval, 'minutes');
+            }
+
+            // Enable time dropdown
+            $('#time').prop('disabled', false);
+        });
+    });
+</script> --}}
+<script>
+    // Function to update time options based on selected day
+    function updateTimes() {
+        var selectedDay = $('#day').val();
+        var startTime = $('#day option:selected').data('start');
+        var endTime = $('#day option:selected').data('end');
+
+        // Clear existing options
+        $('#time').empty().prop('disabled', false);
+
+        // Calculate time slots every half an hour
+        var currentTime = new Date('2023-01-01 ' + startTime);
+        var endTimeObj = new Date('2023-01-01 ' + endTime);
+
+        while (currentTime <= endTimeObj) {
+            var formattedTime = currentTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', hour12: false});
+            $('#time').append('<option value="' + formattedTime + '">' + formattedTime + '</option>');
+            currentTime.setMinutes(currentTime.getMinutes() + 30);
+        }
     }
 
-    // Function to share on Facebook
-    function shareOnFacebook() {
-      window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
-    }
+    // Call the function initially and whenever the day is changed
+    $(document).ready(function () {
+        updateTimes();
+        $('#day').change(updateTimes);
+    });
+</script>
+<script>
+  // Set the value of the input field with the current page link
+  document.getElementById('pageLinkInput').value = window.location.href;
 
-    // Function to share on Twitter
-    function shareOnTwitter() {
-      window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href), '_blank');
-    }
+  // Function to copy the link to the clipboard
+  function copyLink() {
+    var copyText = document.getElementById('pageLinkInput');
+    copyText.select();
+    document.execCommand('copy');
+    alert('تم نسخ الرابط: ' + copyText.value);
+  }
 
-    // Function to share on Instagram
-    function shareOnInstagram() {
-      // Use Instagram sharing URL or fallback to the page link
-      window.open('https://www.instagram.com/share?url=' + encodeURIComponent(window.location.href), '_blank');
-    }
+  // Function to share on Facebook
+  function shareOnFacebook() {
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+  }
 
-    // Function to share on WhatsApp
-    function shareOnWhatsApp() {
-      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href), '_blank');
-    }
+  // Function to share on Twitter
+  function shareOnTwitter() {
+    window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href), '_blank');
+  }
 
-    // Function to share on Telegram
-    function shareOnTelegram() {
-      window.open('https://t.me/share/url?url=' + encodeURIComponent(window.location.href), '_blank');
-    }
-  </script>
-{{-- 
-@endsection
+  // Function to share on Instagram
+  function shareOnInstagram() {
+    // Use Instagram sharing URL or fallback to the page link
+    window.open('https://www.instagram.com/share?url=' + encodeURIComponent(window.location.href), '_blank');
+  }
 
-@section('js')
-    <script>
+  // Function to share on WhatsApp
+  function shareOnWhatsApp() {
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href), '_blank');
+  }
+
+  // Function to share on Telegram
+  function shareOnTelegram() {
+    window.open('https://t.me/share/url?url=' + encodeURIComponent(window.location.href), '_blank');
+  }
+</script>
+
+
+    {{-- <script>
     const viewBtn = document.querySelector(".view-modal"),
     popup = document.querySelector(".popup"),
     close = popup.querySelector(".close"),
@@ -355,9 +396,9 @@
   <script src="plugins/wow.js"></script>
   <script src="plugins/jquery-ui.js"></script>
   <script src="plugins/timePicker.js"></script>
-@endsection
+@endsection --}}
 
 
 
 
- --}}
+
