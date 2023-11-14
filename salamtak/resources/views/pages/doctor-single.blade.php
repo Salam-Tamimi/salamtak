@@ -47,7 +47,67 @@
 
 
    <div class="pt-5 col" >
-       <section id="availability" class="availability availability--profile">
+  
+    <h3>جدول مواعيد الدوام الرسمي لدى الدكتور {{ $doctor->name }}</h3>
+    @if ($schedules && count($schedules) > 0)
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>أيام الأسبوع</th>
+                    <th>بداية الدوام</th>
+                    <th>نهاية الدوام </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($schedules as $schedule)
+                    <tr>
+                        <td>{{ $schedule->day_of_week }}</td>
+                        <td>{{ $schedule->start_time }}</td>
+                        <td>{{ $schedule->end_time }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    
+        <h4>حجز موعد</h4>
+        <form action="{{ route('appointments-admin.store') }}" method="post">
+            @csrf
+            <label for="day">اختر يوم الحجز:</label>
+            <select name="day" id="day">
+                @foreach ($schedules as $schedule)
+                    <option value="{{ $schedule->day_of_week }}">{{ $schedule->day_of_week }}</option>
+                @endforeach
+            </select>
+    
+            <label for="time">اختر وقت الحجز:</label>
+            <select name="time" id="time">
+                @php
+                    $interval = 30; // 30 minutes
+                    $format = 'H:i';
+    
+                    foreach ($schedules as $schedule) {
+                        $startTime = strtotime($schedule->start_time);
+                        $endTime = strtotime($schedule->end_time);
+    
+                        while ($startTime < $endTime) {
+                            $time = date($format, $startTime);
+                            echo "<option value=\"$time\">$time</option>";
+                            $startTime += $interval * 60; // convert minutes to seconds
+                        }
+                    }
+                @endphp
+            </select>
+    
+            <button type="submit">حجز الموعد</button>
+        </form>
+    
+    @else
+        <p>لم يتم إضافة مواعيد الدوام لحد الآن</p>
+    @endif
+    
+{{-- @endsection --}}
+
+       {{-- <section id="availability" class="availability availability--profile">
      <div class="availability__calendar">
         <div class="availability__next">
             <span class="custom-arrow arrow--right"></span>
@@ -138,7 +198,7 @@
                             <span class="availability__info-date"> 01:00 م</span>
                         </div>
                     </a>
-                </section>
+                </section> --}}
    </div>
 
     </div>
@@ -202,20 +262,59 @@
     <div class="content">
       <p>مشاركة الرابط باستخدام</p>
       <ul class="icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" onclick="shareOnFacebook()"><i class="fab fa-facebook-f">ff</i></a>
+        <a href="#" onclick="shareOnTwitter()"><i class="fab fa-twitter"></i></a>
+        <a href="#" onclick="shareOnInstagram()"><i class="fab fa-instagram"></i></a>
+        <a href="#" onclick="shareOnWhatsApp()"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" onclick="shareOnTelegram()"><i class="fab fa-telegram-plane"></i></a>
       </ul>
       <p>أو قم بنسخ الرابط</p>
       <div class="field">
         <i class="url-icon uil uil-link"></i>
-        <input type="text" readonly value="example.com/share-link">
-        <button class="btn"style="background-color:var(--primary);color:white;">نسخ</button>
+        <input type="text" readonly id="pageLinkInput">
+        <button class="btn" style="background-color: var(--primary); color: white;" onclick="copyLink()">نسخ</button>
       </div>
     </div>
   </div>
+
+  <script>
+    // Set the value of the input field with the current page link
+    document.getElementById('pageLinkInput').value = window.location.href;
+
+    // Function to copy the link to the clipboard
+    function copyLink() {
+      var copyText = document.getElementById('pageLinkInput');
+      copyText.select();
+      document.execCommand('copy');
+      alert('تم نسخ الرابط: ' + copyText.value);
+    }
+
+    // Function to share on Facebook
+    function shareOnFacebook() {
+      window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+    }
+
+    // Function to share on Twitter
+    function shareOnTwitter() {
+      window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href), '_blank');
+    }
+
+    // Function to share on Instagram
+    function shareOnInstagram() {
+      // Use Instagram sharing URL or fallback to the page link
+      window.open('https://www.instagram.com/share?url=' + encodeURIComponent(window.location.href), '_blank');
+    }
+
+    // Function to share on WhatsApp
+    function shareOnWhatsApp() {
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href), '_blank');
+    }
+
+    // Function to share on Telegram
+    function shareOnTelegram() {
+      window.open('https://t.me/share/url?url=' + encodeURIComponent(window.location.href), '_blank');
+    }
+  </script>
 {{-- 
 @endsection
 

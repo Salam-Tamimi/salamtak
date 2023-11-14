@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Doctor_schaduale;
 use App\Models\Hospital;
 use App\Models\Hospital_department;
 use App\Models\User;
@@ -69,7 +70,9 @@ public function index()
 public function doctorSingle($doctor_id) {
     $doctor = Doctor::find($doctor_id);
     // dd($doctor_id);
-    return view('pages.doctor-single', compact('doctor', 'doctor_id'));
+    $schedules = Doctor_schaduale::where('doctor_id', $doctor_id)->get();
+
+    return view('pages.doctor-single', compact('doctor', 'doctor_id','schedules'));
 }
 
 
