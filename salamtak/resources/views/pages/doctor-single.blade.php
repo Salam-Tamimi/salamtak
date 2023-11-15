@@ -47,7 +47,9 @@
 
 
    <div class="pt-5 col" >
-  
+    @php
+    use App\Http\Controllers\AppointmentController;
+    @endphp
     <h3>جدول مواعيد الدوام الرسمي لدى الدكتور {{ $doctor->name }}</h3>
     @if ($schedules && count($schedules) > 0)
         <table class="table">
@@ -68,23 +70,9 @@
                 @endforeach
             </tbody>
         </table>
-    
-        <h4>حجز موعد</h4>
-        <form action="{{ route('appointments.store') }}" method="post" id="appointmentForm">
-            @csrf
-            <label for="day">اختر يوم الحجز:</label>
-            <select name="day" id="day">
-                @foreach ($schedules as $schedule)
-                    <option value="{{ $schedule->day_of_week }}" data-start="{{ $schedule->start_time }}" data-end="{{ $schedule->end_time }}">{{ $schedule->day_of_week }}</option>
-                @endforeach
-            </select>
-        
-            <label for="time">اختر وقت الحجز:</label>
-            <select name="time" id="time" disabled>
-            </select>
-        
-            <button type="submit">حجز الموعد</button>
-        </form>
+
+        <a href="{{ route('appointments.create', ['doctor_id' => $doctor_id]) }}">احجز موعدك الآن</a>
+        {{-- <a href="{{ route('appointments.create') }}">احجز موعدك الآن</a> --}}
     
     @else
         <p>لم يتم إضافة مواعيد الدوام لحد الآن</p>
@@ -293,33 +281,7 @@
         });
     });
 </script> --}}
-<script>
-    // Function to update time options based on selected day
-    function updateTimes() {
-        var selectedDay = $('#day').val();
-        var startTime = $('#day option:selected').data('start');
-        var endTime = $('#day option:selected').data('end');
 
-        // Clear existing options
-        $('#time').empty().prop('disabled', false);
-
-        // Calculate time slots every half an hour
-        var currentTime = new Date('2023-01-01 ' + startTime);
-        var endTimeObj = new Date('2023-01-01 ' + endTime);
-
-        while (currentTime <= endTimeObj) {
-            var formattedTime = currentTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', hour12: false});
-            $('#time').append('<option value="' + formattedTime + '">' + formattedTime + '</option>');
-            currentTime.setMinutes(currentTime.getMinutes() + 30);
-        }
-    }
-
-    // Call the function initially and whenever the day is changed
-    $(document).ready(function () {
-        updateTimes();
-        $('#day').change(updateTimes);
-    });
-</script>
 <script>
   // Set the value of the input field with the current page link
   document.getElementById('pageLinkInput').value = window.location.href;

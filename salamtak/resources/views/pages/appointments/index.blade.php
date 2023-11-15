@@ -12,10 +12,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 @endsection
 @section('content') --}}
+@php
+use App\Models\Department;
+$department = Department::find($departmentId);
 
+use App\Models\User;
+// $doctors = User::where('role', 'doctor')->where('department_id', $department->id)->get();
+$doctors = User::where('role', 'doctor')
+->whereHas('doctors', function ($query) use ($departmentId) {
+    $query->where('department_id', $departmentId);
+})
+->get();
+
+use App\Models\Doctor_schaduale;
+$schedules = Doctor_schaduale::all();
+@endphp
 <div id="blur">
     <div class="contain"style="width:90%;">
-        <strong class="row mb-4">الرئيسية / المستشفيات الخاصة / قسم العظام</strong>
+        <strong class="row mb-4">الرئيسية / المستشفيات الخاصة / {{ $department->name }} </strong>
     <div >
         <form class="d-flex " role="search">
           <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search">
@@ -27,21 +41,7 @@
     <!-- doctors card start-->
   <div class="m-4 justify-content-center">
     <div class="row m-4">
-        @php
-    use App\Models\Department;
-    $department = Department::find($departmentId);
 
-    use App\Models\User;
-    // $doctors = User::where('role', 'doctor')->where('department_id', $department->id)->get();
-    $doctors = User::where('role', 'doctor')
-    ->whereHas('doctors', function ($query) use ($departmentId) {
-        $query->where('department_id', $departmentId);
-    })
-    ->get();
-
-    use App\Models\Doctor_schaduale;
-    $schedules = Doctor_schaduale::all();
-@endphp
 
         @foreach ($doctors as $doctor)
         <div class="card  col-lg-3 col-md-6 col-sm-12" style="border:none;text-align: right;">

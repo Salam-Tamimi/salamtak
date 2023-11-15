@@ -58,19 +58,11 @@ Route::get('/lab', function () {
 Route::get('/hospitals', function () {
     return view('pages.hospitals');
 });
-// Route::get('/appointments', function () {
-//     return view('pages.appointments');
-// });
-// Route::get('/appointments', function () {
-//     $departmentId = request('department_id'); 
-//     return view('pages.appointments', ['department_id' => $departmentId]);
-// });
+
 // Route::get('/appointments/{department_id}', function ($departmentId) {
 //     return view('pages.appointments', ['department_id' => $departmentId]);
 // });
-Route::get('/appointments/{department_id}', function ($departmentId) {
-    return view('pages.appointments', ['departmentId' => $departmentId]);
-});
+
 
 
 Route::get('/about', function () {
@@ -131,7 +123,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctors-list', DoctorController::class);
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('doctor-details', Doctor_detailsController::class);
-    Route::resource('appointments', AppointmentController::class);
+    // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
+    // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
+    Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create');
+    Route::post('/appointments/create/{doctor_id}', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::get('/appointments-dates/{department_id}', function ($departmentId) {
+        return view('pages.appointments.index', ['departmentId' => $departmentId]);
+    });
+    
+    // Route::post('/appointments', 'AppointmentController@store')->name('appointments.store');
+    // Route::resource('appointments', AppointmentController::class);
     Route::resource('departments-admin', DepartmentController::class);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);

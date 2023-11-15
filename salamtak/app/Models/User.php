@@ -26,6 +26,7 @@ class User extends Authenticatable
         'role',
         'hospital_id',
         'doctor_id',
+        'appointment_id',
     ];
 
     /**
@@ -48,11 +49,16 @@ class User extends Authenticatable
     ];
 
 
+    // public function appointments() 
+    // {
+    //     return $this->hasMany(Appointment::class, 'appointment_id');
+    // }
+
     public function appointments() 
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasMany(Appointment::class, 'appointment_id', 'id');
     }
-
+    
     public function hospitals() 
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');

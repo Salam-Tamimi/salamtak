@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Doctor_schaduale;
+use App\Models\Hospital;
 use App\Models\User;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
@@ -18,7 +22,7 @@ class AppointmentController extends Controller
     public function index()
     {
        $appointments=Appointment::all();
-       return view('admin.pages.appointments-admin.index', compact('appointments'));
+       return view('pages.appointments.index', compact('appointments'));
     }
 
     /**
@@ -26,19 +30,21 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($doctor_id)
     {
-    //    $doctors=Doctor::all();
-    $departments = Department::all();
-     // Retrieve all departments and their associated doctors
-    $departments = Department::with('doctors')->get();
+    
+    // $departments = Department::all();
+    //  // Retrieve all departments and their associated doctors
+    // $departments = Department::with('doctors')->get();
 
-    // Prepare the data for the JavaScript object
-    $departmentDoctorMap = [];
-    foreach ($departments as $department) {
-        $departmentDoctorMap[$department->id] = $department->doctors;
-    }
-        return view('admin.pages.appointments-admin.create', compact('departments', 'departmentDoctorMap'));
+    // // Prepare the data for the JavaScript object
+    // $departmentDoctorMap = [];
+    // foreach ($departments as $department) {
+    //     $departmentDoctorMap[$department->id] = $department->doctors;
+    // }
+    //     return view('admin.pages.appointments-admin.create', compact('departments', 'departmentDoctorMap'));
+    $schedules = DB::table('doctor_schaduales')->where('doctor_id', $doctor_id)->get();
+    return view('pages.appointments.create', compact('schedules', 'doctor_id'));
     }
 
     /**
@@ -49,25 +55,55 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        // $validatedData = $request->validate([
+        //     'day_of_week' => 'required',
+        //     'time' => 'required',
+        //     'doctor_id' => 'required',  
+        //     'payment_id' => 'required',
+        //     'review_id' => 'required',
+        // ]);
+
+        // // Fetch the related doctor record
+        // $doctor = Doctor::findOrFail($validatedData['doctor_id']);
+
+        // // Fill in the related data from the doctor record
+        // $validatedData['department_id'] = $doctor->department_id;
+        // $validatedData['hospital_id'] = $doctor->hospital_id;
+
+        // // Create the appointment
+        // Appointment::create($validatedData);
+
         $validatedData = $request->validate([
-            'day_of_week' => 'required',
-            'time' => 'required',
-            'doctor_id' => 'required',  // Assuming you have a select for doctors in your form
-            'payment_id' => 'required',
-            'review_id' => 'required',
+            'day' => 'required',
+            'start_time' => 'required',
         ]);
-
-        // Fetch the related doctor record
-        $doctor = Doctor::findOrFail($validatedData['doctor_id']);
-
-        // Fill in the related data from the doctor record
-        $validatedData['department_id'] = $doctor->department_id;
-        $validatedData['hospital_id'] = $doctor->hospital_id;
-
-        // Create the appointment
-        Appointment::create($validatedData);
-
-        return redirect()->route('appointments.index');
+        
+        $user = auth()->user();
+        
+        // Extract start time from the range
+        list($startTimeString, $endTimeString) = explode(' - ', $validatedData['start_time']);
+        
+        // Create DateTime objects for start and end times
+        $startTime = new \DateTime($startTimeString);
+        $endTime = new \DateTime($endTimeString);
+        
+        $appointment = new Appointment([
+            'day_of_week' => $validatedData['day'],
+            'start_time' => $startTime->format('H:i:s'),
+            'end_time' => $endTime->format('H:i:s'),
+        ]);
+        
+        $schedule = Doctor_schaduale::where('day_of_week', $validatedData['day'])->first();
+        $doctor = $schedule->doctor;
+        
+        $appointment->user()->associate($user);
+        $appointment->doctor()->associate($doctor);
+        
+        // Assuming you have relationships set up for hospitals, departments, etc.
+        // Associate any other relationships as needed
+        
+        $appointment->save();
+        return redirect()->route('appointments.index')->with('success', 'Appointment created successfully!');
     }
 
     /**

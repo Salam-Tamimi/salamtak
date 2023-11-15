@@ -11,7 +11,8 @@ class Appointment extends Model
 
     protected $fillable = [
         'day_of_week', 
-        'time', 
+        'start_time', 
+        'end_time', 
         'hospital_id', 
         'department_id', 
         'payment_id',
@@ -19,24 +20,39 @@ class Appointment extends Model
         'doctor_id'
     ];
 
-    public function users() 
+    // public function user() 
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function user() 
     {
-        return $this->belongsTo(User::class, 'appointment_id');
+        return $this->belongsTo(User::class, 'appointment_id', 'id');
     }
 
-    public function hospitals() 
+    public function hospital() 
     {
-        return $this->belongsTo(Hospital::class, 'id');
+        return $this->belongsTo(Hospital::class, 'hospital_id');
     }
 
-    public function departments() 
+    public function department() 
     {
-        return $this->belongsTo(Department::class, 'id');
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
-    public function doctors() 
+    public function payment() 
     {
-        return $this->belongsTo(Doctor::class, 'id');
+        return $this->belongsTo(Payment::class, 'payment_id');
+    }
+
+    public function review() 
+    {
+        return $this->belongsTo(Review::class, 'review_id');
+    }
+
+    public function doctor() 
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 
 }

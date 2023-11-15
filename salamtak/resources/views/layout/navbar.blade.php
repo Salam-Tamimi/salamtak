@@ -86,7 +86,7 @@
                                 $departments = Department::all();
                                 @endphp
                                 @foreach ($departments as $department)
-                                <a href="{{ url('/appointments', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
+                                <a href="{{ url('/appointments-dates', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
                                 @endforeach
                             </div>
                         </div>
