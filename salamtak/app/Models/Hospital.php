@@ -33,6 +33,7 @@ class Hospital extends Model
 // {
 //     return $this->hasMany(Doctor_hospital::class, 'hospital_id');
 // }
+
 public function doctors() 
 {
     return $this->hasMany(Doctor::class, 'hospital_id');

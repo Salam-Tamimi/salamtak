@@ -13,11 +13,12 @@ class Appointment extends Model
         'day_of_week', 
         'start_time', 
         'end_time', 
+        'id', 
         'hospital_id', 
-        'department_id', 
+        'department_id',
+        'doctor_id',
         'payment_id',
         'review_id',
-        'doctor_id'
     ];
 
     // public function user() 

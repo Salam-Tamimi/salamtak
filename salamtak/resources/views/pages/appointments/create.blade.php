@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<form  action="{{ route('appointments.store', ['doctor_id' => $doctor_id]) }}" method="post" id="appointmentForm">
+<form action="{{ route('appointments.store', ['doctor_id' => $doctor_id]) }}" method="post" id="appointmentForm">
     @csrf
     @method('post')
     <label for="day">اختر يوم الحجز:</label>
