@@ -54,11 +54,15 @@ class User extends Authenticatable
     //     return $this->hasMany(Appointment::class, 'appointment_id');
     // }
 
-    public function appointments() 
+    // public function appointments() 
+    // {
+    //     return $this->hasMany(Appointment::class, 'appointment_id', 'id');
+    // }
+    public function appointments()
     {
-        return $this->hasMany(Appointment::class, 'appointment_id', 'id');
+        return $this->hasMany(Appointment::class)->with('user')->whereNotNull('user_id');
     }
-    
+
     public function hospitals() 
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');

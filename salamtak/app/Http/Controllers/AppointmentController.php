@@ -106,13 +106,15 @@ class AppointmentController extends Controller
             'doctor_id' => $doctor_id,
             'hospital_id' => $doctor->hospitals->id,
             'department_id' => $doctor->department_id,
+            'user_id' => Auth::user()->id,
         ]);
 
         // Save the appointment
         $appointment->save();
 
         $department_id = $doctor->department_id;
-        return redirect()->to(url('/appointments-dates', ['department_id' => $department_id]))->with('success', 'Appointment created successfully!');
+        // return redirect()->to(url('/appointments-dates', ['department_id' => $department_id]))->with('success', 'Appointment created successfully!');
+        return view('pages.success')->with('success', 'Appointment created successfully!');
     }
 
 

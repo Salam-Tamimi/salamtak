@@ -78,7 +78,7 @@
               <h2 style="color: green;">تمت عملية الحجز بنجاح</h2>
               <h6>سلامتك</h6>
             </div> <br> <br>
-            <a href="/index.html"><button class="btn btn-primary">الرجوع الى الصفحة الرئيسية</button></a>
+            <a href="{{ route('home') }}"><button class="btn btn-primary">الرجوع الى الصفحة الرئيسية</button></a>
           
       </html>
     <!-- Optional JavaScript -->

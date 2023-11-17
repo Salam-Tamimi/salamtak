@@ -38,7 +38,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 // Route::get('/', function () {
 //     $departments = App\Http\Controllers\DepartmentController.php::getData();
 //     $doctors = App\Http\Controllers\PostController::getData();
