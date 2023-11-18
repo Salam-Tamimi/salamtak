@@ -116,6 +116,12 @@ Route::get('/admin', function () {
     return view('admin.pages.index');
 });
 
+////////////// doctor appointments:
+Route::middleware(['auth', 'role:doctor'])->group(function () {
+    Route::get('/doctor-appointments/{doctor_id}', [AppointmentController::class, 'index'])->name('doctor-appointments.index');
+    Route::post('/update-status/{appointment}', [AppointmentController::class, 'updateStatus']);
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('hospitals-admin', HospitalController::class);
@@ -186,6 +192,9 @@ Route::get('/admin-lock-screen', function () {
 });
 Route::get('/error-404-admin', function () {
     return view('admin.pages.error-404');
+});
+Route::fallback(function () {
+    return view('404');
 });
 Route::get('/error-500-admin', function () {
     return view('admin.pages.error-500');

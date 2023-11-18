@@ -19,6 +19,7 @@ class Appointment extends Model
         'doctor_id',
         'payment_id',
         'review_id',
+        'status',
     ];
 
     // Relationships

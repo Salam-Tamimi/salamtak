@@ -41,7 +41,9 @@
 </script>
 @endsection            
 @section('content')
-
+@php
+  $appointments=Auth::user()->appointments;
+@endphp
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
     <div class="main main-raised">
 		<div class="profile-content">
@@ -176,11 +178,12 @@
                 <div class="col-lg-4 col-md-6 ">
                     <!-- <img src="https://images.unsplash.com/photo-1524498250077-390f9e378fc0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=83079913579babb9d2c94a5941b2e69d&auto=format&fit=crop&w=751&q=80" class="rounded"> -->
                   <!-- <img src="https://images.unsplash.com/photo-1528249227670-9ba48616014f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=66b8e7db17b83084f16fdeadfc93b95b&auto=format&fit=crop&w=357&q=80" class="rounded"> -->
-                        <div class="card" >
+                  @foreach ($appointments as $appointment)      
+                  <div class="card" >
                           <div class="p-3 doctorscard">
                               <div>
-                                  <h5 class="card-title">مستشفى  اربد التخصصي</h5>
-                                  <img src="../img/doctor1.png" class="rounded-start " style="height:300px;" alt="doctor image" >
+                                  <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
+                                  <img src="{{ $appointment->doctor->image }}" class="rounded-start " style="height:300px;" alt="doctor image" >
                                   <div>
                                       <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
                                       <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
@@ -191,10 +194,11 @@
                                     </div>
                                     
                                   <div class="card-body">
-                                    <h4 class="card-title">د. منى محمود</h4>
-                                    <p class="card-text">التاريخ: 31-12-2023<br>
-                                        اليوم: الأحد<br>
-                                        التوقيت: 9:00 صباحا</p>
+                                    <h4 class="card-title">د. {{ $appointment->doctor->name }} </h4>
+                                    <p class="card-text">
+                                       اليوم: {{ $appointment->day_of_week }}<br>
+                                      التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
+                                       تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}</p>
                                     <div class="d-flex">
                                         <button class="btn btn-primary border update-appointment "><h4>تعديل الموعد</h4></button>
                                         <button class="btn btn-danger border cancel-appointment "><h4>ألغاء الحجز</h4></button>
@@ -204,7 +208,7 @@
                               </div>
                           </div>
                 </div>
-
+                @endforeach
               </div>
   			</div>
             <div class="tab-pane text-center gallery" id="favorite">
@@ -345,6 +349,12 @@
       <a href="#" class="btn2"style="background-color:red;">إلغاء الحجز</a>
   </div>
 </div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 @endsection
 @endsection

@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // Drop the existing date column
-            $table->dropColumn('date');
+        // Schema::table('appointments', function (Blueprint $table) {
+        //     // Drop the existing date column
+        //     $table->dropColumn('date');
 
-            // Add a new column for day_of_week
-            $table->string('day_of_week');
+        //     // Add a new column for day_of_week
+        //     $table->string('day_of_week');
 
-            // You can also set a default value if needed
-            // $table->string('day_of_week')->after('time')->default('Monday');
-        });
+        //     // You can also set a default value if needed
+        //     // $table->string('day_of_week')->after('time')->default('Monday');
+        // });
     }
 
 
@@ -33,10 +33,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // Reverse the changes made in the "up" method
-            $table->date('date')->after('time');
-            $table->dropColumn('day_of_week');
-        });
+        // Schema::table('appointments', function (Blueprint $table) {
+        //     // Reverse the changes made in the "up" method
+        //     $table->date('date')->after('time');
+        //     $table->dropColumn('day_of_week');
+        // });
     }
 };

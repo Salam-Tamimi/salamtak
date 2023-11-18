@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // Remove the existing 'time' column
-            $table->dropColumn('time');
+        // Schema::table('appointments', function (Blueprint $table) {
+        //     // Remove the existing 'time' column
+        //     $table->dropColumn('time');
 
-            // Add new columns for start_time and end_time
-            $table->time('start_time');
-            $table->time('end_time');
+        //     // Add new columns for start_time and end_time
+        //     $table->time('start_time');
+        //     $table->time('end_time');
 
-            // You can add other necessary modifications here
-        });
+        //     // You can add other necessary modifications here
+        // });
     }
 
     /**
@@ -32,11 +32,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // Reverse the changes made in the 'up' method
-            $table->time('time');
-            $table->dropColumn('start_time');
-            $table->dropColumn('end_time');
-        });
+        // Schema::table('appointments', function (Blueprint $table) {
+        //     // Reverse the changes made in the 'up' method
+        //     $table->time('time');
+        //     $table->dropColumn('start_time');
+        //     $table->dropColumn('end_time');
+        // });
     }
 };

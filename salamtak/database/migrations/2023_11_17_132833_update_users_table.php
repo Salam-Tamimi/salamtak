@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            // Remove appointment_id column
-            $table->dropColumn('appointment_id');
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     // Remove appointment_id column
+        //     $table->dropColumn('appointment_id');
+        // });
     }
 
     /**
@@ -26,14 +26,14 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            // Add appointment_id column back if needed
-            $table->unsignedBigInteger('appointment_id')->nullable();
+        // Schema::table('users', function (Blueprint $table) {
+        //     // Add appointment_id column back if needed
+        //     $table->unsignedBigInteger('appointment_id')->nullable();
             
-            $table->foreign('appointment_id')
-                ->references('id')
-                ->on('appointments')
-                ->onDelete('cascade');
-        });
+        //     $table->foreign('appointment_id')
+        //         ->references('id')
+        //         ->on('appointments')
+        //         ->onDelete('cascade');
+        // });
     }
 };

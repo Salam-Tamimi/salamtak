@@ -20,34 +20,28 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //    $appointments=Appointment::all();
+    //    return view('pages.appointments.index', compact('appointments'));
+    // }
     public function index()
     {
-       $appointments=Appointment::all();
-       return view('pages.appointments.index', compact('appointments'));
-    }
-
-
-    // public function checkAvailability(Request $request)
-    // {
-    //     // Get the inputs from the AJAX request
-    //     $day = $request->input('day');
-    //     $startTime = $request->input('start_time');
-    //     $endTime = $request->input('end_time');
-
-    //     // Check for existing appointments on the selected day and time
-    //     $existingAppointments = Appointment::where('day_of_week', $day)
-    //         ->where(function ($query) use ($startTime, $endTime) {
-    //             $query->where('start_time', '<', $endTime)
-    //                 ->where('end_time', '>', $startTime);
-    //         })
-    //         ->exists();
-
-    //     // Return the result as JSON
-    //     return response()->json(['exists' => $existingAppointments]);
-    // }
-
-
+        // Assuming you have access to the role and doctor_id in your user object or through some other means
+        $role = auth()->user()->role; // Assuming you have role information in the user object
+        $doctor_id = auth()->user()->doctor_id; // Assuming you have doctor_id information in the user object
     
+        if ($role === 'user') {
+            $appointments = Appointment::all();
+            return view('pages.appointments.index', compact('appointments'));
+        } elseif ($role === 'doctor') {
+            $appointments = Appointment::where('doctor_id', $doctor_id)->get();
+            return view('doctor-appointments.index', compact('appointments'));
+        }
+
+        // If none of the conditions match, you can return an error view or redirect
+        return view('404.blade.php');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -131,6 +125,7 @@ class AppointmentController extends Controller
         'hospital_id' => $doctor->hospitals->id,
         'department_id' => $doctor->department_id,
         'user_id' => Auth::user()->id,
+        'status' => Auth::user()->role === 'doctor' ? true : false, // Set status based on the role
     ]);
 
     // Save the appointment only if the validation passes
@@ -147,6 +142,17 @@ class AppointmentController extends Controller
     }
 }
 
+public function updateStatus($appointmentId)
+{
+    // Find the appointment by ID
+    $appointment = Appointment::findOrFail($appointmentId);
+
+    // Update the status
+    $appointment->status = true;
+    $appointment->save();
+
+    return response()->json(['message' => 'Appointment status updated successfully']);
+}
 // public function getBookedTimes(Request $request)
 // {
 //     try {

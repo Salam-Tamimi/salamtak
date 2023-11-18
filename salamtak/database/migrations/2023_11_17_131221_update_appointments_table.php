@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // Add user_id column as required
-            $table->unsignedBigInteger('user_id');
+        // Schema::table('appointments', function (Blueprint $table) {
+        //     // Add user_id column as required
+        //     $table->unsignedBigInteger('user_id');
 
-            // Add foreign key constraint
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-        });
+        //     // Add foreign key constraint
+        //     $table->foreign('user_id')
+        //         ->references('id')
+        //         ->on('users')
+        //         ->onDelete('cascade');
+        // });
     }
 
     /**
@@ -32,12 +32,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // Remove foreign key constraint
-            $table->dropForeign(['user_id']);
+        // Schema::table('appointments', function (Blueprint $table) {
+        //     // Remove foreign key constraint
+        //     $table->dropForeign(['user_id']);
 
-            // Drop user_id column
-            $table->dropColumn('user_id');
-        });
+        //     // Drop user_id column
+        //     $table->dropColumn('user_id');
+        // });
     }
 };
