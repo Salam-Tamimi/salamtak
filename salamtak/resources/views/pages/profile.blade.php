@@ -1,141 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.master')
+@section('title', 'سلامتك - الصفحة الرئيسية ')
+ @section('css')
+ <link href="{{ asset('/css/profile.css') }}" rel="stylesheet">
+ <script>
+  $(document).ready(function () {
+      // Handle update appointment button
+      $('.update-appointment').click(function () {
+          $('.popup_box').css("display", "block");
+          $('#blur').addClass("active");
+      });
+      
+      $('.popup_box .btn1').click(function () {
+          $('.popup_box').css("display", "none");
+          $('#blur').removeClass("active");
+      });
+      
+      $('.popup_box .btn2').click(function () {
+          $('.popup_box').css("display", "none");
+          $('#blur').removeClass("active");
+          window.location.href = "/pages/doctor-single.html";
+      });
 
-<head>
-    <meta charset="utf-8">
-    <title>سلامتك - تواصل معنا</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+      // Handle cancel appointment button
+      $('.cancel-appointment').click(function () {
+          $('.popup_box2').css("display", "block");
+          $('#blur').addClass("active");
+      });
 
-     <!-- Favicon -->
-     <link rel="shortcut icon" type="image/x-icon" href="/img/Medical Care Logo 2 .png">
+      $('.popup_box2 .btn1').click(function () {
+          $('.popup_box2').css("display", "none");
+          $('#blur').removeClass("active");
+      });
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet"> 
+      $('.popup_box2 .btn2').click(function () {
+          $('.popup_box2').css("display", "none");
+          $('#blur').removeClass("active");
+          alert("لقد تم إلغاء حجزك");
+      });
+  });
+</script>
+@endsection            
+@section('content')
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="/css/profile.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/nav_foot.css">
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"> -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Handle update appointment button
-            $('.update-appointment').click(function () {
-                $('.popup_box').css("display", "block");
-                $('#blur').addClass("active");
-            });
-            
-            $('.popup_box .btn1').click(function () {
-                $('.popup_box').css("display", "none");
-                $('#blur').removeClass("active");
-            });
-            
-            $('.popup_box .btn2').click(function () {
-                $('.popup_box').css("display", "none");
-                $('#blur').removeClass("active");
-                window.location.href = "/pages/doctor-single.html";
-            });
-    
-            // Handle cancel appointment button
-            $('.cancel-appointment').click(function () {
-                $('.popup_box2').css("display", "block");
-                $('#blur').addClass("active");
-            });
-    
-            $('.popup_box2 .btn1').click(function () {
-                $('.popup_box2').css("display", "none");
-                $('#blur').removeClass("active");
-            });
-    
-            $('.popup_box2 .btn2').click(function () {
-                $('.popup_box2').css("display", "none");
-                $('#blur').removeClass("active");
-                alert("لقد تم إلغاء حجزك");
-            });
-        });
-    </script>
-  </head>
-
-
-<body class="profile-page">
-  <div id="blur">
-     <!-- ******** navbar **********    -->
-     <div class="container-xxl position-relative p-0">
-      <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-  <a href="/index.html" class="navbar-brand p-0">
-      <img src="/img/Medical Care Logo 2 .png" alt="Logo" style="width: 110%;">
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav ms-auto py-0">
-          <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
-          <a href="/index.html" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
-              <div class="dropdown-menu m-0">
-                  <a href="/pages/filter.html" class="dropdown-item">حجز مواعيد</a>
-                  <a href="/pages/profile.html#works" class="dropdown-item">ادارة المواعيد</a>
-                  <a href="/pages/lab.html" class="dropdown-item">المختبرات الطبية</a>
-                  <a href="/pages/hospitals.html" class="dropdown-item">المستشفيات</a>
-                  <!-- <a href="404.html" class="dropdown-item">مواعيد عيادات الاختصاص</a> -->
-              </div>
-          </div>
-          <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
-              <div class="dropdown-menu m-0">
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم العيون</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم العظام</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم الأشعة</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم القلب</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم الجراحة</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم الولادة</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم الأطفال</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم العلاج الطبيعي</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم الباطني</a>
-                  <a href="/pages/appointments.html" class="dropdown-item">قسم الجلدية</a>
-              </div>
-          </div>
-          <a href="/pages/hospitals.html" class="nav-item nav-link">المستشفيات</a>
-          <a href="/pages/about.html" class="nav-item nav-link">من نحن</a>
-
-          <a href="/pages/contact.html" class="nav-item nav-link">تواصل معنا</a>
-      </div>
-      <form class="d-flex">
-          <input class="form-control me-2 rounded-pill" type="search" placeholder="بحث" aria-label="Search">
-          <span>&nbsp;</span>
-          <button class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5" type="submit">بحث</button>
-      </form>
-
-      </div>                      
-      <a class="btn rounded-pill" href="/pages/profile.html">
-          <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" style="width: 25px;"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#B3CDE6]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-420.000000, -2159.000000)" fill="#B3CDE6"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M374,2009 C371.794,2009 370,2007.206 370,2005 C370,2002.794 371.794,2001 374,2001 C376.206,2001 378,2002.794 378,2005 C378,2007.206 376.206,2009 374,2009 M377.758,2009.673 C379.124,2008.574 380,2006.89 380,2005 C380,2001.686 377.314,1999 374,1999 C370.686,1999 368,2001.686 368,2005 C368,2006.89 368.876,2008.574 370.242,2009.673 C366.583,2011.048 364,2014.445 364,2019 L366,2019 C366,2014 369.589,2011 374,2011 C378.411,2011 382,2014 382,2019 L384,2019 C384,2014.445 381.417,2011.048 377.758,2009.673" id="profile-[#B3CDE6]"> </path> </g> </g> </g> </g></svg>                   
-      </a>
-</nav>
-</div>
-
-<!-- ******** end navbar **********    -->
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
     <div class="main main-raised">
 		<div class="profile-content">
@@ -416,52 +322,8 @@
         </div>
 	</div>
 	
-    <!-- Footer Start -->
-       <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-4">
-                    <h5 class="text-white mb-4">ابقى على تواصل</h5>
-                    <p><i class="fa fa-phone-alt me-3"></i>+962 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <h5 class="text-white mb-4">خدمة العملاء</h5>
-                    <a class="btn btn-link" href="" style="text-align: right;">معلومت عنا </a>
-                    <a class="btn btn-link" href=""style="text-align: right;">تواصل معنا </a>
-                    <a class="btn btn-link" href=""style="text-align: right;">سياسة الخصوصية </a>
-                    <a class="btn btn-link" href=""style="text-align: right;">الأحكام والشروط </a>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <h5 class="text-white mb-4">جاهز للبدء معنا ومتابعة جديدنا !</h5>
-                    <p>اكتب بريدك الالكتروني ليصلك كل جديد</p>
-                    <div class="position-relative w-100 mt-3">
-                        <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="اكتب بريدك الالكتروني" style="height: 48px;">
-                        <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-7 text-center text-md-start mb-3 mb-md-0">
-                        &copy; جميع الحقوق محفوظة <a class="border-bottom" href="#">سلامتك </a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
-  </div>
+    
+  @section('js')
 
   <!-- ********* confirmation popup ********* -->
 <div class="popup_box">
@@ -483,16 +345,6 @@
       <a href="#" class="btn2"style="background-color:red;">إلغاء الحجز</a>
   </div>
 </div>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-<script src="/js/profile.js"></script>
 
-   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-</body>
-
-</html>
+@endsection
+@endsection
