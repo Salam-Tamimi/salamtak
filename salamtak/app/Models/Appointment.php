@@ -21,11 +21,7 @@ class Appointment extends Model
         'review_id',
     ];
 
-    // public function user() 
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
+    // Relationships
     public function user() 
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -34,10 +34,11 @@ class Doctor extends Model
         return $this->belongsTo(Hospital::class, 'hospital_id');
     }
  
-    public function appointments() 
+    public function appointments()
     {
         return $this->hasMany(Appointment::class, 'doctor_id');
     }
+
 
     // public function hospital_departments() 
     // {

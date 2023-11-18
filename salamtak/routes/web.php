@@ -125,8 +125,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctor-details', Doctor_detailsController::class);
     // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
     // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
+    // Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create');
     Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create');
+
     Route::post('/appointments/create/{doctor_id}', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::get('/appointments/success', [AppointmentController::class, 'success'])->name('appointments.success');    // Route::get('/get-booked-times', 'AppointmentController@getBookedTimes');
+    // Route::get('/appointments/booked-times/{doctor_id}', [AppointmentController::class, 'getBookedTimes']);
+
+
     Route::get('/appointments-dates/{department_id}', function ($departmentId) {
         return view('pages.appointments.index', ['departmentId' => $departmentId]);
     });
@@ -137,8 +143,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);
     Route::resource('doctor-schaduale', DoctorSchadualeController::class);
-
+    
 });
+// Route::resource('success', AppointmentController::class);
 // Route::middleware(['auth'])->group(function () {
 //     // Common dashboard routes for all roles
 //     Route::resource('dashboard', DashboardController::class);

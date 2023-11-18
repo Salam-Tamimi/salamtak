@@ -26,6 +26,28 @@ class AppointmentController extends Controller
        return view('pages.appointments.index', compact('appointments'));
     }
 
+
+    // public function checkAvailability(Request $request)
+    // {
+    //     // Get the inputs from the AJAX request
+    //     $day = $request->input('day');
+    //     $startTime = $request->input('start_time');
+    //     $endTime = $request->input('end_time');
+
+    //     // Check for existing appointments on the selected day and time
+    //     $existingAppointments = Appointment::where('day_of_week', $day)
+    //         ->where(function ($query) use ($startTime, $endTime) {
+    //             $query->where('start_time', '<', $endTime)
+    //                 ->where('end_time', '>', $startTime);
+    //         })
+    //         ->exists();
+
+    //     // Return the result as JSON
+    //     return response()->json(['exists' => $existingAppointments]);
+    // }
+
+
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -44,8 +66,12 @@ class AppointmentController extends Controller
     //     $departmentDoctorMap[$department->id] = $department->doctors;
     // }
     //     return view('admin.pages.appointments-admin.create', compact('departments', 'departmentDoctorMap'));
+    $bookedTimes = Appointment::all()
+    // ->pluck('start_time','day_of_week')
+    ->toArray();
+    // dd($bookedTimes);
     $schedules = DB::table('doctor_schaduales')->where('doctor_id', $doctor_id)->get();
-    return view('pages.appointments.create', compact('schedules', 'doctor_id'));
+    return view('pages.appointments.create', compact('schedules', 'doctor_id','bookedTimes'));
     }
 
     /**
@@ -75,49 +101,67 @@ class AppointmentController extends Controller
         // Appointment::create($validatedData);
 
         // Validate the request data
-        $validatedData = $request->validate([
-            'day' => 'required',
-            'start_time' => 'required',
-        ]);
+        // Fetch already booked times
+         // Fetch the booked times after saving the appointment
+    // Validate the request data
+    $validatedData = $request->validate([
+        'day' => 'required',
+        'start_time' => 'required',
+    ]);
 
-        // Get the doctor_id from the route parameters
-        $doctor_id = $request->route('doctor_id');
+    // Get the doctor_id from the route parameters
+    $doctor_id = $request->route('doctor_id');
 
-         // Get the related doctor with hospital information
-         $doctor = Doctor::with('hospitals')->find($doctor_id);
+    // Get the related doctor with hospital information
+    $doctor = Doctor::with('hospitals')->find($doctor_id);
 
-        // Get the related models based on the doctor_id
-        // $doctor = Doctor::find($doctor_id);
-        $hospital = $doctor->hospitals;
-        $department = $doctor->department;
+    // Extract start time from the range
+    list($startTimeString, $endTimeString) = explode(' - ', $validatedData['start_time']);
 
-         // Extract start time from the range
-         list($startTimeString, $endTimeString) = explode(' - ', $validatedData['start_time']);
-        
-         // Create DateTime objects for start and end times
-         $startTime = new \DateTime($startTimeString);
-         $endTime = new \DateTime($endTimeString);
+    // Create DateTime objects for start and end times
+    $startTime = new \DateTime($startTimeString);
+    $endTime = new \DateTime($endTimeString);
 
-        // Create a new appointment instance with the required fields
-        $appointment = new Appointment([
-            'day_of_week' => $request->input('day'),
-            'start_time' => $startTime->format('H:i:s'),
-            'end_time' => $endTime->format('H:i:s'),
-            'doctor_id' => $doctor_id,
-            'hospital_id' => $doctor->hospitals->id,
-            'department_id' => $doctor->department_id,
-            'user_id' => Auth::user()->id,
-        ]);
+    // Create a new appointment instance with the required fields
+    $appointment = new Appointment([
+        'day_of_week' => $request->input('day'),
+        'start_time' => $startTime->format('H:i:s'),
+        'end_time' => $endTime->format('H:i:s'),
+        'doctor_id' => $doctor_id,
+        'hospital_id' => $doctor->hospitals->id,
+        'department_id' => $doctor->department_id,
+        'user_id' => Auth::user()->id,
+    ]);
 
-        // Save the appointment
-        $appointment->save();
-
-        $department_id = $doctor->department_id;
-        // return redirect()->to(url('/appointments-dates', ['department_id' => $department_id]))->with('success', 'Appointment created successfully!');
-        return view('pages.success')->with('success', 'Appointment created successfully!');
+    // Save the appointment only if the validation passes
+    if ($appointment->save()) {
+        // Retrieve booked times after saving the appointment
+        $bookedTimes = Appointment::where('day_of_week', $request->input('day'))
+            ->pluck('start_time')
+            ->toArray();
+// dd($bookedTimes);
+        return view('pages.success', compact('bookedTimes', 'appointment'))->with('success', 'Appointment created successfully!');
+    } else {
+        // Handle the case where the appointment failed to save
+        return redirect()->back()->withInput()->with('error', 'Failed to save the appointment.');
     }
+}
 
+// public function getBookedTimes(Request $request)
+// {
+//     try {
+//         $day = $request->input('day');
 
+//         // Fetch already booked times
+//         $bookedTimes = Appointment::where('day_of_week', $day)
+//             ->pluck('start_time')
+//             ->toArray();
+// dd($bookedTimes);
+//         return response()->json(['bookedTimes' => $bookedTimes]);
+//     } catch (\Exception $e) {
+//         return response()->json(['error' => $e->getMessage()], 500);
+//     }
+// }
     /**
      * Display the specified resource.
      *

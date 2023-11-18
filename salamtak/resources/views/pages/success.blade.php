@@ -78,6 +78,11 @@
               <h2 style="color: green;">تمت عملية الحجز بنجاح</h2>
               <h6>سلامتك</h6>
             </div> <br> <br>
+
+            <p>تفاصيل موعدك :</p>
+            <p>اليوم: {{ $appointment->day_of_week }}</p>
+            <p>من الساعة: {{ $appointment->start_time }}</p>
+            <p>إلى الساعة: {{ $appointment->end_time }}</p> <br> <br>
             <a href="{{ route('home') }}"><button class="btn btn-primary">الرجوع الى الصفحة الرئيسية</button></a>
           
       </html>
