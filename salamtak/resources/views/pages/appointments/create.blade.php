@@ -91,7 +91,8 @@
             // Check if the booked time matches the selected day and start time
 console.log(bookedTimes[i].start_time)
 console.log(startTime)
-            if (bookedTimes[i].day_of_week == selectedDay && bookedTimes[i].start_time == startTime) {
+console.log(bookedTimes[i].status)
+            if (bookedTimes[i].day_of_week == selectedDay && bookedTimes[i].start_time == startTime && bookedTimes[i].status === 0) {
                 return true; // Time slot is booked
             }
         }
