@@ -42,7 +42,9 @@
 @endsection            
 @section('content')
 @php
-  $appointments=Auth::user()->appointments;
+    $appointments = Auth::user()->appointments;
+    $past_appointments = $appointments->where('status', 1);
+    $future_appointments = $appointments->where('status', 0);
 @endphp
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
     <div class="main main-raised">
