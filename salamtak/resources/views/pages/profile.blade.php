@@ -2,49 +2,14 @@
 @section('title', 'سلامتك - الصفحة الرئيسية ')
  @section('css')
  <link href="{{ asset('/css/profile.css') }}" rel="stylesheet">
- <script>
-  $(document).ready(function () {
-      // Handle update appointment button
-      $('.update-appointment').click(function () {
-          $('.popup_box').css("display", "block");
-          $('#blur').addClass("active");
-      });
-      
-      $('.popup_box .btn1').click(function () {
-          $('.popup_box').css("display", "none");
-          $('#blur').removeClass("active");
-      });
-      
-      $('.popup_box .btn2').click(function () {
-          $('.popup_box').css("display", "none");
-          $('#blur').removeClass("active");
-          window.location.href = "/pages/doctor-single.html";
-      });
 
-      // Handle cancel appointment button
-      $('.cancel-appointment').click(function () {
-          $('.popup_box2').css("display", "block");
-          $('#blur').addClass("active");
-      });
-
-      $('.popup_box2 .btn1').click(function () {
-          $('.popup_box2').css("display", "none");
-          $('#blur').removeClass("active");
-      });
-
-      $('.popup_box2 .btn2').click(function () {
-          $('.popup_box2').css("display", "none");
-          $('#blur').removeClass("active");
-          alert("لقد تم إلغاء حجزك");
-      });
-  });
-</script>
 @endsection            
 @section('content')
 @php
     $appointments = Auth::user()->appointments;
     $past_appointments = $appointments->where('status', 1);
     $future_appointments = $appointments->where('status', 0);
+    $user=Auth::user();
 @endphp
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
     <div class="main main-raised">
@@ -57,7 +22,7 @@
 	                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Circle Image" class="img-raised rounded-circle">
 	                        </div>
 	                        <div class="name">
-	                            <h3 class="title">اسم المستخدم</h3>
+	                            <h3 class="title">{{ $user->name }} </h3>
 								<!-- <h6>Designer</h6>
 								<a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
@@ -110,13 +75,12 @@
             <div class="tab-pane active text-center gallery" id="studio">
   				<div class="row">
   					<div class="col-md-4 ">
-  					    <!-- <img src="https://images.unsplash.com/photo-1524498250077-390f9e378fc0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=83079913579babb9d2c94a5941b2e69d&auto=format&fit=crop&w=751&q=80" class="rounded"> -->
-  						<!-- <img src="https://images.unsplash.com/photo-1528249227670-9ba48616014f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=66b8e7db17b83084f16fdeadfc93b95b&auto=format&fit=crop&w=357&q=80" class="rounded"> -->
-                    <div class="card " >
+              @foreach ($past_appointments as $appointment)
+              <div class="card " >
                       <div class="p-3 doctorscard">
                           <div>
-                              <h5 class="card-title">مستشفى  الراهبات الوردية</h5>
-                              <img src="../img/doctor1.png" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
+                              <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
+                              <img src="{{ $appointment->doctor->image }}" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
                               <a href="/pages/review.html"><button class="btnreview py-3">قيم الطبيب</button></a>
                               <div>
                                   <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
@@ -128,59 +92,27 @@
                               </div>
                                 
                               <div class="card-body">
-                                  <h4 class="card-title"> د. باسمة محمود</h4>
-                                  <p class="card-text">التاريخ: 20-12-2023 <br>
-                                      اليوم: الاربعاء <br>
-                                      التوقيت: 9:00 صباحا</p>
+                                  <h4 class="card-title"> د. {{ $appointment->doctor->name }} </h4>
+                                  <p class="card-text"> اليوم: {{ $appointment->day_of_week }}<br>
+                                    التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
+                                     تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}
+                                  </p>
                                       <div class="d-flex btns ">
                                           <button class="btn btn-primary disabled"><h4>احجز &nbsp; &nbsp;</h4></button> 
-                                          <button class="btn btn-info disabled"><h4>من أنا ؟</h4></button>  
+                                          {{-- <button class="btn btn-info disabled"><h4>من أنا ؟</h4></button>   --}}
                                         </div>
                                       </div>
                               </div>
                           </div>
                       </div>
-            </div>
-  					<div class="col-md-4 ">
-  						<!-- <img src="https://images.unsplash.com/photo-1521341057461-6eb5f40b07ab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=72da2f550f8cbd0ec252ad6fb89c96b2&auto=format&fit=crop&w=334&q=80" class="rounded"> -->
-  						<!-- <img src="https://images.unsplash.com/photo-1506667527953-22eca67dd919?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6326214b7ce18d74dde5e88db4a12dd5&auto=format&fit=crop&w=750&q=80" class="rounded"> -->
-              <div class="card " >
-                <div class="p-3 doctorscard">
-                    <div>
-                        <h5 class="card-title">مستشفى  ابن النفيس</h5>
-                        <img src="../img/doctor2.png" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
-                        <a href="/pages/review.html"><button class="btnreview py-3">قيم الطبيب</button></a>
-                        <div>
-                            <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                            <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                            <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                            <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                            <svg width="30px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="icomoon-ignore"> </g> <path d="M19.38 12.803l-3.38-10.398-3.381 10.398h-11.013l8.925 6.397-3.427 10.395 8.896-6.448 8.895 6.448-3.426-10.395 8.925-6.397h-11.014zM20.457 19.534l2.394 7.261-6.85-4.965-6.851 4.965 2.64-8.005-0.637-0.456-6.228-4.464h8.471l2.606-8.016 2.605 8.016h8.471l-6.864 4.92 0.245 0.744z" fill="#000000"> </path> </g></svg>
-                            <span><a href="/pages/doctor-single.html#reviews"><button style="font-size: small;color:dodgerblue;text-decoration:underline;"class="btn btn-link">التقييمات</button></a></span>
-                          </div>
-                          
-                        <div class="card-body">
-                            <h4 class="card-title"> د. محمد الأحمد</h4>
-                            <p class="card-text">التاريخ: 10-11-2023 <br>
-                                اليوم: الأحد <br>
-                                التوقيت: 11:00 صباحا</p>
-                                <div class="d-flex btns ">
-                                    <button class="btn btn-primary disabled"><h4>احجز &nbsp; &nbsp;</h4></button> 
-                                    <button class="btn btn-info disabled"><h4>من أنا ؟</h4></button>  
-                                  </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                      @endforeach      
             </div>
   				</div>
   			</div>
             <div class="tab-pane text-center gallery" id="works">
               <div class="row">
                 <div class="col-lg-4 col-md-6 ">
-                    <!-- <img src="https://images.unsplash.com/photo-1524498250077-390f9e378fc0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=83079913579babb9d2c94a5941b2e69d&auto=format&fit=crop&w=751&q=80" class="rounded"> -->
-                  <!-- <img src="https://images.unsplash.com/photo-1528249227670-9ba48616014f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=66b8e7db17b83084f16fdeadfc93b95b&auto=format&fit=crop&w=357&q=80" class="rounded"> -->
-                  @foreach ($appointments as $appointment)      
+                  @foreach ($future_appointments as $appointment)      
                   <div class="card" >
                           <div class="p-3 doctorscard">
                               <div>
@@ -209,8 +141,8 @@
                                   </div>
                               </div>
                           </div>
+                          @endforeach
                 </div>
-                @endforeach
               </div>
   			</div>
             <div class="tab-pane text-center gallery" id="favorite">
@@ -226,8 +158,8 @@
                           <div class="user-avatar">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
                           </div>
-                          <h4 class="user-name">اسم المستخدم</h4><br>
-                          <h6 class="user-email">example@gmail.com</h6><br>
+                          <h4 class="user-name">{{ $user->name }} </h4><br>
+                          <h6 class="user-email">{{ $user->name }}</h6><br>
                           <a href=""style="text-decoration:underline;color:dodgerblue;">تغيير كلمة المرور</a>
                         </div>
                         <!-- <div class="about">
@@ -248,19 +180,19 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                             <label for="fullName">الإسم الكامل</label>
-                            <input type="text" class="form-control" id="fullName" >
+                            <input type="text" class="form-control" id="fullName" value="{{ $user->name }}">
                           </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                             <label for="email">البريد الإلكتروني</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" value="{{ $user->email }}">
                           </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                             <label for="phone">رقم الهاتف المحمول</label>
-                            <input type="text" class="form-control" id="phone">
+                            <input type="text" class="form-control" id="phone" value="{{ $user->mobile }}">
                           </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
