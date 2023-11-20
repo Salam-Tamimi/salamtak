@@ -14,8 +14,12 @@ class Review extends Model
         'review', 
     ];
 
-    public function appointments() 
-    {
-        return $this->belongsTo(Appointment::class,'review_id');
-    }
+    // public function appointments() 
+    // {
+    //     return $this->belongsTo(Appointment::class,'review_id');
+    // }
+    public function appointment() 
+{
+    return $this->belongsTo(Appointment::class);
+}
 }

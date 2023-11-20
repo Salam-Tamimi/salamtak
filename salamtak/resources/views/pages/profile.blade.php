@@ -11,7 +11,13 @@
     $future_appointments = $appointments->where('status', 0);
     $user=Auth::user();
 @endphp
+
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
+@if(isset($success))
+        <div class="alert alert-success">
+            {{ $success }}
+        </div>
+@endif
     <div class="main main-raised">
 		<div class="profile-content">
             <div class="container">
@@ -81,7 +87,12 @@
                           <div>
                               <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
                               <img src="{{ $appointment->doctor->image }}" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
-                              <a href="/pages/review.html"><button class="btnreview py-3">قيم الطبيب</button></a>
+                              {{-- <a href="url{{ 'pages.review' }}"><button class="btnreview py-3">قيم الطبيب</button></a> --}}
+                              <a href="{{ route('reviews.create', ['appointment' => $appointment->id]) }}">
+                                @if (!$appointment->review)
+                                    <button class="btnreview py-3">قيم الطبيب</button>
+                                @endif
+                            </a>
                               <div>
                                   <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
                                   <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>

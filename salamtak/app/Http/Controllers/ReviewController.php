@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Hospital;
 use App\Models\Review;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -18,8 +19,13 @@ class ReviewController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role !== 'user') {
+        return view('pages.profile')->with('successMessage', 'Review added successfully');
+
+        }elseif (Auth::user()->role !== 'admin') {
         $reviews = Review::all();
         return view('admin.pages.reviews-admin.index', compact('reviews'));
+        }
     }
 
     /**
@@ -27,9 +33,11 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($appointmentId)
     {
-        //
+        $appointment = Appointment::findOrFail($appointmentId);
+
+        return view('pages.reviews.create', compact('appointment'));
     }
 
     /**
@@ -38,10 +46,39 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, Appointment $appointment)
+{
+    if (Auth::user()->role == 'user') {
+         // Validate the request
+    $request->validate([
+        'comment' => 'required|string',
+        'review' => 'required|integer|min:1|max:5', 
+    ]);
+
+    // Create a new review
+    $review = new Review([
+        'comment' => $request->input('comment'),
+        'review' => $request->input('review'),
+    ]);
+
+    // Save the review
+    $review->save();
+
+    // Associate the review with the appointment
+    $appointment->review()->associate($review);
+
+    // Save the appointment
+    $appointment->save();
+
+    // You can also associate the review with the user who created it if needed
+    // $review->user()->associate(auth()->user())->save();
+
+    return redirect('/edit-appointment')->with('success', 'تمت إضافة التقييم بنجاح');
+} else {
+        return view('404');
+
     }
+}
 
     /**
      * Display the specified resource.

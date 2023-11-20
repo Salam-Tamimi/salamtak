@@ -78,6 +78,10 @@ Route::get('/contact', function () {
 //     return view('pages.doctor-single', ['doctor_id' => $doctor_id]);
 // });
 Route::get('/doctor-single/{doctor_id}', [DoctorController::class, 'doctorSingle'])->name('doctors.doctor-single');
+// Route for showing the review creation form
+Route::get('/reviews/create/{appointment}', [ReviewController::class, 'create'])->name('reviews.create');
+// Route for storing reviews
+Route::post('/reviews/create/{appointment}', [ReviewController::class, 'store'])->name('reviews.store');
 
 Route::get('/hospital-single', function () {
     return view('pages.hospital-single');

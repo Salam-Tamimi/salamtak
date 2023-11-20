@@ -31,7 +31,7 @@
     function updateStartTimes() {
         var selectedDay = $('#day').val();
         var startTime = $('#day option:selected').data('start') + ':00';
-                var endTime = $('#day option:selected').data('end');
+        var endTime = $('#day option:selected').data('end');
 
         // Clear existing options
         $('#start_time').empty().prop('disabled', false);
@@ -83,36 +83,32 @@
 
     // Function to check if a time slot is booked
     function isTimeSlotBooked(selectedDay, startTime) {
-        // Parse the JSON-encoded booked times
-        var bookedTimes = JSON.parse(htmlDecode($('body').data('booked-times')));
-// console.log(bookedTimes)
-        // Loop through the booked times
-        for (var i = 0; i < bookedTimes.length; i++) {
-            // Check if the booked time matches the selected day and start time
-console.log(bookedTimes[i].start_time)
-console.log(startTime)
-console.log(bookedTimes[i].status)
-            if (bookedTimes[i].day_of_week == selectedDay && bookedTimes[i].start_time == startTime && bookedTimes[i].status === 0) {
-                return true; // Time slot is booked
-            }
-        }
-        return false; // Time slot is not booked
-    }
+        // Get the booked times directly from the data attribute as a string
+        var bookedTimesString = $('body').data('booked-times');
 
-    // Function to decode HTML entities
-    function htmlDecode(input) {
-        var doc = new DOMParser().parseFromString(input, "text/html");
-        return doc.documentElement.textContent;
+        try {
+            // Parse the booked times string as JSON
+            var bookedTimes = JSON.parse(bookedTimesString);
+
+            // Check if bookedTimes is not empty or undefined
+            if (bookedTimes && Array.isArray(bookedTimes) && bookedTimes.length > 0) {
+                // Loop through the booked times
+                for (var i = 0; i < bookedTimes.length; i++) {
+                    // Check if the booked time matches the selected day and start time
+                    if (bookedTimes[i].day_of_week == selectedDay && bookedTimes[i].start_time == startTime && bookedTimes[i].status === 0) {
+                        return true; // Time slot is booked
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error parsing booked times:', error);
+        }
+
+        return false; // Time slot is not booked
     }
 
     // Call the function initially
     $(document).ready(function () {
-        // Parse the JSON-encoded booked times
-        var bookedTimes = JSON.parse(htmlDecode($('body').data('booked-times')));
-
-        // Set the global variable for bookedTimes
-        window.bookedTimes = bookedTimes;
-
         // Call the function to update start times
         updateStartTimes();
     });
@@ -120,6 +116,7 @@ console.log(bookedTimes[i].status)
     // Call the function whenever the day is changed
     $('#day').change(updateStartTimes);
 </script>
+
 
 
     
