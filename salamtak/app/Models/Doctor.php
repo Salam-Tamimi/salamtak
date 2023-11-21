@@ -23,7 +23,28 @@ class Doctor extends Model
     {
         return $this->belongsTo(User::class, 'doctor_id');
     }
+
+    // public function reviews()
+    // {
+    // return $this->hasMany(Review::class);
+    // }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
+
+    // public function reviews()
+    // {
+    //     return $this->hasManyThrough(Review::class, Appointment::class, 'doctor_id', 'id', 'id', 'review_id');
+    // }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating');
+    }
     
+
     public function departments() 
     {
         return $this->belongsTo(Department::class, 'department_id');
@@ -34,10 +55,6 @@ class Doctor extends Model
         return $this->belongsTo(Hospital::class, 'hospital_id');
     }
  
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class, 'doctor_id');
-    }
 
 
     // public function hospital_departments() 

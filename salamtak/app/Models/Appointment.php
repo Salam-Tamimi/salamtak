@@ -43,7 +43,7 @@ class Appointment extends Model
         return $this->belongsTo(Payment::class, 'payment_id');
     }
 
-    public function review() 
+    public function review()
     {
         return $this->belongsTo(Review::class, 'review_id');
     }

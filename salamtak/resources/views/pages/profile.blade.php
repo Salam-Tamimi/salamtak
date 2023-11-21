@@ -82,7 +82,7 @@
   				<div class="row">
   					<div class="col-md-4 ">
               @foreach ($past_appointments as $appointment)
-              <div class="card " >
+              <div class="card" >
                       <div class="p-3 doctorscard">
                           <div>
                               <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
