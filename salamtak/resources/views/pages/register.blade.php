@@ -61,7 +61,7 @@
                                 <label>رقم الهاتف المحمول</label>
                                 <input type="text" class="form-control" placeholder="٠٧٧٧٧٧٧٧٧٧">
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>المحافظة</label>
                                 <select class="form-control">
                                     <option value="إربد">إربد</option>
@@ -77,7 +77,7 @@
                                     <option value="الطفيلة">الطفيلة</option>
                                     <option value="العقبة">العقبة</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             
                            
                             <div class="check-terms">
