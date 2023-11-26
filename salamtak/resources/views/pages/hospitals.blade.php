@@ -23,7 +23,11 @@
 use App\Models\User;
   $hospitals = User::where('role', 'hospital')->get();
 @endphp
+<a class="navbar-brand" href="{{ url()->previous() }}"style="text-decoration: underline;">
+  <i class="fas fa-arrow-right"></i> الرجوع 
+</a>
 <div class="row mx-4 my-3">
+  <h3 class="my-4">المستشفيات المتاحة للحجز</h3>
   @foreach ($hospitals as $hospital)
       <div class="col-md-4 mb-3">
           <div class="card">

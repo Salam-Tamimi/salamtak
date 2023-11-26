@@ -2,7 +2,12 @@
 @section('title', 'سلامتك - الصفحة الرئيسية ')
  @section('css')
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
-@endsection            
+   <!-- Owl Carousel CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+@endsection     
+   
 @section('content')
                 <div class="container-xxl bg-primary hero-header">
                 <div class="containerbg">
@@ -45,6 +50,34 @@
            </div>
         </div>
         
+
+        @php
+        use App\Models\User;
+        $hospitals = User::where('role', 'hospital')->get();
+    @endphp
+    
+    <div class="row">
+        <div class="owl-carousel">
+            @foreach ($hospitals as $hospital)
+                <div class="col mb-3">
+                    <div class="card">
+                        <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ $hospital->name }}</h4>
+                            <a href="{{ url('/hospital-single') }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);">حجز موعد</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    
+
+
+      
+
+
+
 
 
     <!-- sections Start -->
@@ -467,3 +500,40 @@
 
 @endsection
 
+@section('js')
+    <!-- Include Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    
+    <!-- Include jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <!-- Include Owl Carousel JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                loop:true,
+                margin:20,
+                rtl:true,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
+                    },
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:4,
+                        nav:true,
+                        loop:false
+                    }
+                }
+            });
+        });
+    </script>
+@endsection
