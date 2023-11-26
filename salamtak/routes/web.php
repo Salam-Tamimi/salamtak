@@ -73,6 +73,9 @@ Route::get('/hospitals', function () {
     return view('pages.hospitals');
 });
 
+// Route::get('/hospitals', [HospitalController::class, 'index']);
+
+
 // Route::get('/appointments/{department_id}', function ($departmentId) {
 //     return view('pages.appointments', ['department_id' => $departmentId]);
 // });

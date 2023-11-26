@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/hospitals.css') }}">
 
-@endsection
+@endsection<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyZ37AIX2ZgT2MIweqQ8S1tQTKK4LPMOvx" crossorigin="anonymous">
+
 @section('content')
   <div class="contain">
   <strong class="row mb-4">الرئيسية / المستشفيات</strong>
@@ -18,7 +19,24 @@
 </div>
 </div>
 <!-- start of hero -->
-<section class="hero-slider hero-style">
+@php
+use App\Models\User;
+  $hospitals = User::where('role', 'hospital')->get();
+@endphp
+<div class="row mx-4 my-3">
+  @foreach ($hospitals as $hospital)
+      <div class="col-md-4 mb-3">
+          <div class="card">
+              <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="width:100%;">
+              <div class="card-body">
+                  <h4 class="card-title">{{ $hospital->name }}</h4>
+                  <a href="{{ url('/hospital-single') }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);">حجز موعد</a>
+              </div>
+          </div>
+      </div>
+  @endforeach
+</div>
+{{-- <section class="hero-slider hero-style">
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -102,7 +120,9 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-</section>
+
+
+</section> --}}
 <!-- end of hero slider -->        
 
 @endsection
