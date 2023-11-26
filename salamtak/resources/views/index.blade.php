@@ -50,13 +50,13 @@
            </div>
         </div>
         
-
-        @php
+{{-- hospital start --}}
+    @php
         use App\Models\User;
         $hospitals = User::where('role', 'hospital')->get();
     @endphp
     
-    <div class="row">
+    <div class="row my-4">
         <div class="owl-carousel">
             @foreach ($hospitals as $hospital)
                 <div class="col mb-3">
@@ -71,12 +71,8 @@
             @endforeach
         </div>
     </div>
+{{-- hospital end --}}
     
-
-
-      
-
-
 
 
 
