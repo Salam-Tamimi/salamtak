@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
   
   <!-- Stylesheets -->
-  <link href="/css/register.css" rel="stylesheet">
+  <link href="{{ asset('css/register.css') }}" rel="stylesheet">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/img/Medical Care Logo 2 .png">
@@ -31,9 +31,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link href="/css/register.css" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/img/Medical Care Logo 2 .png">
@@ -99,24 +96,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     
-    <script src="plugins/validate.js"></script>
-    <script src="plugins/wow.js"></script>
-    <script src="plugins/jquery-ui.js"></script>
-    <script src="plugins/timePicker.js"></script>
+    <script src="{{ asset('plugins/validate.js') }}"></script>
+    <script src="{{ asset('plugins/wow.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-ui.js') }}"></script>
+    <script src="{{ asset('plugins/timePicker.js') }}"></script>
     
     <!-- jQuery -->
-    <script src="plugins/jquery.js"></script>
+    <script src="{{ asset('plugins/jquery.js') }}"></script>
     <!-- Bootstrap JS -->
-    <script src="plugins/bootstrap.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap.min.js') }}"></script>
     <!-- Bootstrap Select JS -->
-    <script src="plugins/bootstrap-select.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap-select.min.js') }}"></script>
     <!-- Slick Slider -->
-    <script src="plugins/slick/slick.min.js"></script>
+    <script src="{{ asset('plugins/slick/slick.min.js') }}"></script>
     <!-- FancyBox -->
-    <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="{{ asset('plugins/fancybox/jquery.fancybox.min.js') }}"></script>
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
-    <script src="plugins/google-map/gmap.js"></script>
+    <script src="{{ asset('plugins/google-map/gmap.js') }}"></script>
 
 </body>
 </html>

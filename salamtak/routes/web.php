@@ -11,6 +11,9 @@ use App\Http\Controllers\Hospital_detailsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Models\Department;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +37,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendPasswordResetLink'])->middleware(['guest'])->name('password.email');
+Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 
 Route::get('/', function () {
