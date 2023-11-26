@@ -10,6 +10,9 @@
     $past_appointments = $appointments->where('status', 1);
     $future_appointments = $appointments->where('status', 0);
     $user=Auth::user();
+// $avatarUrl = $user->image ?? ($user->gender === 'female' ? 'https://img.freepik.com/premium-vector/vector-hand-drawn-flat-colourful_637178-464.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1699315200&semt=ais' : 'https://bootdey.com/img/Content/avatar/avatar7.png');
+$avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.png');
+// dd($user->gender);
 @endphp
 
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
@@ -25,8 +28,9 @@
 	                <div class="col-md-6 ml-auto mr-auto">
         	           <div class="profile">
 	                        <div class="avatar">
-	                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Circle Image" class="img-raised rounded-circle">
-	                        </div>
+	                            {{-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Circle Image" class="img-raised rounded-circle"> --}}
+                              <img src="{{ $avatarUrl }}" alt="Circle Image" class="img-raised rounded-circle">
+                            </div>
 	                        <div class="name">
 	                            <h3 class="title">{{ $user->name }} </h3>
 								<!-- <h6>Designer</h6>
