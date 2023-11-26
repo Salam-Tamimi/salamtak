@@ -13,6 +13,8 @@ use App\Http\Controllers\UserController;
 use App\Models\Department;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\GoogleAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('pages.profile');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -41,6 +43,11 @@ require __DIR__.'/auth.php';
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendPasswordResetLink'])->middleware(['guest'])->name('password.email');
 Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
+
+
+Route::get('/loginwithgoogle', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/loginwithgoogle/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+Route::post('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/', function () {

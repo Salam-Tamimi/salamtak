@@ -81,42 +81,48 @@
             <div class="tab-pane active text-center gallery" id="studio">
   				<div class="row">
   					<div class="col-md-4 ">
-              @foreach ($past_appointments as $appointment)
-              <div class="card" >
-                      <div class="p-3 doctorscard">
-                          <div>
-                              <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
-                              <img src="{{ $appointment->doctor->image }}" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
-                              {{-- <a href="url{{ 'pages.review' }}"><button class="btnreview py-3">قيم الطبيب</button></a> --}}
-                              <a href="{{ route('reviews.create', ['appointment' => $appointment->id]) }}">
-                                @if (!$appointment->review)
-                                    <button class="btnreview py-3">قيم الطبيب</button>
-                                @endif
-                            </a>
-                              <div>
-                                  <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                                  <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                                  <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
-                                  <svg width="30px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="icomoon-ignore"> </g> <path d="M19.38 12.803l-3.38-10.398-3.381 10.398h-11.013l8.925 6.397-3.427 10.395 8.896-6.448 8.895 6.448-3.426-10.395 8.925-6.397h-11.014zM20.457 19.534l2.394 7.261-6.85-4.965-6.851 4.965 2.64-8.005-0.637-0.456-6.228-4.464h8.471l2.606-8.016 2.605 8.016h8.471l-6.864 4.92 0.245 0.744z" fill="#000000"> </path> </g></svg>
-                                  <svg width="30px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="icomoon-ignore"> </g> <path d="M19.38 12.803l-3.38-10.398-3.381 10.398h-11.013l8.925 6.397-3.427 10.395 8.896-6.448 8.895 6.448-3.426-10.395 8.925-6.397h-11.014zM20.457 19.534l2.394 7.261-6.85-4.965-6.851 4.965 2.64-8.005-0.637-0.456-6.228-4.464h8.471l2.606-8.016 2.605 8.016h8.471l-6.864 4.92 0.245 0.744z" fill="#000000"> </path> </g></svg>
-                                  <span><a href="/pages/doctor-single.html#reviews"><button style="font-size: small;color:dodgerblue;text-decoration:underline;"class="btn btn-link">التقييمات</button></a></span>
-                              </div>
-                                
-                              <div class="card-body">
-                                  <h4 class="card-title"> د. {{ $appointment->doctor->name }} </h4>
-                                  <p class="card-text"> اليوم: {{ $appointment->day_of_week }}<br>
-                                    التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
-                                     تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}
-                                  </p>
-                                      <div class="d-flex btns ">
-                                          <button class="btn btn-primary disabled"><h4>احجز &nbsp; &nbsp;</h4></button> 
-                                          {{-- <button class="btn btn-info disabled"><h4>من أنا ؟</h4></button>   --}}
-                                        </div>
-                                      </div>
-                              </div>
-                          </div>
-                      </div>
-                      @endforeach      
+             @if ($past_appointments)
+             @foreach ($past_appointments as $appointment)
+             <div class="card" >
+                     <div class="p-3 doctorscard">
+                         <div>
+                             <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
+                             <img src="{{ $appointment->doctor->image }}" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
+                             {{-- <a href="url{{ 'pages.review' }}"><button class="btnreview py-3">قيم الطبيب</button></a> --}}
+                             <a href="{{ route('reviews.create', ['appointment' => $appointment->id]) }}">
+                               @if (!$appointment->review)
+                                   <button class="btnreview py-3">قيم الطبيب</button>
+                               @endif
+                           </a>
+                             <div>
+                                 <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
+                                 <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
+                                 <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" fill="#FAD97F"></path><path d="M1024 396H633.6L512 21.6 390.4 396H0l315.2 230.4-121.6 374.4L512 770.4l316.8 232L707.2 628 1024 396zM512 730.4l-256 187.2 97.6-302.4-256-185.6h315.2l97.6-304 97.6 304h315.2l-256 185.6L768 917.6l-256-187.2z" fill=""></path></g></svg>
+                                 <svg width="30px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="icomoon-ignore"> </g> <path d="M19.38 12.803l-3.38-10.398-3.381 10.398h-11.013l8.925 6.397-3.427 10.395 8.896-6.448 8.895 6.448-3.426-10.395 8.925-6.397h-11.014zM20.457 19.534l2.394 7.261-6.85-4.965-6.851 4.965 2.64-8.005-0.637-0.456-6.228-4.464h8.471l2.606-8.016 2.605 8.016h8.471l-6.864 4.92 0.245 0.744z" fill="#000000"> </path> </g></svg>
+                                 <svg width="30px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="icomoon-ignore"> </g> <path d="M19.38 12.803l-3.38-10.398-3.381 10.398h-11.013l8.925 6.397-3.427 10.395 8.896-6.448 8.895 6.448-3.426-10.395 8.925-6.397h-11.014zM20.457 19.534l2.394 7.261-6.85-4.965-6.851 4.965 2.64-8.005-0.637-0.456-6.228-4.464h8.471l2.606-8.016 2.605 8.016h8.471l-6.864 4.92 0.245 0.744z" fill="#000000"> </path> </g></svg>
+                                 <span><a href="/pages/doctor-single.html#reviews"><button style="font-size: small;color:dodgerblue;text-decoration:underline;"class="btn btn-link">التقييمات</button></a></span>
+                             </div>
+                               
+                             <div class="card-body">
+                                 <h4 class="card-title"> د. {{ $appointment->doctor->name }} </h4>
+                                 <p class="card-text"> اليوم: {{ $appointment->day_of_week }}<br>
+                                   التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
+                                    تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}
+                                 </p>
+                                     <div class="d-flex btns ">
+                                         <button class="btn btn-primary disabled"><h4>احجز &nbsp; &nbsp;</h4></button> 
+                                         {{-- <button class="btn btn-info disabled"><h4>من أنا ؟</h4></button>   --}}
+                                       </div>
+                                     </div>
+                             </div>
+                         </div>
+                     </div>
+                    @endforeach
+                    @else
+                        <div>
+                          <p>لا يوجد حجوزات لحد الآن ...</p>
+                        </div>
+                    @endif
             </div>
   				</div>
   			</div>
@@ -186,7 +192,7 @@
                     <div class="card-body">
                       <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                          <h4 class="mb-2 text-dark">معلومات شخصية</h4>
+                          <h4 class="mb-2 text-dark">المعلومات الشخصية</h4>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
@@ -206,14 +212,14 @@
                             <input type="text" class="form-control" id="phone" value="{{ $user->mobile }}">
                           </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                             <label for="userID">الرقم الوطني</label>
                             <input type="url" class="form-control" id="userID">
                           </div>
-                        </div>
+                        </div> --}}
                       </div>
-                      <div class="row gutters">
+                      {{-- <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                           <h4 class="mt-3 mb-2 text-dark">العنوان</h4>
                         </div>                        
@@ -248,7 +254,7 @@
                             <input type="name" class="form-control" id="Street">
                           </div>
                         </div>
-                      </div>
+                      </div> --}}
                       <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                           <div class="text-right d-flex">
