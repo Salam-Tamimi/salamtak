@@ -25,22 +25,23 @@ class GoogleAuthController extends Controller
      */
     public function handleGoogleCallback()
     {
-        // try {
-        //     $googleUser = Socialite::driver('google')->user();
-        // } catch (\Exception $e) {
-        //     return redirect()->route('login')->with('error', 'Unable to authenticate with Google.');
-        // }
         try {
             $googleUser = Socialite::driver('google')->user();
-            // dd($googleUser); // Debugging statement
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Unable to authenticate with Google.');
         }
-
-        // Check if a user with this Google ID already exists
-        $existingUser = User::where('google_id', $googleUser->id)->first();
-
+    
+        // Check if a user with this Google ID or email already exists
+        $existingUser = User::where('google_id', $googleUser->id)->orWhere('email', $googleUser->email)->first();
+    
         if ($existingUser) {
+            // Update existing user information if necessary
+            $existingUser->update([
+                'name' => $googleUser->name,
+                'google_id' => $googleUser->id,
+                // You may set other fields here as needed
+            ]);
+    
             auth()->login($existingUser);
         } else {
             // Create a new user in the database
@@ -50,12 +51,13 @@ class GoogleAuthController extends Controller
                 'google_id' => $googleUser->id,
                 // You may set other fields here as needed
             ]);
-
+    
             auth()->login($newUser);
         }
-
+    
         return redirect()->route('dashboard');
     }
+    
 
     /**
      * Log the user out.

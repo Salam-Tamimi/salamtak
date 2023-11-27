@@ -363,6 +363,35 @@
         </div>
     <!-- Subscribe End -->
 
+
+
+    @php
+    // use App\Models\User;
+    use App\Models\Doctor_schaduale;
+
+// Get all doctors
+$doctors = User::where('role', 'doctor')
+    ->with(['doctors.appointments.review'])
+    ->get();
+
+// Filter out doctors with no appointments
+$doctors = $doctors->filter(function ($doctor) {
+    return optional(optional($doctor->doctors)->appointments)->isNotEmpty();
+});
+
+// Sort doctors based on average ratings in descending order
+$doctors = $doctors->sortByDesc(function ($doctor) {
+    $reviews = optional(optional($doctor->doctors)->appointments)->pluck('review')->pluck('review');
+    $totalReviews = count($reviews);
+
+    if ($totalReviews > 0) {
+        $averageRating = $reviews->sum() / $totalReviews;
+        return $averageRating;
+    } else {
+        return 0;
+    }
+})->take(4);
+@endphp
     <!-- doctors Start -->
         <div class="container-xxl py-6">
             <div class="container">
@@ -370,11 +399,13 @@
                     <h2 class="mb-5">الأطباء الأكثر تقييما :</h2>
                 </div>
                 <div class="row g-4">
+                    @foreach ($doctors as $doctor)
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item">
-                            <h5>اسم الطبيب</h5>
-                            <p class="mb-4">التخصص</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('images/team-1.jpg') }}" alt="">
+                            <h5> د. {{ $doctor->name }}</h5>
+                            <p class="mb-4">{{ $doctor->doctors->departments->name }}</p>
+                            {{-- <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('images/team-1.jpg') }}" alt=""> --}}
+                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ $doctor->image }}" alt="">
                             <div class="d-flex justify-content-center">
                                 <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
@@ -382,7 +413,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    @endforeach
+                    {{-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item">
                             <h5>اسم الطبيب</h5>
                             <p class="mb-4">التخصص</p>
@@ -417,7 +449,7 @@
                                 <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
