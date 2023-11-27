@@ -100,9 +100,10 @@ Route::get('/reviews/create/{appointment}', [ReviewController::class, 'create'])
 // Route for storing reviews
 Route::post('/reviews/create/{appointment}', [ReviewController::class, 'store'])->name('reviews.store');
 
-Route::get('/hospital-single', function () {
-    return view('pages.hospital-single');
-});
+// Route::get('/hospital-single', function () {
+//     return view('pages.hospital-single');
+// });
+Route::get('/hospital-single/{hospital_id}', [Hospital_detailsController::class, 'showHospital'])->name('hospital.single');
 
 //////// *********     ADMIN ROUTES     *********** /////////
 

@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="/css/style.css">
 @endsection
 
-@section('content')
+@section('content')                                                                                                                                                          <br> <br> <br> <br> <br> <br><br> 
             <div data-elementor-type="single-post" data-elementor-id="22" class="elementor elementor-22 elementor-location-single post-348 post type-post status-publish format-standard has-post-thumbnail hentry category-3d-banks-in-jordan" data-elementor-post-type="elementor_library">
             <section class="elementor-section elementor-top-section elementor-element elementor-element-49c926a elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="49c926a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_direction&quot;:&quot;out-in&quot;,&quot;background_motion_fx_scale_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:4,&quot;sizes&quot;:[]},&quot;background_motion_fx_scale_range&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:20,&quot;end&quot;:80}},&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-e-bg-lazyload="">
                 <div class="elementor-background-overlay"></div>
@@ -56,7 +56,7 @@
                 </div>
             </section>
             <section class="elementor-section elementor-top-section elementor-element elementor-element-8199ad0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8199ad0" data-element_type="section">
-              
+                <br><br> <br> <br>
             <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-53236121 elementor-widget elementor-widget-heading" data-id="53236121" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="margin-right:13%;">
@@ -72,7 +72,8 @@
                                                         <div class="elementor-widget-wrap elementor-element-populated">
                                                                 <div class="elementor-element elementor-element-49d8018 elementor-widget elementor-widget-html" data-id="49d8018" data-element_type="widget" data-widget_type="html.default">
                                                                 <div class="elementor-widget-container">
-                                                                <iframe width="100%" height="550" src="https://my.matterport.com/show/?m=vcETg2uLhLa&amp;cloudEdit=1&amp;sr=3.06,.19&amp;ss=471" allow="vr" id="showcase_iframe"></iframe>		
+                                                                {{-- <iframe width="100%" height="550" src="https://my.matterport.com/show/?m=vcETg2uLhLa&amp;cloudEdit=1&amp;sr=3.06,.19&amp;ss=471" allow="vr" id="showcase_iframe"></iframe>		 --}}
+                                                                <iframe width="100%" height="550" src="{{ $hospital->virtual_tour }}" allow="vr" id="showcase_iframe"></iframe>		
                                                                 </div>
                                                                 </div>
                                                         </div>
@@ -99,7 +100,8 @@
                             </div>
                             <!-- <div class="elementor-element elementor-element-b022a8f elementor-widget elementor-widget-video" data-id="b022a8f" data-element_type="widget" data-settings="{&quot;youtube_url&quot;:&quot;https:\/\/youtu.be\/UpfsvvWUGoA&quot;,&quot;video_type&quot;:&quot;youtube&quot;,&quot;controls&quot;:&quot;yes&quot;}" data-widget_type="video.default"> -->
                                 <div class="elementor-element elementor-element-b022a8f elementor-widget elementor-widget-video">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/P6JGD8dNCB0?si=0r3jSgfahKhg0aMZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>  
+                                {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/P6JGD8dNCB0?si=0r3jSgfahKhg0aMZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>   --}}
+                                <iframe width="560" height="315" src="{{ $hospital->video }}" allowfullscreen></iframe>  
                                     <div class="elementor-widget-container">
                                     <style>
                                         /*! elementor - v3.15.0 - 09-08-2023 */
@@ -221,7 +223,8 @@
                                         }
                                     </style>
                                     <div class="elementor-custom-embed">
-                                        <iframe loading="lazy" style="width:560px;height:315px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3363.713812319381!2d35.86525832444094!3d32.53378967376627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c76f239ac97a1%3A0x2efa0d63c5fff59a!2z2YXYs9iq2LTZgdmJINil2LHYqNivINin2YTYqtiu2LXYtdmK!5e0!3m2!1sar!2sjo!4v1693261639985!5m2!1sar!2sjo"></iframe>
+                                        {{-- <iframe loading="lazy" style="width:560px;height:315px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3363.713812319381!2d35.86525832444094!3d32.53378967376627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c76f239ac97a1%3A0x2efa0d63c5fff59a!2z2YXYs9iq2LTZgdmJINil2LHYqNivINin2YTYqtiu2LXYtdmK!5e0!3m2!1sar!2sjo!4v1693261639985!5m2!1sar!2sjo"></iframe> --}}
+                                        <iframe loading="lazy" style="width:560px;height:315px;" src="{{ $hospital->location }}"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -240,6 +243,7 @@
                     <h2 class="mb-5 text-center">أقسام المستشفى </h2>
                 </div>
         <div class="row g-4 mx-4">
+            @foreach ( $departments as $department ) 
             <div class="col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay="0.1s">
                 <div class="service-item rounded h-100">
                     <div class="d-flex justify-content-between">
@@ -251,91 +255,13 @@
                         </a>
                     </div>
                     <div class="p-5">
-                        <h4 class="mb-3">قسم العيون</h4>
-                        <span>احجز موعد عند طبيب عيون</span>
+                        <h4 class="mb-3"> {{ $department->name }}</h4>
+                        <span>احجز موعد عند طبيب {{ str_replace('قسم', '', $department->name) }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item rounded h-100">
-                    <div class="d-flex justify-content-between">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                        </div>
-                        <a class="service-btn" href="{{ url('/appointments') }}">
-                            <i class="fa fa-link fa-2x"></i>
-                        </a>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="mb-3">قسم العظام</h4>
-                        <span>احجز موعد عند طبيب عظام</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="service-item rounded h-100">
-                    <div class="d-flex justify-content-between">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                        </div>
-                        <a class="service-btn" href="{{ url('/appointments') }}">
-                            <i class="fa fa-link fa-2x"></i>
-                        </a>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="mb-3">قسم الأشعة</h4>
-                        <span>احجز موعد في قسم الأشعة</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-item rounded h-100">
-                    <div class="d-flex justify-content-between">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                        </div>
-                        <a class="service-btn" href="{{ url('/appointments') }}">
-                            <i class="fa fa-link fa-2x"></i>
-                        </a>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="mb-3">قسم القلب</h4>
-                        <span>احجز موعد عند طبيب قلب</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item rounded h-100">
-                    <div class="d-flex justify-content-between">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                        </div>
-                        <a class="service-btn" href="{{ url('/appointments') }}">
-                            <i class="fa fa-link fa-2x"></i>
-                        </a>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="mb-3">قسم الجراحة</h4>
-                        <span>احجز موعد عند طبيب جراحة</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="service-item rounded h-100">
-                    <div class="d-flex justify-content-between">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                        </div>
-                        <a class="service-btn" href="{{ url('/appointments') }}">
-                            <i class="fa fa-link fa-2x"></i>
-                        </a>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="mb-3">قسم الولادة</h4>
-                        <span>احجز موعد في قسم الولادة</span>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            
         </div>
     </div>
 </div>

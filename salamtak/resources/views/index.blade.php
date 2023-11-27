@@ -33,7 +33,7 @@
     /* Hover effect for arrows */
     .owl-prev:hover,
     .owl-next:hover {
-        background-color: #a1bee4;
+        background-color: #6499d2;
         scale: 1.08;
     }
 </style>
@@ -65,7 +65,7 @@
         {{-- </div> --}}
         <!-- Navbar & Hero End -->
 
-        <!-- cards -->
+<!-- cards start-->
         <div class="row g-3 cards py-5">
                 <div class="card mb-5 card1 wow fadeInRight"data-wow-delay="0.1s"style="max-width: 22rem;">
                      <h2 class="card-title">احجز موعد</h2>
@@ -80,7 +80,9 @@
                 <a href="{{ url('/about') }}"><button class="btn btn-primary rounded-pill mt-4 px-4" >اقرأ المزيد</button></a>
            </div>
         </div>
+<!-- cards end-->
         
+
 {{-- hospital start --}}
     @php
         use App\Models\User;
@@ -106,30 +108,9 @@
                 </div>
             @endforeach
         </div>
-        <div class="owl-nav">
-            <div class="owl-prev">
-                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="prev" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color" transform="matrix(1, 0, 0, 1, 0, 0)">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path id="primary" d="M18.6,11.2l-12-9A1,1,0,0,0,5,3V21a1,1,0,0,0,.55.89,1,1,0,0,0,1-.09l12-9a1,1,0,0,0,0-1.6Z" style="fill: #FE8325;"></path>
-                    </g>
-                </svg>
-            </div>
-            <div class="owl-next">
-                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="next" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color" transform="matrix(-1, 0, 0, 1, 0, 0)">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path id="primary" d="M18.6,11.2l-12-9A1,1,0,0,0,5,3V21a1,1,0,0,0,.55.89,1,1,0,0,0,1-.09l12-9a1,1,0,0,0,0-1.6Z" style="fill: #FE8325;"></path>
-                    </g>
-                </svg>
-            </div>
-        </div>
     </div>
     {{-- hospital end --}}
     
-
 
 
     <!-- sections Start -->
@@ -162,182 +143,7 @@
                         </div>
                     </div>
                     @endforeach
-                    {{-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم العظام</h4>
-                               <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب عظام</span></a> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الأشعة</h4>
-                               <a href="{{ url('/appointments') }}"><span>احجز موعد في قسم الأشعة</span></a> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم القلب</h4>
-                               <a href="{{ url('/appointments') }}"> <span>احجز موعد عند طبيب قلب</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الجراحة</h4>
-                               <a href="{{ url('/appointments') }}"> <span>احجز موعد عند طبيب جراحة</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الولادة</h4>
-                                <a href="{{ url('/appointments') }}"><span>احجز موعد في قسم الولادة</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الأطفال</h4>
-                               <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب أطفال</span></a> 
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم العلاج الطبيعي</h4>
-                               <a href="{{ url('/appointments') }}"> <span>احجز موعد في قسم العلاج الطبيعي</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الباطني</h4>
-                                <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب باطني</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الجلدية</h4>
-                                <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب جلدية</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم التجميل</h4>
-                                <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب تجميل</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item rounded h-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="service-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                                </div>
-                                <a class="service-btn" href="{{ url('/appointments') }}">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
-                            </div>
-                            <div class="p-5">
-                                <h4 class="mb-3">قسم الطب النفسي</h4>
-                                <a href="{{ url('/appointments') }}"><span>احجز موعد عند طبيب نفسي</span></a>
-                            </div>
-                        </div>
-                    </div> --}}
+
                 </div>
             </div>
         </div>
@@ -393,7 +199,7 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
 })->take(4);
 @endphp
     <!-- doctors Start -->
-        <div class="container-xxl py-6">
+        <div class="container-xxl py-4">
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h2 class="mb-5">الأطباء الأكثر تقييما :</h2>
@@ -414,99 +220,41 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
                         </div>
                     </div>
                     @endforeach
-                    {{-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item">
-                            <h5>اسم الطبيب</h5>
-                            <p class="mb-4">التخصص</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('images/team-2.jpg') }}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item">
-                            <h5>اسم الطبيب</h5>
-                            <p class="mb-4">التخصص</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('images/team-3.jpg') }}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item">
-                            <h5>اسم الطبيب</h5>
-                            <p class="mb-4">التخصص</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('images/team-4.jpg') }}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
     <!-- doctors End -->
 
+
     <!-- Reviews Start -->
+    @php
+    use App\Models\Appointment;
+    $reviews = Appointment::has('review')
+        ->with(['review', 'user', 'hospital', 'department', 'payment', 'doctor'])
+        // ->orderByDesc('reviews.review') // Specify the table name in the order by clause
+        ->take(8)
+        ->get();
+    @endphp
         <div class="container-xxl py-6">
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">التقييمات</div>
                     <h2 class="mb-5">آراء عملائنا</h2>
                 </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.2s">
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.2s" data-autoplay="true" data-autoplay-speed="5000">
+                    @foreach ($reviews as $review)
                     <div class="testimonial-item rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر.</p>
+                        <p>{{ $review->review->comment }}</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('images/testimonial-1.jpg') }}">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ $review->user->image }}">
                             <div class="ps-3">
-                                <h6 class="mb-1">اسم المريض</h6>
-                                <small>اسم القسم</small>
+                                <h6 class="mb-1">{{ $review->user->name }}</h6>
+                                <small>{{ $review->department->name }}</small>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-item rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('images/testimonial-2.jpg') }}">
-                            <div class="ps-3">
-                                <h6 class="mb-1">اسم المريض</h6>
-                                <small>اسم القسم</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('images/testimonial-3.jpg') }}">
-                            <div class="ps-3">
-                                <h6 class="mb-1">اسم المريض</h6>
-                                <small>اسم القسم</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('images/testimonial-4.jpg') }}">
-                            <div class="ps-3">
-                                <h6 class="mb-1">اسم المريض</h6>
-                                <small>اسم القسم</small>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -514,7 +262,7 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
 
 
         <!-- why us Start -->
-        <div class="container-xxl py-6">
+        <div class="container-xxl py-4">
             <div class="container">
                 <div class="row g-5 ">
                     <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -594,7 +342,7 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
     
     <!-- Include Owl Carousel JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    
+
     <script>
         $(document).ready(function(){
             $(".owl-carousel").owlCarousel({
