@@ -5,7 +5,38 @@
    <!-- Owl Carousel CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<style>
+    /* Owl Carousel Navigation Arrows */
+    .owl-nav {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1; /* Ensure it appears above the slider */
+    }
 
+    .owl-prev,
+    .owl-next {
+        font-size: 18px;
+        color: #fff;
+        background-color: #ebebeb;
+        padding: 8px;
+        margin: 10px;
+        border-radius: 15%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for arrows */
+    .owl-prev:hover,
+    .owl-next:hover {
+        background-color: #a1bee4;
+        scale: 1.08;
+    }
+</style>
 @endsection     
    
 @section('content')
@@ -35,7 +66,7 @@
         <!-- Navbar & Hero End -->
 
         <!-- cards -->
-        <div class="row g-3 cards">
+        <div class="row g-3 cards py-5">
                 <div class="card mb-5 card1 wow fadeInRight"data-wow-delay="0.1s"style="max-width: 22rem;">
                      <h2 class="card-title">احجز موعد</h2>
                      <a href="{{ url('/filter') }}"><button class="btn btn-primary rounded-pill mt-4 px-4" >احجز الآن </button></a>
@@ -55,12 +86,17 @@
         use App\Models\User;
         $hospitals = User::where('role', 'hospital')->get();
     @endphp
+    <hr class="my-4">
+    <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">المستشفيات</div>
+        <h2 class="mb-5">المستشفيات الرئيسية </h2>
+    </div>
     
     <div class="row my-4">
         <div class="owl-carousel">
             @foreach ($hospitals as $hospital)
                 <div class="col mb-3">
-                    <div class="card">
+                    <div class="card mx-3">
                         <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top">
                         <div class="card-body">
                             <h4 class="card-title">{{ $hospital->name }}</h4>
@@ -70,14 +106,34 @@
                 </div>
             @endforeach
         </div>
+        <div class="owl-nav">
+            <div class="owl-prev">
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="prev" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path id="primary" d="M18.6,11.2l-12-9A1,1,0,0,0,5,3V21a1,1,0,0,0,.55.89,1,1,0,0,0,1-.09l12-9a1,1,0,0,0,0-1.6Z" style="fill: #FE8325;"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="owl-next">
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="next" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color" transform="matrix(-1, 0, 0, 1, 0, 0)">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path id="primary" d="M18.6,11.2l-12-9A1,1,0,0,0,5,3V21a1,1,0,0,0,.55.89,1,1,0,0,0,1-.09l12-9a1,1,0,0,0,0-1.6Z" style="fill: #FE8325;"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
     </div>
-{{-- hospital end --}}
+    {{-- hospital end --}}
     
 
 
 
     <!-- sections Start -->
-        <div class="container-xxl py-6 sections "><hr>
+        <div class="container-xxl py-5 sections mb-3"><hr>
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">الأقسام</div>
@@ -528,7 +584,11 @@
                         nav:true,
                         loop:false
                     }
-                }
+                },
+                navText: [
+                    "<svg fill='#000000' width='20px' height='20px' viewBox='0 0 24 24' id='prev' data-name='Flat Color' xmlns='http://www.w3.org/2000/svg' class='icon flat-color' transform='matrix(1, 0, 0, 1, 0, 0)'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'><path id='primary' d='M18.6,11.2l-12-9A1,1,0,0,0,5,3V21a1,1,0,0,0,.55.89,1,1,0,0,0,1-.09l12-9a1,1,0,0,0,0-1.6Z' style='fill: #cccccc;'></path></g></svg>",
+                    "<svg fill='#000000' width='20px' height='20px' viewBox='0 0 24 24' id='next' data-name='Flat Color' xmlns='http://www.w3.org/2000/svg' class='icon flat-color' transform='matrix(-1, 0, 0, 1, 0, 0)'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'><path id='primary' d='M18.6,11.2l-12-9A1,1,0,0,0,5,3V21a1,1,0,0,0,.55.89,1,1,0,0,0,1-.09l12-9a1,1,0,0,0,0-1.6Z' style='fill: #cccccc;'></path></g></svg>"
+                ]
             });
         });
     </script>
