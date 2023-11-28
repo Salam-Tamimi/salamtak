@@ -56,7 +56,7 @@
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
+                    <div class="navbar-nav  py-0">
                         <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
                         <a href="{{ url('/') }}" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
