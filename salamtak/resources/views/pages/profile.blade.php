@@ -1,9 +1,15 @@
 @extends('layout.master')
 @section('title', 'سلامتك - الصفحة الرئيسية ')
- @section('css')
- <link href="{{ asset('/css/profile.css') }}" rel="stylesheet">
+@section('css')
+<link href="{{ asset('/css/profile.css') }}" rel="stylesheet">
 
-@endsection            
+    <!-- Libraries Stylesheet -->
+    {{-- <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> --}}
+
+    {{-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous"> --}}
+ 
+   @endsection
 @section('content')
 @php
     $appointments = Auth::user()->appointments;
@@ -21,30 +27,23 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
             {{ $success }}
         </div>
 @endif
-    <div class="main main-raised">
+    <div class="main main-raised"style="margin-top:-40%;">
 		<div class="profile-content">
             <div class="container">
                 <div class="row">
 	                <div class="col-md-6 ml-auto mr-auto">
         	           <div class="profile">
-	                        <div class="avatar">
+	                        <div class="avatar" style="width:10%;padding:10%;">
 	                            {{-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Circle Image" class="img-raised rounded-circle"> --}}
                               <img src="{{ $avatarUrl }}" alt="Circle Image" class="img-raised rounded-circle">
                             </div>
 	                        <div class="name">
 	                            <h3 class="title">{{ $user->name }} </h3>
-								<!-- <h6>Designer</h6>
-								<a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a> -->
-	                        </div>
+									                        </div>
 	                    </div>
     	            </div>
                 </div>
-                <!-- <div class="description text-center">
-                    <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
-                </div> -->
-				<div class="row">
+               				<div class="row">
 					<div class="col-md-6 ml-auto mr-auto">
                         <div class="profile-tabs">
                           <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
@@ -59,7 +58,6 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                                  <!-- <i class="material-icons">palette</i> -->
                                   <i class="material-icons"><svg height="40px" width="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390.271 390.271" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#ffffff;" d="M289.972,126.836v53.139h-4.848c-53.139,0-97.034,39.564-104.081,90.505H21.689V126.836H289.972z"></path> <g> <path style="fill:#e4e3e2;" d="M289.972,55.273h-42.796v22.756c0,5.947-4.848,10.861-10.861,10.861 c-5.947,0-10.861-4.848-10.861-10.861V55.273H66.166v22.756c0,5.947-4.848,10.861-10.861,10.861S44.444,84.04,44.444,78.028V55.273 H21.689v49.842h268.283V55.273z"></path> <path style="fill:#e4e3e2;" d="M368.582,284.509c0,46.61-37.366,83.976-83.976,83.976c-46.093,0-84.04-37.366-84.04-83.976 c0-46.093,37.366-84.04,84.04-84.04S368.582,238.481,368.582,284.509z"></path> </g> <g> <path style="fill:#b8b8b8;" d="M311.628,182.626V44.412c0-5.947-4.849-10.861-10.861-10.861h-53.657V10.861 C247.111,4.913,242.263,0,236.251,0c-5.947,0-10.861,4.848-10.861,10.861v22.756H66.166V10.861C66.166,4.913,61.317,0,55.305,0 S44.444,4.848,44.444,10.861v22.756H10.893c-5.947,0-10.861,4.848-10.861,10.861V280.76c0,5.948,4.848,10.861,10.861,10.861 h168.533c3.232,54.756,49.325,98.651,105.115,98.651c57.988,0,105.697-47.127,105.697-105.697 C390.238,235.766,356.622,194.586,311.628,182.626z M284.541,368.549c-46.093,0-83.976-37.366-83.976-83.976 c0-46.093,37.366-83.976,83.976-83.976s83.976,37.947,83.976,83.976C368.582,331.119,331.152,368.549,284.541,368.549z M21.689,55.273h22.756v22.756c0,5.947,4.848,10.861,10.861,10.861s10.861-4.848,10.861-10.861V55.273h159.354v22.756 c0,5.947,4.848,10.861,10.861,10.861c5.947,0,10.861-4.848,10.861-10.861V55.273h42.796v49.842H21.754V55.273H21.689z M21.689,126.836h268.283v53.139c-1.616,0-3.232,0-4.848,0c-53.139,0-97.034,39.564-104.081,90.505H21.689V126.836z"></path> <path style="fill:#b8b8b8;" d="M91.055,151.725H67.782c-5.947,0-10.861,4.848-10.861,10.861s4.848,10.861,10.861,10.861h23.273 c5.947,0,10.861-4.848,10.861-10.861S97.067,151.725,91.055,151.725z"></path> <path style="fill:#b8b8b8;" d="M167.467,151.725h-23.273c-5.947,0-10.861,4.848-10.861,10.861s4.848,10.861,10.861,10.861h23.273 c5.947,0,10.861-4.848,10.861-10.861S173.479,151.725,167.467,151.725z"></path> <path style="fill:#b8b8b8;" d="M220.606,173.446h23.273c5.947,0,10.861-4.848,10.861-10.861c0-6.012-4.848-10.861-10.861-10.861 h-23.273c-5.947,0-10.861,4.848-10.861,10.861C209.745,168.598,214.659,173.446,220.606,173.446z"></path> <path style="fill:#b8b8b8;" d="M91.055,215.143H67.782c-5.947,0-10.861,4.848-10.861,10.861c0,5.947,4.848,10.861,10.861,10.861 h23.273c5.947,0,10.861-4.848,10.861-10.861C101.915,220.057,97.067,215.143,91.055,215.143z"></path> <path style="fill:#b8b8b8;" d="M167.467,215.143h-23.273c-5.947,0-10.861,4.848-10.861,10.861c0,5.947,4.848,10.861,10.861,10.861 h23.273c5.947,0,10.861-4.848,10.861-10.861C178.327,220.057,173.479,215.143,167.467,215.143z"></path> <path style="fill:#b8b8b8;" d="M322.489,276.428h-27.087v-53.657c0-5.947-4.848-10.861-10.861-10.861 c-5.947,0-10.861,4.848-10.861,10.861v64.517c0,5.947,4.848,10.861,10.861,10.861h37.947c5.947,0,10.861-4.848,10.861-10.861 S328.436,276.428,322.489,276.428z"></path> </g> </g></svg>
                                   </i>
                                   <h5>
@@ -87,12 +85,11 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
   					<div class="col-md-4 ">
              @if ($past_appointments)
              @foreach ($past_appointments as $appointment)
-             <div class="card" >
+             <div class="card mb-4 "style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;" >
                      <div class="p-3 doctorscard">
                          <div>
                              <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
                              <img src="{{ $appointment->doctor->image }}" class="img-fluid rounded-start " style="height:300px;" alt="doctor image" >
-                             {{-- <a href="url{{ 'pages.review' }}"><button class="btnreview py-3">قيم الطبيب</button></a> --}}
                              <a href="{{ route('reviews.create', ['appointment' => $appointment->id]) }}">
                                @if (!$appointment->review)
                                    <button class="btnreview py-3">قيم الطبيب</button>
@@ -114,7 +111,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                                     تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}
                                  </p>
                                      <div class="d-flex btns ">
-                                         <button class="btn btn-primary disabled"><h4>احجز &nbsp; &nbsp;</h4></button> 
+                                         <button class="btn disabled" style="background-color:#c4c4c4;margin-right:35%;text-align:center;"><h4>احجز </h4></button> 
                                          {{-- <button class="btn btn-info disabled"><h4>من أنا ؟</h4></button>   --}}
                                        </div>
                                      </div>
@@ -134,7 +131,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
               <div class="row">
                 <div class="col-lg-4 col-md-6 ">
                   @foreach ($future_appointments as $appointment)      
-                  <div class="card" >
+                  <div class="card" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
                           <div class="p-3 doctorscard">
                               <div>
                                   <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
@@ -183,10 +180,6 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                           <h6 class="user-email">{{ $user->name }}</h6><br>
                           <a href=""style="text-decoration:underline;color:dodgerblue;">تغيير كلمة المرور</a>
                         </div>
-                        <!-- <div class="about">
-                          <h5>About</h5>
-                          <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
-                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -216,49 +209,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                             <input type="text" class="form-control" id="phone" value="{{ $user->mobile }}">
                           </div>
                         </div>
-                        {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div class="form-group">
-                            <label for="userID">الرقم الوطني</label>
-                            <input type="url" class="form-control" id="userID">
-                          </div>
-                        </div> --}}
                       </div>
-                      {{-- <div class="row gutters">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                          <h4 class="mt-3 mb-2 text-dark">العنوان</h4>
-                        </div>                        
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div class="form-group">
-                            <label>المحافظة</label>
-                            <select class="form-control px-3">
-                                <option value="إربد">إربد</option>
-                                <option value="جرش">جرش</option>
-                                <option value="عجلون">عجلون</option>
-                                <option value="عمان">عمان</option>
-                                <option value="المفرق">المفرق</option>
-                                <option value="السلط">السلط</option>
-                                <option value="الزرقاء">الزرقاء</option>
-                                <option value="البلقاء">البلقاء</option>
-                                <option value="معان">معان</option>
-                                <option value="الكرك">الكرك</option>
-                                <option value="الطفيلة">الطفيلة</option>
-                                <option value="العقبة">العقبة</option>
-                            </select>
-                        </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div class="form-group">
-                            <label for="place">المنطقة</label>
-                            <input type="text" class="form-control" id="place">
-                          </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div class="form-group">
-                            <label for="Street">الشارع</label>
-                            <input type="name" class="form-control" id="Street">
-                          </div>
-                        </div>
-                      </div> --}}
                       <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                           <div class="text-right d-flex">
