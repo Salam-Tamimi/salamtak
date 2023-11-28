@@ -1,11 +1,11 @@
-@extends('layout.master')
+{{-- @extends('layout.master')
 @section('title','سلامتك - صفحة المستشفى')
 @section('css')     
         <link rel='stylesheet' id='elementor-frontend-css' href='https://truemarkets3d.net/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.15.2' type='text/css' media='all'/>
         <link rel="stylesheet" href="/css/style.css">
 @endsection
 
-@section('content')                                                                                                                                                          <br> <br> <br> <br> <br> <br><br> 
+@section('content')                                                                                                                                                          <br> <br> <br> <br> <br> <br><br>  --}}
             <div data-elementor-type="single-post" data-elementor-id="22" class="elementor elementor-22 elementor-location-single post-348 post type-post status-publish format-standard has-post-thumbnail hentry category-3d-banks-in-jordan" data-elementor-post-type="elementor_library">
             <section class="elementor-section elementor-top-section elementor-element elementor-element-49c926a elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="49c926a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_direction&quot;:&quot;out-in&quot;,&quot;background_motion_fx_scale_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:4,&quot;sizes&quot;:[]},&quot;background_motion_fx_scale_range&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:20,&quot;end&quot;:80}},&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-e-bg-lazyload="">
                 <div class="elementor-background-overlay"></div>
@@ -265,9 +265,9 @@
         </div>
     </div>
 </div>
-@endsection
+{{-- @endsection
 
-@section('js')
+@section('js') --}}
       <script>
             window.RS_MODULES = window.RS_MODULES || {};
             window.RS_MODULES.modules = window.RS_MODULES.modules || {};
@@ -674,4 +674,4 @@
                 window.RS_MODULES.checkMinimal();
             }
             ;</script>
-@endsection
+{{-- @endsectionkkj --}}

@@ -64,7 +64,10 @@ class Hospital_detailsController extends Controller
     public function showHospital(Request $request, $hospital_id)
     {
         // Retrieve the hospital information using the Hospital model
-        $hospital = User::where('hospital_id', $hospital_id)->first();
+        // $hospital = User::where('hospital_id', $hospital_id)->first();
+        $hospital = User::where('hospital_id', $hospital_id)
+        ->where('role', 'hospital')
+        ->first();
         // dd($hospital_id);
         $departments = Department::where('hospital_id', $hospital_id)->get();        // Pass the hospital data to the view
         return view('pages.hospital-single', compact('hospital', 'departments'));

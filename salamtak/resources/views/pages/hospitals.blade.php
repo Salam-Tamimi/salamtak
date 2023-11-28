@@ -29,9 +29,9 @@ use App\Models\User;
 <div class="row mx-4 my-3">
   <h3 class="my-4">المستشفيات المتاحة للحجز</h3>
   @foreach ($hospitals as $hospital)
-  @php
+  {{-- @php
     dd($hospital->hospital_id);
-  @endphp
+  @endphp --}}
       <div class="col-md-4 mb-3">
           <div class="card">
               <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="width:100%;">
