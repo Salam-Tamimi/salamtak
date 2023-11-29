@@ -30,18 +30,18 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
     <div class="main main-raised"style="margin-top:-40%;">
 		<div class="profile-content">
             <div class="container">
-                <div class="row">
-	                <div class="col-md-6 ml-auto mr-auto">
-        	           <div class="profile">
-	                        <div class="avatar" style="width:10%;padding:10%;">
+                <div class="row" style="margin-right:45%;">
+	                {{-- <div class="col-md-6 ml-auto mr-auto">
+        	          <div class="profile"> --}}
+	                        <div class="avata"  >
 	                            {{-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Circle Image" class="img-raised rounded-circle"> --}}
-                              <img src="{{ $avatarUrl }}" alt="Circle Image" class="img-raised rounded-circle">
-                            </div>
-	                        <div class="name">
-	                            <h3 class="title">{{ $user->name }} </h3>
-									                        </div>
-	                    </div>
-    	            </div>
+                              <img src="{{ $avatarUrl }}" alt="Circle Image" class="img-raised rounded-circle" style="width:15%;padding:1%;">
+                              <h4 class="title" style="margin-left: 30%"> {{ $user->name }}&nbsp; &nbsp; &nbsp; </h4>
+                          </div>
+	                        {{-- <div class="name">
+									        </div> --}}
+	                  {{-- </div>
+    	            </div> --}}
                 </div>
                				<div class="row">
 					<div class="  d-flex justify-content-center">
