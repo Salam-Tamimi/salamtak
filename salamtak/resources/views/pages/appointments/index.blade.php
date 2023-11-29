@@ -139,6 +139,12 @@
         ->get();
 
     $schedules = Doctor_schaduale::all();
+
+// pagination
+    $perPage = 6;
+    $currentPage = request()->get('page', 1);
+    $items = $doctors->forPage($currentPage, $perPage);
+    $paginator = new \Illuminate\Pagination\LengthAwarePaginator($items, $doctors->count(), $perPage, $currentPage);
 @endphp
 <div id="blur">
     <div class="contain" style="width:90%;margin-right:4%;">
@@ -155,8 +161,9 @@
     <div class="row m-4">
 
 
-        @foreach ($doctors as $doctor)
-        <div class="card  col-lg-3 col-md-6 col-sm-12" style="border:none;text-align: right;">
+        {{-- @foreach ($doctors as $doctor) --}}
+        @foreach ($paginator as $doctor)
+        <div class="card  col-lg-3 col-md-6 col-sm-12" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
           <div class="p-3 doctorscard">
             <div>
                 <h5 class="card-title">{{ $doctor->hospitals->name }}</h5>
@@ -207,16 +214,16 @@
                     <span class="average-rating">{{ number_format($averageRating, 1) }}</span>
 
                 </div>
-@endif                
+                    @endif                
                 
                 </div>
                    
                 <div class="card-body">
                     <h5 class="card-title"> د.  {{ $doctor->name }}</h5>
                     
-                        <div class="d-flex btns_reserve ">
+                        <div class="d-flex btns_reserve "style="margin-right:22%;margin-top:10%;">
                             {{-- <button class="btn btn-primary reserve">احجز &nbsp; &nbsp;</button>  --}}
-                            <a href="{{ url('/doctor-single', ['doctor_id' => $doctor->doctors->id]) }}" ><button class="btn btn-primary">احجز موعد </button></a>  
+                            <a href="{{ url('/doctor-single', ['doctor_id' => $doctor->doctors->id]) }}" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;"><button class="btn btn-primary" style="width:170%;2%;">احجز موعد </button></a>  
                         </div>
                         </div>
                 </div>
@@ -228,7 +235,12 @@
 
      </div>
 
-                <div class="d-flex justify-content-center ">   
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center">
+        {{ $paginator->links() }}
+    </div>
+
+                {{-- <div class="d-flex justify-content-center ">   
 
                     <div class="demo">
                         <!-- <nav class="pagination-outer" aria-label="Page navigation"> -->
@@ -251,7 +263,7 @@
                             </ul>
                         <!-- </nav> -->
                     </div>
-                </div>
+                </div> --}}
     
         <!--// doctors card end// -->
 
@@ -259,9 +271,9 @@
     </div>
 </div>
 <!--Scroll to top-->
-<div class="scroll-to-top scroll-to-target" data-target=".header-top">
+{{-- <div class="scroll-to-top scroll-to-target" data-target=".header-top">
   <span class="icon fa fa-angle-up"></span>
-</div>
+</div> --}}
 
 
          <!-- Footer Start -->

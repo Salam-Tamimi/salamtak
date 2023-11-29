@@ -14,7 +14,8 @@ use App\Models\Department;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\GoogleAuthController;
-
+use App\Models\Doctor;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,7 +168,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/appointments-dates/{department_id}', function ($departmentId) {
         return view('pages.appointments.index', ['departmentId' => $departmentId]);
     });
-    
+
     // Route::post('/appointments', 'AppointmentController@store')->name('appointments.store');
     // Route::resource('appointments', AppointmentController::class);
     Route::resource('departments-admin', DepartmentController::class);
