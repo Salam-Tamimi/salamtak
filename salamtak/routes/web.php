@@ -161,6 +161,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
     Route::put('/appointments/{id}', [AppointmentController::class, 'update'])->name('appointments.update');    // Route::get('/appointments/booked-times/{doctor_id}', [AppointmentController::class, 'getBookedTimes']);
+    Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
 
 
     Route::get('/appointments-dates/{department_id}', function ($departmentId) {

@@ -190,12 +190,11 @@ public function updateStatus($appointmentId)
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
+    public function destroy($id)
     {
-    // Delete the appointment
-    $appointment->delete();
-
-    // Redirect back to the index page with a success message
-    return redirect()->route('admin.pages.appointments-admin.index')->with('success', 'Appointment deleted successfully');
+        $appointment = Appointment::find($id);
+    
+        $appointment->delete();
+    return back()->with('success', 'Appointment deleted successfully');
     }
 }
