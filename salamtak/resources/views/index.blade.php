@@ -36,6 +36,9 @@
         background-color: #6499d2;
         scale: 1.08;
     }
+    body {
+    overflow-x: hidden;
+}
 </style>
 @endsection     
    
