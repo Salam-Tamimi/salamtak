@@ -158,7 +158,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/appointments/create/{doctor_id}', [AppointmentController::class, 'store'])->name('appointments.store');
     Route::get('/appointments/success', [AppointmentController::class, 'success'])->name('appointments.success');    // Route::get('/get-booked-times', 'AppointmentController@getBookedTimes');
-    // Route::get('/appointments/booked-times/{doctor_id}', [AppointmentController::class, 'getBookedTimes']);
+    
+    Route::get('/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
+    Route::put('/appointments/{id}', [AppointmentController::class, 'update'])->name('appointments.update');    // Route::get('/appointments/booked-times/{doctor_id}', [AppointmentController::class, 'getBookedTimes']);
 
 
     Route::get('/appointments-dates/{department_id}', function ($departmentId) {

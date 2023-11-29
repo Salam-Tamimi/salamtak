@@ -152,7 +152,9 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                                       التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
                                        تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}</p>
                                     <div class="d-flex">
+                                      <a href="{{ route('appointments.edit', ['id' => $appointment->id]) }}" class="btn mx-3 btn-success border" style="color:white; font-size:20px;">
                                         <button class="btn mx-3 btn-success border update-appointment" style="color:white; font-size:20px;" ><p>تعديل الموعد</p></button>
+                                      </a>
                                         <button class="btn btn-danger border cancel-appointment" style="color:white; font-size:20px;"><p>ألغاء الحجز</p></button>
                                     </div>
                                 </div>
