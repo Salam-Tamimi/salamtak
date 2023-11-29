@@ -27,7 +27,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
             {{ $success }}
         </div>
 @endif
-    <div class="main main-raised"style="margin-top:-40%;">
+    <div class="main main-raised"style="margin-top:-40%; padding-top:5%;">
 		<div class="profile-content">
             <div class="container">
                 <div class="row" style="margin-right:45%;">
