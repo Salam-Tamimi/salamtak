@@ -85,7 +85,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
   					<div class="col-md-4 ">
              @if ($past_appointments)
              @foreach ($past_appointments as $appointment)
-             <div class="card mb-4"style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;" >
+             <div class="card mb-4" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;" >
                      <div class="p-3 doctorscard">
                          <div>
                              <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
@@ -131,7 +131,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
               <div class="row">
                 <div class="col-lg-4 col-md-6 ">
                   @foreach ($future_appointments as $appointment)      
-                  <div class="card" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+                  <div class="card" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
                           <div class="p-3 doctorscard">
                               <div>
                                   <h5 class="card-title">{{ $appointment->hospital->name }}</h5>
@@ -152,8 +152,8 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                                       التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
                                        تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}</p>
                                     <div class="d-flex">
-                                        <button class="btn btn-primary border update-appointment "><h4>تعديل الموعد</h4></button>
-                                        <button class="btn btn-danger border cancel-appointment "><h4>ألغاء الحجز</h4></button>
+                                        <button class="btn mx-3 btn-success border update-appointment" style="color:white; font-size:20px;" ><p>تعديل الموعد</p></button>
+                                        <button class="btn btn-danger border cancel-appointment" style="color:white; font-size:20px;"><p>ألغاء الحجز</p></button>
                                     </div>
                                 </div>
                                   </div>
