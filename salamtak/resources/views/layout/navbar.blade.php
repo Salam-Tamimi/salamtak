@@ -59,15 +59,16 @@
                     <div class="navbar-nav  py-0">
                         <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
                         <a href="{{ url('/') }}" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
+                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
                             <div class="dropdown-menu m-0" >
                                 <a href="{{ url('/filter') }}" class="dropdown-item">حجز مواعيد</a>
                                 <a href="{{ url('/edit-appointment') }}" class="dropdown-item">ادارة المواعيد</a>
                                 <a href="{{ url('/lab') }}" class="dropdown-item">المختبرات الطبية</a>
                                 <a href="{{ url('/hospitals') }}" class="dropdown-item">المستشفيات</a>
                                 <!-- <a href="404.html" class="dropdown-item">مواعيد عيادات الاختصاص</a> -->
-                            </div>
+                            </div> --}}
                         </div>
+                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
@@ -90,7 +91,6 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link">من نحن</a>
 
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">تواصل معنا</a>

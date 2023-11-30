@@ -25,7 +25,8 @@
     $past_appointments = $appointments->where('status', 1);
     $user = Auth::user();
 @endphp
-
+<h4 dir="rtl" style="margin-right: 12%; margin-top:3%;">إضافة تقييم للطبيب</h4>
+<hr>
 <!-- Add Review Form -->
 <form action="{{ route('reviews.store', ['appointment' => $appointment->id]) }}" method="post" class="mx-auto mt-4" style="width: 70%;background-color:#B3CDE6;border-radius:20px;box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px; padding:5%" dir="rtl">
     @csrf
@@ -42,18 +43,20 @@
     <input class="mb-3" type="hidden" name="appointment_id" value="{{ $appointment->id }}">
     <!-- Review Comment -->
     <div class="form-group mb-3">
-        <label for="comment"class="mb-1">التعليق:</label>
+        <label for="comment"class="mb-1" style="font-size:20px;">التعليق: <span style="color: rgb(217, 23, 23)">*</span></label>
         <textarea name="comment" id="comment" class="form-control mb-3" rows="3" placeholder="اكتب تعليقك عن الطبيب هنا"></textarea>
     </div>
 
     <!-- Review Rating -->
     <div class="form-group mb-3">
-        <label for="review"class="mb-1 mt-3">التقييم:</label>
+        <label for="review"class="mb-1 mt-3" style="font-size:20px;">التقييم: <span style="color: rgb(217, 23, 23)">*</span></label>
         <input type="number" name="review" id="review" class="form-control mb-3" min="1" max="5" placeholder="قيم من 1 الى 5" style="width: 17%;">
     </div>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn"style="background-color:#0d51ac;color:white">إرسال التقييم</button>
+    <button type="submit" class="btn"style="font-size:20px; background-color:#0d51ac; color:white; margin-top:2%; padding:1.5%; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;">
+        إرسال التقييم
+    </button>
 </form>
 
 <!-- Bootstrap JS (optional, but may be required for certain components) -->

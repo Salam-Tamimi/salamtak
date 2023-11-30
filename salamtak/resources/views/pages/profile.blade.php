@@ -129,8 +129,8 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
   			</div>
             <div class="tab-pane text-center gallery" id="works">
               <div class="row">
+                @foreach ($future_appointments as $appointment)      
                 <div class="col-lg-4 col-md-6 ">
-                  @foreach ($future_appointments as $appointment)      
                   <div class="card" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
                           <div class="p-3 doctorscard">
                               <div>
@@ -165,8 +165,8 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                                   </div>
                               </div>
                           </div>
-                          @endforeach
-                </div>
+                        </div>
+                        @endforeach
               </div>
   			</div>
             <div class="tab-pane text-center gallery" id="favorite">
