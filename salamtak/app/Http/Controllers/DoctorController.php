@@ -71,8 +71,11 @@ public function doctorSingle($doctor_id) {
     $doctor = Doctor::find($doctor_id);
     // dd($doctor_id);
     $schedules = Doctor_schaduale::where('doctor_id', $doctor_id)->get();
+    $Allreviews = $doctor->appointments->pluck('review');
 
-    return view('pages.doctor-single', compact('doctor', 'doctor_id','schedules'));
+    // $reviews = $doctor->appointments->pluck('review');
+    // dd($Allreviews);
+    return view('pages.doctor-single', compact('doctor', 'doctor_id','schedules', 'Allreviews'));
 }
 
 

@@ -14,7 +14,7 @@ class Review extends Model
         'review', 
     ];
 
-    public function appointment() 
+    public function appointments() 
     {
         return $this->hasOne(Appointment::class, 'review_id');
     }
