@@ -10,7 +10,7 @@
 								<a href="{{ url('/admin') }}"><i class="fe fe-home"></i> <span>لوحة التحكم</span></a>
 							</li> --}}
 							<li> 
-								<a href="{{ url('appointments-admin') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
+								<a href="{{ url('/hospital-appointments') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
 							</li>
 							<li> 
 								<a href="{{ url('hospitals-details') }}"><i class="fe fe-layout"></i> <span>المستشفيات</span></a>
@@ -27,7 +27,7 @@
 							<li> 
 								<a href="{{ url('reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>
 							</li>
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('/transactions-list') }}"><i class="fe fe-activity"></i> <span>المعاملات</span></a>
 							</li>
 							<li> 
@@ -41,11 +41,11 @@
 							</li>
 							<li class="menu-title"> 
 								<span>الصفحات</span>
-							</li>
+							</li> --}}
 							<li> 
 								<a href="{{ url('/admin-profile') }}"><i class="fe fe-user-plus"></i> <span>الحساب</span></a>
 							</li>
-							<li class="submenu">
+							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> المصادقة </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ url('/admin-login') }}"> تسجيل دخول </a></li>
@@ -87,7 +87,7 @@
 									<li><a href="{{ url('tables-basic') }}">الجداول الأساسية </a></li>
 									<li><a href="{{ url('data-tables') }}">جدول البيانات </a></li>
 								</ul>
-							</li>
+							</li> --}}
 							{{-- <li class="submenu">
 								<a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">

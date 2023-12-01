@@ -145,7 +145,7 @@ Route::middleware(['auth', 'role:doctor'])->group(function () {
     Route::post('/update-status/{appointment}', [AppointmentController::class, 'updateStatus']);
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:hospital'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('hospitals-admin', HospitalController::class);
     Route::resource('hospitals-details', Hospital_detailsController::class);
@@ -154,6 +154,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctors-list', DoctorController::class);
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('doctor-details', Doctor_detailsController::class);
+
+    Route::get('/hospital-appointments', function () {
+        return view('hospital.pages.appointments-admin.index');
+    });
+
+});
     // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
     // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
     // Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create');
@@ -178,7 +184,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('patients-list', UserController::class);
     Route::resource('doctor-schaduale', DoctorSchadualeController::class);
     
-});
+
 // Route::resource('success', AppointmentController::class);
 // Route::middleware(['auth'])->group(function () {
 //     // Common dashboard routes for all roles

@@ -26,9 +26,9 @@
 							<div class="card card-table">
 								<div class="card-header">
 									<h4 class="card-title">لائحة الحجوزات</h4>
-										<a class="btn btn-primary btn-sm float-left" href="{{ route('appointments-admin.create') }}">
+										{{-- <a class="btn btn-primary btn-sm float-left" href="{{ route('appointments-admin.create') }}">
 											<i class="fas fa-th nav-icon"></i> إضافة حجز
-										</a>
+										</a> --}}
 									</div>
 								</div>
 								<div class="card-body">
@@ -39,37 +39,47 @@
 													<th>اسم الطبيب</th>
 													<th>القسم</th>
 													<th>اسم المريض</th>
+													<th>يوم الحجز</th>
 													<th>موعد الحجز</th>
 													<th>الحالة</th>
 													<th class="text-right">الدفع</th>
 												</tr>
 											</thead>
 											<tbody>
+												@php
+												use App\Models\Appointment;
+												// Assuming you already have $hospitalId
+												$hospitalId = Auth::user()->hospital_id;
+												// Retrieve all appointments for the hospital
+												$appointments = Appointment::where('hospital_id', $hospitalId)->get();
+												@endphp	
 												@if(isset($appointments) && count($appointments) > 0)
 												@foreach ($appointments as $appointment)
 													<tr>
 													<td>
 														<h2 class="table-avatar">
 															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->doctor->image) }}" alt="Doctor Image"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->doctors->name }}  </a>
+															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->doctor->name }}  </a>
 														</h2>
 													</td>
-													<td>{{ $appointment->departments->name }}</td>
+													<td>{{ $appointment->department->name }}</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointments->users->image) }}" alt="User Image"></a>
-															<a href="{{ url('/admin-profile') }}"class="mx-2"> {{ $appointment->users->name }}</a>
+															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->user->image) }}" alt="User Image"></a>
+															<a href="{{ url('/admin-profile') }}"class="mx-2"> {{ $appointment->user->name }}</a>
 														</h2>
 													</td>
-													<td>{{ $appointment->date }}</td>
+													<td>{{ $appointment->day_of_week }}</td>
+													<td>{{ $appointment->start_time }}</td>
 													<td>
+
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">الحالة</label>
+															<input type="checkbox" id="status_{{ $appointment->id }}" class="check" {{ $appointment->status == 1 ? 'checked' : '' }} disabled>
+															<label for="status_{{ $appointment->id }}" class="checktoggle">الحالة</label>
 														</div>
 													</td>
 													<td class="text-right">
-														{{ $appointment->doctors->price }} JOD
+														{{ $appointment->doctor->price }} JOD
 													</td>
 												</tr>
 												@endforeach
