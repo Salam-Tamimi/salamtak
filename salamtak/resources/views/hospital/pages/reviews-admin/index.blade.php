@@ -26,7 +26,7 @@
 								<div class="card-body">
 									<div class="table-responsive">
 										@if ($reviews->isNotEmpty())
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>اسم المريض</th>
