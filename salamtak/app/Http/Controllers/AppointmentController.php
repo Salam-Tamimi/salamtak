@@ -184,6 +184,32 @@ public function updateStatus($appointmentId)
         }
 }
 
+public function searchAppointment(Request $request, $departmentId)
+{
+    if ($request->search) {
+        $searchAppointment = User::whereHas('doctors', function ($query) use ($departmentId) {
+            $query->where('department_id', $departmentId);
+        })
+        ->where('name', 'like', '%' . $request->search . '%')
+        ->with(['doctors.appointments.review'])
+        ->latest()
+        ->paginate(3);
+
+        if ($searchAppointment->isEmpty()) {
+            // Handle case where no data is found.
+        } else {
+            return view('pages.search', [
+                'departmentId' => $departmentId,
+                'searchAppointment' => $searchAppointment,
+            ]);
+        }
+    } else {
+        // Handle empty search case.
+        return redirect()->back();
+    }
+}
+
+
     /**
      * Remove the specified resource from storage.
      *

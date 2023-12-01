@@ -186,6 +186,10 @@ Route::middleware(['auth', 'role:hospital'])->group(function () {
         return view('pages.appointments.index', ['departmentId' => $departmentId]);
     });
 
+    // search
+    Route::get('search/{department_id}', [AppointmentController::class, 'searchAppointment'])->name('searchAppointment');
+
+    
     // Route::post('/appointments', 'AppointmentController@store')->name('appointments.store');
     // Route::resource('appointments', AppointmentController::class);
     Route::resource('departments-admin', DepartmentController::class);

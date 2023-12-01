@@ -150,15 +150,10 @@
     <div class="contain" style="width:90%;margin-right:4%;">
         <strong class="row mb-4">الرئيسية / المستشفيات الخاصة / {{ $department->name }}</strong>
         <div>
-            <form action="{{ route('searchAppointment', ['department_id' => $departmentId]) }}" class="d-flex" method="GET" role="search">
-                <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search" name='search' value="">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search">
                 <button class="btn btn-primary searchbtn" type="submit" style="width: 10%;">بحث </button>
             </form>
-
-            {{-- <form action="{{ url('search') }}" method="GET" role="search">
-                <input type="text" placeholder="Search" name='search' value="" />
-                <button><i class="pe-7s-search"></i></button>
-            </form> --}}
         </div>
     </div>
     <!-- doctors card start-->
@@ -167,7 +162,7 @@
 
 
         {{-- @foreach ($doctors as $doctor) --}}
-        @foreach ($paginator as $doctor)
+        @foreach ($searchAppointment as $doctor)
         <div class="card  col-lg-3 col-md-6 col-sm-12" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
           <div class="p-3 doctorscard">
             <div>
@@ -245,33 +240,6 @@
     <div class="d-flex justify-content-center">
         {{ $paginator->links() }}
     </div>
-
-                {{-- <div class="d-flex justify-content-center ">   
-
-                    <div class="demo">
-                        <!-- <nav class="pagination-outer" aria-label="Page navigation"> -->
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">«</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
-                                        <span aria-hidden="true">»</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        <!-- </nav> -->
-                    </div>
-                </div> --}}
-    
-        <!--// doctors card end// -->
 
    
     </div>
