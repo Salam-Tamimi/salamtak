@@ -92,9 +92,9 @@ Route::get('/profile-admin', function () {
 Route::get('/about', function () {
     return view('pages.about');
 });
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
+// Route::get('/contact', function () {
+//     return view('pages.contact');
+// });
 // Route::get('/doctor-single', function () {
 //     return view('pages.doctor-single');
 // });
@@ -111,7 +111,8 @@ Route::post('/reviews/create/{appointment}', [ReviewController::class, 'store'])
 //     return view('pages.hospital-single');
 // });
 Route::get('/hospital-single/{hospital_id}', [Hospital_detailsController::class, 'showHospital'])->name('hospital.single');
-
+Route::resource('contact', ContactController::class);
+// Route::resource('contact', ContactController::class);
 //////// *********     ADMIN ROUTES     *********** /////////
 
 // Route::prefix('admin')->group(function () {
@@ -189,7 +190,7 @@ Route::middleware(['auth', 'role:hospital'])->group(function () {
     // search
     Route::get('search/{department_id}', [AppointmentController::class, 'searchAppointment'])->name('searchAppointment');
 
-    
+
     // Route::post('/appointments', 'AppointmentController@store')->name('appointments.store');
     // Route::resource('appointments', AppointmentController::class);
     Route::resource('departments-admin', DepartmentController::class);

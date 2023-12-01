@@ -121,9 +121,7 @@
 												<td></td>
 												<td></td>
 												<td></td>
-												<script>
-													console.log(@json($hospital->image));
-												</script>
+												
 												@endif
 												<td>
 													<div style="margin-bottom: 5px; width: 100px;"> 

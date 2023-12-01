@@ -18,7 +18,7 @@
                         </div>
                         <div>
                              <svg width="40px" height="40px"class="contactus" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M44 24V9H24H4V24V39H24" stroke="#c7c7c7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M44 34L30 34" stroke="#c7c7c7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M39 29L44 34L39 39" stroke="#c7c7c7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 9L24 24L44 9" stroke="#c7c7c7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                        <a href="mailto:sm980434@gmail.com"class="contactus">salamtak@gmail.com</a>
+                        <a href="mailto:salam.tamimi99@gmail.com"class="contactus">salamtak@gmail.com</a>
                         </div>
                        
                         <svg width="40px" height="40px"class="contactus" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Facebook-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-200.000000, -160.000000)" fill="#4460A0"> <path d="M225.638355,208 L202.649232,208 C201.185673,208 200,206.813592 200,205.350603 L200,162.649211 C200,161.18585 201.185859,160 202.649232,160 L245.350955,160 C246.813955,160 248,161.18585 248,162.649211 L248,205.350603 C248,206.813778 246.813769,208 245.350955,208 L233.119305,208 L233.119305,189.411755 L239.358521,189.411755 L240.292755,182.167586 L233.119305,182.167586 L233.119305,177.542641 C233.119305,175.445287 233.701712,174.01601 236.70929,174.01601 L240.545311,174.014333 L240.545311,167.535091 C239.881886,167.446808 237.604784,167.24957 234.955552,167.24957 C229.424834,167.24957 225.638355,170.625526 225.638355,176.825209 L225.638355,182.167586 L219.383122,182.167586 L219.383122,189.411755 L225.638355,189.411755 L225.638355,208 L225.638355,208 Z" id="Facebook"> </path> </g> </g> </g></svg>
@@ -29,29 +29,31 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.3s">
                        
-                        <form>
+                        <form action="{{ route('contact.store') }}" method="post">
+                            @csrf
+                            @method('post')
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="إسمك">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="إسمك">
                                         <label for="name">الإسم</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="بريدك الإلكتروني">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="بريدك الإلكتروني">
                                         <label for="email">البريد الإلكتروني</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="subject" placeholder="العنوان">
+                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="العنوان">
                                         <label for="subject">العنوان</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="اترك رسالتك هنا" id="message" style="height: 150px"></textarea>
+                                        <textarea class="form-control" name="message" placeholder="اترك رسالتك هنا" id="message" style="height: 150px"></textarea>
                                         <label for="message">الرسالة</label>
                                     </div>
                                 </div>
@@ -60,6 +62,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                     <img src="{{ asset('/images/Get in touch-rafiki.png') }}"style=" max-width: 40%; margin-top:-8%;" alt="تواصل معنا">
                 </div>
