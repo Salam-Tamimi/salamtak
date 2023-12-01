@@ -242,17 +242,35 @@
 </div>
 </div>
 <!--  *********** departments end *********** -->
+@php
+    $videoId = null;
+    $videoUrl = $hospital->hospitals->video;
+    
+    // Extract video ID from YouTube URL
+    $pattern = '/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
+    preg_match($pattern, $videoUrl, $matches);
+
+    if (isset($matches[1])) {
+        $videoId = $matches[1];
+    }
+@endphp
 
 <div class="d-flex">
-    <div class="mx-4">
-        <h5>فيديو للمستشفى</h5>
-        <iframe width="560" height="315" src="{{ $hospital->video }}" allowfullscreen></iframe>  
-    </div>
-
+    @if ($hospital->hospitals->video)
+        <div class="mx-4">
+            <h5>فيديو للمستشفى</h5>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" allowfullscreen></iframe>
+            </div>
+        </div>
+    @endif
+    
+    @if ($hospital->hospitals->location)
     <div class="mx-4">
         <h5>موقع المستشفى</h5>
-        <iframe loading="lazy" style="width:560px;height:315px;" src="{{ $hospital->location }}"></iframe>
+        <iframe loading="lazy" style="width:560px;height:315px;" src="{{ $hospital->hospitals->location }}"></iframe>
     </div>
+    @endif
 
 </div>
 
