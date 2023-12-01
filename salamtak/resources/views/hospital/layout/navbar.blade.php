@@ -69,7 +69,7 @@
 				<ul class="nav user-menu">
 
 					<!-- Notifications -->
-					<li class="nav-item dropdown noti-dropdown">
+					{{-- <li class="nav-item dropdown noti-dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
 						</a>
@@ -138,14 +138,14 @@
 								<a href="#">View all Notifications</a>
 							</div>
 						</div>
-					</li>
+					</li> --}}
 					<!-- /Notifications -->
 					
 					<!-- User Menu -->
-					<li class="nav-item dropdown has-arrow">
-						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<span class="user-img"><img class="rounded-circle" src="{{ asset('images/avatar-01.jpg') }}" width="31" alt="Ryan Taylor"></span>
-						</a>
+					<a href="{{ url('/profile-hospital') }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
+						<span class="user-img"><img class="rounded-circle" src="{{ asset('storage/images/'  . auth()->user()->image) }}" width="31" alt="Ryan Taylor"></span>
+					</a>
+					{{-- <li class="nav-item dropdown has-arrow">
 						<div class="dropdown-menu">
 							<div class="user-header">
 								<div class="avatar avatar-sm">
@@ -160,7 +160,7 @@
 							<a class="dropdown-item" href="admin.pages.settings.blade.php">الإعدادات</a>
 							<a class="dropdown-item" href="admin.pages.login.blade.php">تسجيل خروج</a>
 						</div>
-					</li>
+					</li> --}}
 					<!-- /User Menu -->
 					
 				</ul>

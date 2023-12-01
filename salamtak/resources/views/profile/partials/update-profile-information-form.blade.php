@@ -1,15 +1,15 @@
-<section>
+<section dir="rtl" style="padding: 1.5%;">
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            {{ __('معلومات الحساب') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-1 text-sm text-gray-600" style="font-size: 20px;">
+            {{ __("تعديل معلومات حسابك والبريد الإلكتروني.") }}
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form dir="rtl" id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
@@ -17,19 +17,19 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
+        <div style="margin-top:2%;">
+            <x-input-label style="font-size: 20px;" for="name" :value="__('الإسم')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
+        <div style="margin-top:2%;">
+            <x-input-label style="font-size: 20px;" for="email" :value="__('البريد الإلكتروني')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
+                <div style="margin-top:2%;">
                     <p class="text-sm mt-2 text-gray-800">
                         {{ __('Your email address is unverified.') }}
 
@@ -47,17 +47,17 @@
             @endif
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="flex items-center gap-4" style="margin-top:2%;">
+            <x-primary-button style="font-size: 20px;padding: 0.5% 1%; background-color:rgb(68, 68, 198); color:white; border:none;">{{ __('حفظ') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
-                <p
+                <p 
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >{{ __('تم حفظ التعديلات.') }}</p>
             @endif
         </div>
     </form>

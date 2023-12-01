@@ -42,9 +42,9 @@
 							<li class="menu-title"> 
 								<span>الصفحات</span>
 							</li> --}}
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('/admin-profile') }}"><i class="fe fe-user-plus"></i> <span>الحساب</span></a>
-							</li>
+							</li> --}}
 							{{-- <li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> المصادقة </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">

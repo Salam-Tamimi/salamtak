@@ -73,6 +73,9 @@ Route::get('/lab', function () {
 Route::get('/hospitals', function () {
     return view('pages.hospitals');
 });
+Route::get('/profile-hospital', function () {
+    return view('hospital.profile');
+});
 
 // Route::get('/hospitals', [HospitalController::class, 'index']);
 

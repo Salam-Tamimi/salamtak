@@ -40,7 +40,7 @@
 													{{-- <th>التحصيل</th> --}}
 													<th>البريد الإلكتروني</th>
 													<th>الكشفية</th>
-													<th>حالة الحساب</th>
+													{{-- <th>حالة الحساب</th> --}}
 													<th> الإجراءات</th>
 													
 												</tr>
@@ -64,15 +64,15 @@
 													{{-- <td>١١ تشرين الثاني ٢٠٢٣ <br><small>١٢.٣٠م</small></td> --}}
 													
 													{{-- <td>{{ $doctor->experience }}</td> --}}
-													<td>{{ $doctor->email }} JOD</td>
+													<td>{{ $doctor->email }} </td>
 													<td>{{ $doctor->price }} JOD</td>
 													
-													<td>
+													{{-- <td>
 														<div class="status-toggle">
 															<input type="checkbox" id="{{ $doctor->id }}" class="check" checked>
 															<label for="{{ $doctor->id }}" class="checktoggle">الحالة</label>
 														</div>
-													</td>
+													</td> --}}
 
 													<td class="text-right">
 														<div class="actions">
@@ -87,7 +87,7 @@
 																@method('DELETE')
 																@csrf
 																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">
-																	<i class="fas fa-trash"></i> 
+																	{{-- <i class="fas fa-trash"></i>  --}}
 																	حذف
 																</button>
 															</form>
