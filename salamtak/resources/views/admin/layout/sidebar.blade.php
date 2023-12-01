@@ -29,7 +29,7 @@
 								<a href="{{ url('reviews-admin') }}"style="font-size: 18px"> <span>التقييمات</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('/profile-hospital') }}"style="font-size: 18px">
+								<a href="{{ url('/profile-admin') }}" style="font-size: 18px">
 									الإعدادات
 								</a>							
 							</li>
