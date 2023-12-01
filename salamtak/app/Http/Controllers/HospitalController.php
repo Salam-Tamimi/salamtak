@@ -58,27 +58,37 @@ class HospitalController extends Controller
      */
 
     
-     public function store( Request $request)
-     {
-         $validatedData = $request->validate([
-             'name' => 'required',
-             'email' => 'required',
-             'password' => 'required|min:8',
-             'image' => 'required|image',
-             'mobile' => 'nullable',
-         ]);
-         $user = auth()->user();
-         $validatedData['password'] = Hash::make($validatedData['password']);
-         $validatedData['role'] = 'hospital';
-              
-         if ($request->hasFile('image')) {
-             $imagePath = $request->file('image')->store('public/images');
-             $validatedData['image'] = $imagePath;
-         }
-         User::create($validatedData);
-     
-         return redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
-     }
+     public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'password' => 'required|min:8',
+        'image' => 'required|image',
+        'mobile' => 'nullable',
+    ]);
+
+    $user = auth()->user();
+    $validatedData['password'] = Hash::make($validatedData['password']);
+    $validatedData['role'] = 'hospital';
+
+    if ($request->hasFile('image')) {
+        $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
+    }
+
+    User::create($validatedData);
+
+    return redirect()->route('hospitals-admin.index')->with('success', 'تم إنشاء المستشفى بنجاح');
+}
+
+public function uploadImage($file, $path)
+{
+    $imageName = 'media_' . uniqid() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path($path), $imageName);
+
+    return asset($path . '/' . $imageName);
+}
+
     /**
      * Display the specified resource.
      *
