@@ -107,7 +107,10 @@
 												</td> --}}
 												<td>{{ $hospital->location }}</td>
 												<td>{{ $hospital->video }}</td>
-												<td>{{ $hospital->image }}</td>
+												{{-- <td>{{ $hospital->image }}</td> --}}
+												<td>
+													<img src="{{ asset('storage/images/' . $hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;">
+												</td> 
 												<td>{{ $hospital->virtual_tour }}</td>
 												@else
 												<td></td>
@@ -115,7 +118,9 @@
 												<td></td>
 												<td></td>
 												<td></td>
-
+												<script>
+													console.log(@json($hospital->image));
+												</script>
 												@endif
 												<td>
 													<div style="margin-bottom: 5px; width: 100px;"> 
@@ -147,24 +152,25 @@
 @endsection
         </div>
 		<!-- /Main Wrapper -->
-		
+{{-- 		
 		<!-- jQuery -->
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
-		
+		<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
 		<!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+		<script src="{{ asset('js/popper.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 		
 		<!-- Slimscroll JS -->
-        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="{{ asset('js/admin/jquery.slimscroll.min.js') }}"></script>
 		
 		<!-- Datatables JS -->
-		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-		<script src="assets/plugins/datatables/datatables.min.js"></script>
+		<script src="{{ asset('js/admin/jquery.dataTables.min.js') }}"></script>
+		<script src="{{ asset('js/admin/datatables.min.js') }}"></script>
 		
 		<!-- Custom JS -->
-		<script  src="assets/js/script.js"></script>
+		<script src="{{ asset('js/admin/script.js') }}"></script>
 		
+			 --}}
     </body>
 
 <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/appointment-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:49 GMT -->

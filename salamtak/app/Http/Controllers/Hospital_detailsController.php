@@ -175,11 +175,17 @@ class Hospital_detailsController extends Controller
             'image' => 'required|image',
         ]);
         $validatedData['user_id'] = $user->id;
-         // Create a new hospital record
-         $hospital = Hospital::create($validatedData);
+        // Create a new hospital record
+        $hospital = Hospital::create($validatedData);
 
-         // Update the hospital_id of the currently logged-in user with the new hospital's ID
-         User::where('id', $user->id)->update(['hospital_id' => $hospital->id]);
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            // $imagePath = $request->file('image')->store('images'); 
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+        // Update the hospital_id of the currently logged-in user with the new hospital's ID
+        User::where('id', $user->id)->update(['hospital_id' => $hospital->id]);
     }
 
         return  redirect()->route('hospitals-details.index')->with('success', 'تم إنشاء المستشفى بنجاح');
