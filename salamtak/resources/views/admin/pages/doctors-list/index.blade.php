@@ -28,13 +28,13 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="mb-3">
-									<label for="category"><h5>المستشفى</h5> </label>
-									<select name="category_id" id="category" class="form-control">
+									{{-- <label for="category" dir="rtl" style="text-align: right"><h5 ir="rtl" style="text-align: right">المستشفى</h5> </label> --}}
+									{{-- <select name="category_id" id="category" class="form-control">
 										<option value="">اختر المستشفى</option>
 										@foreach ($hospitals as $hospital)
 											<option value="{{ $hospital->id }}">{{ $hospital->name }}</option>
 										@endforeach
-									</select>
+									</select> --}}
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -61,7 +61,7 @@
 															<a href="profile.html" class="mx-2">&nbsp;{{ $doctor->name }}</a>
 														</h2>
 													</td>
-													<td>{{ $doctor->departments->name }}</td>
+													{{-- <td>{{ $doctor->department->name }}</td> --}}
 													{{-- <td>{{ $doctor->department ? $doctor->department->name : 'N/A' }}</td> --}}
 
 													

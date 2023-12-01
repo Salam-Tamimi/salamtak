@@ -1,10 +1,10 @@
 @extends('hospital.Layout.master')
-@section('title', ' إضافة مستشفى جديد ')
+@section('title', ' إضافة معلومات المستشفى ')
 @section('content')
 <br> <br> 
 
 <div class="container">
-    <h1>إضافة مستشفى جديد</h1>
+    <h1>إضافة معلومات المستشفى</h1>
     <form method="POST" action="{{ route('hospitals-details.update',Auth::user()->id) }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
         @csrf
         @method('PUT')
@@ -13,15 +13,6 @@
             <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}" required>
         </div>
 
-
-        {{-- <div class="form-group">
-            <label>أقسام المستشفى:</label> <br>
-            @foreach ($departments as $department)
-                <input type="hidden" name="departments[{{ $department->id }}][id]" value="{{ $department->id }}">
-                <input type="checkbox" name="departments[{{ $department->id }}][name]" value="{{ $department->name }}">
-                {{ $department->name }}<br>
-            @endforeach
-        </div> --}}
 
         <div class="form-group">
             <label for="location">موقع المستشفى:</label>
@@ -38,10 +29,10 @@
             <input type="text" name="video" id="video" class="form-control" required>
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="virtual_tour">جولة إفتراضية:</label>
-            <input type="text" name="virtual_tour" id="virtual_tour" class="form-control" required>
-        </div>
+            <input type="text" name="virtual_tour" id="virtual_tour" class="form-control" >
+        </div> --}}
 
         <button type="submit" class="btn btn-primary">إضافة المستشفى</button>
     </form> <br> <br> <br>

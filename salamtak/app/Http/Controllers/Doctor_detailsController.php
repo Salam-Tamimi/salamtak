@@ -55,39 +55,46 @@ class Doctor_detailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        // Validate the incoming data
-        $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'name' => 'required|string',
-            'price' => 'required|integer',
-            'experience' => 'required|string',
-            'department_id' => 'required|exists:departments,id',
-        ]);
-    
-        // Handle image upload (if provided)
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('doctor_images', 'public');
-        }
-    
-        // Create a new doctor record
-        $doctor= Doctor::create([
-            'image' => $imagePath ?? null,
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'experience' => $request->input('experience'),
-            'department_id' => $request->input('department_id'),
-            'hospital_id'=> Auth::user()->hospital_id,
-        ]);
+    // Validate the incoming data
+    $validatedData = $request->validate([
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'name' => 'required|string',
+        'price' => 'required|integer',
+        'experience' => 'required|string',
+        'department_id' => 'required|exists:departments,id',
+    ]);
 
-        // Update the doctor_id of the currently logged-in user with the new doctor's ID
-        User::where('id', $user->id)->update(['doctor_id' => $doctor->id]);
-
-        return redirect()->route('doctor-details.index')->with('success', 'تمت إضافة المعلومات بنجاح');
+    // Handle image upload (if provided)
+    if ($request->hasFile('image')) {
+        $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
     }
-    
+
+    // Create a new doctor record
+    $doctor = Doctor::create([
+        'image' => $validatedData['image'] ?? null,
+        'name' => $validatedData['name'],
+        'price' => $validatedData['price'],
+        'experience' => $validatedData['experience'],
+        'department_id' => $validatedData['department_id'],
+        'hospital_id' => Auth::user()->hospital_id,
+    ]);
+
+    // Update the doctor_id of the currently logged-in user with the new doctor's ID
+    User::where('id', $user->id)->update(['doctor_id' => $doctor->id]);
+
+    return redirect()->route('doctor-details.index')->with('success', 'تمت إضافة المعلومات بنجاح');
+}
+
+public function uploadImage($file, $path)
+{
+    $imageName = 'media_' . uniqid() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path($path), $imageName);
+
+    return asset($path . '/' . $imageName);
+}
 
     /**
      * Display the specified resource.

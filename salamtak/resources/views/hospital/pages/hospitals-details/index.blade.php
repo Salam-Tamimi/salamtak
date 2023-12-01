@@ -44,7 +44,7 @@
 													<th> الموقع</th>
 													<th> فيديو</th>
 													<th>صورة </th>
-													<th>جولة إفتراضية </th>
+													{{-- <th>جولة إفتراضية </th> --}}
 													<th> الإجراء </th>
 												</tr>
 											</thead>
@@ -109,12 +109,9 @@
 												<td>{{ $hospital->video }}</td>
 												{{-- <td>{{ $hospital->image }}</td> --}}
 												<td>
-													<img src="{{ asset('storage/images/' . $hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;">
-													{{-- <img src="{{ asset('storage/' . $hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;"> --}}
-
-													{{-- <img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;"> --}}
-												</td> 
-												<td>{{ $hospital->virtual_tour }}</td>
+													<img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;">
+												</td>
+												{{-- <td>{{ $hospital->virtual_tour }}</td> --}}
 												@else
 												<td></td>
 												<td></td>

@@ -111,12 +111,25 @@ class Hospital_detailsController extends Controller
             'image' => 'required|image',
         ]);
         Hospital::create($validatedData);
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
+        }
+    
     }
 
         return  redirect()->route('hospitals-details.index')->with('success', 'تم إنشاء المستشفى بنجاح');
     }
+
     
-    
+ 
+public function uploadImage($file, $path)
+{
+    $imageName = 'media_' . uniqid() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path($path), $imageName);
+
+    return asset($path . '/' . $imageName);
+}
+
     public function show($id)
     {  
         $departments = Department::where('id', $id)->get();
@@ -149,32 +162,6 @@ class Hospital_detailsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required',
-        //     'location' => 'required',
-        //     'video' => 'nullable', 
-        //     'virtual_tour' => 'nullable', 
-        //     'image' => 'required|image', 
-        // ]);
-
-        // if ($request->hasFile('image')) {
-        //     $imagePath = $request->file('image')->store('images'); 
-        //     $validatedData['image'] = $imagePath;
-        // }
-
-        // foreach ($request->input('departments') as $departmentData) {
-        //     $department = Department::find($departmentData['id']);
-
-        //     if ($department) {
-        //         $department->update([
-        //             'is_active' => isset($departmentData['name']),
-        //         ]);
-        //     }
-        // }
-        // $hospital = Hospital::findOrFail($id); 
-        // $hospital->update($validatedData);
-
-        // return redirect()->route('hospitals-admin.index')->with('success', 'تم تعديل المستشفى بنجاح');
         $user = Auth::user();
 
         if ($user->role === 'hospital') {
@@ -192,22 +179,8 @@ class Hospital_detailsController extends Controller
 
         // Handle file upload
         if ($request->hasFile('image')) {
-            // $imagePath = $request->file('image')->store('images'); 
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath;
-        }
-
-
-// // Handle file upload
-// if ($request->hasFile('image')) {
-//     $imagePath = $request->file('image')->store('images', 'public');
-
-//     // Update the image field with the relative path or URL
-//     $hospital->update(['image' => $imagePath]); // Assuming $hospital is the model instance
-
-//     $validatedData['image'] = $imagePath;
-// }
-// $validatedData['image'] = $imagePath; // Store the temporary file path
+            $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
+        }       
 
         // Update the hospital_id of the currently logged-in user with the new hospital's ID
         User::where('id', $user->id)->update(['hospital_id' => $hospital->id]);

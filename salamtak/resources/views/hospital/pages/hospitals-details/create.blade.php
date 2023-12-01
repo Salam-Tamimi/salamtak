@@ -37,10 +37,10 @@
             <input type="text" name="video" id="video" class="form-control" required>
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="virtual_tour">جولة إفتراضية:</label>
-            <input type="text" name="virtual_tour" id="virtual_tour" class="form-control" required>
-        </div>
+            <input type="text" name="virtual_tour" id="virtual_tour" class="form-control" >
+        </div> --}}
 
         <button type="submit" class="btn btn-primary">إضافة المستشفى</button>
     </form> <br> <br> <br>

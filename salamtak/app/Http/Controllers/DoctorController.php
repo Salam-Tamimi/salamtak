@@ -62,8 +62,10 @@ public function index()
         });
         
         return view('hospital.pages.doctors-hospital.index', compact('doctors'));
-    } else {
-        return redirect('/');
+    } elseif ($user->role === 'admin')  {
+        $doctors = User::where('role', 'doctor')->get();
+        return view('admin.pages.doctors-list.index', compact('doctors'));
+
     }
 }
 
@@ -99,40 +101,38 @@ public function doctorSingle($doctor_id) {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-     public function store(Request $request)
-     {
-         $user = auth()->user();
-     
-         // Check if the authenticated user has the "hospital" role
-         if ($user->role === 'hospital') {
-             $request->validate([
-                 'name' => 'required|string',
-                 'email' => 'required|email|unique:users',
-                 'password' => 'required|min:6',
-                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the image validation as needed
-                 'department_id' => 'required',
-             ]);
-     
-             $hospitalId = $user->hospital_id;
-     
-             // Store the image in the 'public' disk
-             $imagePath = $request->file('image')->store('doctor_images', 'public');
-     
-             // Create a new user with the role "doctor" and associate them with the hospital
-             User::create([
-                 'email' => $request->input('email'),
-                 'password' => Hash::make($request->input('password')),
-                 'name' => $request->input('name'),
-                 'image' => $imagePath,
-                 
-                 'department_id' => $request->input('department_id'),
-                 'role' => 'doctor',
-                 'hospital_id' => $hospitalId,
-             ]);
-     
-             return redirect()->route('doctors-hospital.index')->with('success', 'تمت عملية الإنشاء بنجاح');
-         } elseif ($user->role === 'doctor') {
+    public function store(Request $request)
+    {
+        $user = auth()->user();
+    
+        // Check if the authenticated user has the "hospital" role
+        if ($user->role === 'hospital') {
+            $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the image validation as needed
+                'department_id' => 'required',
+            ]);
+    
+            // Store the image in the 'public' disk
+            if ($request->hasFile('image')) {
+                $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
+            }
+    
+            // Create a new user with the role "doctor" and associate them with the hospital
+            User::create([
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'name' => $request->input('name'),
+                'image' => $validatedData['image'] ?? null,
+                'department_id' => $request->input('department_id'),
+                'role' => 'doctor',
+                'hospital_id' => $user->hospital_id,
+            ]);
+    
+            return redirect()->route('doctors-hospital.index')->with('success', 'تمت عملية الإنشاء بنجاح');
+        } elseif ($user->role === 'doctor') {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -140,18 +140,29 @@ public function doctorSingle($doctor_id) {
                 'experience' => 'required|string|max:255',
                 'price' => 'required|numeric',
             ]);
-            $validatedData['hospital_id'] = auth()->user()->hospital_id;
-            $validatedData['doctor_id'] = auth()->user()->doctor_id;
-
-            $imagePath = $request->file('image')->store('public/images');
     
-            $validatedData['image'] = $imagePath;
+            $validatedData['hospital_id'] = $user->hospital_id;
+            $validatedData['doctor_id'] = $user->doctor_id;
     
+            // Handle image upload (if provided)
+            if ($request->hasFile('image')) {
+                $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
+            }
+    
+            // Create a new doctor record
             Doctor::create($validatedData);
-            $hospitalId = auth()->user()->hospital_id;
-            $departments = Department::where('hospital_id', $hospitalId)->get();
+    
+            $departments = Department::where('hospital_id', $user->hospital_id)->get();
             return redirect()->route('doctors-hospital.index', compact('departments'))->with('success', 'تمت عملية الإنشاء بنجاح');
         }
+    }
+    
+    public function uploadImage($file, $path)
+    {
+        $imageName = 'media_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path($path), $imageName);
+    
+        return asset($path . '/' . $imageName);
     }
     
 

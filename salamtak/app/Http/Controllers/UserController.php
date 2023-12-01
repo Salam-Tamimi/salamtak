@@ -51,31 +51,40 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-     $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6',
-        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        'mobile' => 'nullable|numeric',
-    ]);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'mobile' => 'nullable|numeric',
+        ]);
     
-    // Handle image upload
-    $imagePath = null;
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('images', 'public');
+        // Handle image upload (if provided)
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
+        }
+    
+        // Create a new user record
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'role' => 'user',
+            'image' => $validatedData['image'] ?? null, 
+            'mobile' => $validatedData['mobile'],
+        ]);
+    
+        return redirect()->route('users.index')->with('success', 'تمت عملية الإنشاء بنجاح');
     }
-
-    User::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => bcrypt($request->input('password')),
-        'role' => 'user', 
-        'image' => $imagePath, // Store image path
-        'mobile' => $request->input('mobile'),
-    ]);
-    return redirect()->route('users.index')->with('success', 'تمت عملية الإنشاء بنجاح');
-}
-
+    
+    public function uploadImage($file, $path)
+    {
+        $imageName = 'media_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path($path), $imageName);
+    
+        return asset($path . '/' . $imageName);
+    }
+    
     /**
      * Display the specified resource.
      *
