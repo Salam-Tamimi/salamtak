@@ -69,6 +69,7 @@ class Hospital_detailsController extends Controller
         ->first();
         // dd($hospital_id);
         // dd($hospital->hospitals->video);
+        // dd($hospital->hospitals->location);
         $departments = Department::where('hospital_id', $hospital_id)->get();        // Pass the hospital data to the view
         return view('pages.hospital-single', compact('hospital', 'departments'));
     }
