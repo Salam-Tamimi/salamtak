@@ -9,11 +9,12 @@
 							<li> 
 								<a href="{{ url('/admin') }}"> <span style="font-size: 18px"> الرئيسية</span></a>
 							</li>
-							{{-- <li> 
-								<a href="{{ url('appointments-admin') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
-							</li> --}}
+							
 							<li> 
 								<a href="{{ url('hospitals-admin') }}"style="font-size: 18px"> <span>المستشفيات</span></a>
+							</li>
+							<li> 
+								<a href="{{ url('/admin-appointments') }}"><span>الحجوزات</span></a>
 							</li>
 							{{-- <li> 
 								<a href="{{ url('departments-admin') }}"><i class="fe fe-users"></i> <span>الأقسام</span></a>

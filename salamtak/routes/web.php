@@ -76,6 +76,9 @@ Route::get('/hospitals', function () {
 Route::get('/profile-hospital', function () {
     return view('hospital.profile');
 });
+Route::get('/profile-admin', function () {
+    return view('admin.profile');
+});
 
 // Route::get('/hospitals', [HospitalController::class, 'index']);
 
@@ -149,21 +152,22 @@ Route::middleware(['auth', 'role:doctor'])->group(function () {
 });
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('hospitals-admin', HospitalController::class);
+    Route::get('/admin-appointments', function () {
+        return view('admin.pages.appointments-admin.index');
+    });
 });
 
 Route::middleware(['auth', 'role:hospital'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('hospitals-details', Hospital_detailsController::class);
     // Route::put('/hospitals-details/{id}', [Hospital_detailsController::class, 'update'])->name('hospitals-details.update');
-
     Route::resource('doctors-list', DoctorController::class);
     Route::resource('doctors-hospital', DoctorController::class);
     Route::resource('doctor-details', Doctor_detailsController::class);
-
+    
     Route::get('/hospital-appointments', function () {
         return view('hospital.pages.appointments-admin.index');
     });
-
 });
     // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
     // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
