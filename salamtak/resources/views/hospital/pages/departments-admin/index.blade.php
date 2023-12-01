@@ -1,4 +1,4 @@
-@extends('admin.Layout.master')
+@extends('hospital.Layout.master')
 @section('title', 'الأقسام')
 @section('content')
 			

@@ -1,4 +1,4 @@
-@extends('admin.Layout.master')
+@extends('hospital.Layout.master')
 @section('title', 'إنشاء موعد جديد ')
 @section('content')
 <br> <br>

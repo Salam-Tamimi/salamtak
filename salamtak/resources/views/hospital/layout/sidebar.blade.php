@@ -4,16 +4,16 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<span>رئيسي</span>
+								<span>لوحة تحكم {{ Auth::user()->name }}</span>
 							</li>
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('/admin') }}"><i class="fe fe-home"></i> <span>لوحة التحكم</span></a>
-							</li>
+							</li> --}}
 							<li> 
 								<a href="{{ url('appointments-admin') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('hospitals-admin') }}"><i class="fe fe-layout"></i> <span>المستشفيات</span></a>
+								<a href="{{ url('hospitals-details') }}"><i class="fe fe-layout"></i> <span>المستشفيات</span></a>
 							</li>
 							<li> 
 								<a href="{{ url('departments-admin') }}"><i class="fe fe-users"></i> <span>الأقسام</span></a>
@@ -21,9 +21,9 @@
 							<li> 
 								<a href="{{ url('/doctors-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
 							</li>
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('patients-list') }}"><i class="fe fe-user"></i> <span>المرضى</span></a>
-							</li>
+							</li> --}}
 							<li> 
 								<a href="{{ url('reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>
 							</li>

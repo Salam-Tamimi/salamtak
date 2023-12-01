@@ -19,13 +19,26 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role !== 'user') {
+        if (Auth::user()->role == 'user') {
         return view('pages.profile')->with('successMessage', 'Review added successfully');
 
-        }elseif (Auth::user()->role !== 'admin') {
+        }elseif (Auth::user()->role == 'admin') {
         $reviews = Review::all();
         return view('admin.pages.reviews-admin.index', compact('reviews'));
-        }
+        }elseif (Auth::user()->role == 'hospital') {
+            // $reviews = Review::all();
+            $hospitalId = Auth::user()->hospital_id;
+
+            $reviews = Review::whereHas('appointments', function ($query) use ($hospitalId) {
+                $query->where('hospital_id', $hospitalId);
+            })->get();
+
+        //     $review= Review::whereHas('appointments', function ($query) use ($hospitalId) {
+        //         $query->where('hospital_id', $hospitalId);
+        //     })->first();
+        // dd($review->appointments);
+            return view('hospital.pages.reviews-admin.index', compact('reviews'));
+            }
     }
 
     /**

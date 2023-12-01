@@ -1,4 +1,4 @@
-@extends('admin.Layout.master')
+@extends('hospital.Layout.master')
 @section('title', 'التقييمات')
 @section('content')
 			
@@ -25,419 +25,71 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="datatable table table-hover table-center mb-0">
-											<thead>
-												<tr>
-													<th>اسم المريض</th>
-													<th>اسم الطبيب</th>
-													<th>اسم المستشفى</th>
-													<th>التقييم</th>
-													<th>التعليق</th>
-													{{-- <th>التاريخ</th> --}}
-													{{-- <th class="text-right">الإجراءات</th> --}}
-												</tr>
-											</thead>
-											<tbody>
-												@foreach ($reviews as $review)
-													<tr>
-													<td>
-														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset($review->appointment->user->image) }}" alt="User Image">
-															<p>{{ $review->appointment->user->name }}</p>
-														</h2>
-													</td>
-													<td>
-														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset($review->appointment->doctor->image) }}" alt="User Image">
-															<p>{{ $review->appointment->doctor->name }}</p>
-														</h2>
-													</td>
+										@if ($reviews->isNotEmpty())
+    <table>
+        <thead>
+            <tr>
+                <th>اسم المريض</th>
+                <th>اسم الطبيب</th>
+                <th>اسم المستشفى</th>
+                <th>التقييم</th>
+                <th>التعليق</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($reviews as $review)
+                    <tr>
+                        <td>{{ $review->appointments->user->name }}</td>
+                        <td>{{ $review->appointments->doctor->name }}</td>
+                        <td>{{ $review->appointments->hospital->name }}</td>
+                        <td>
+                            <div class="rating text-right" dir="rtl">
+                                @php
+                                    $rating = $review->review ?? 0;
+                                    $filledStars = floor($rating);
+                                    $remainingStar = $rating - $filledStars;
+                                @endphp
 
-													<td>
-														<p>{{ $review->appointment->hospital->name }}</p>
-													</td>
-													
-													<td>
-														<div class="form-group">
-															<label for="rating">Rating:</label>
-															<select name="rating" id="rating" class="form-control">
-																<option value="1" {{ $ratingFromDatabase == 1 ? 'selected' : '' }}>														
-																	<i class="fe fe-star text-warning"></i>
-														            <i class="fe fe-star-o text-secondary"></i>
-														            <i class="fe fe-star-o text-secondary"></i>
-														            <i class="fe fe-star-o text-secondary"></i>
-														            <i class="fe fe-star-o text-secondary"></i>
-																</option>
-																<option value="2" {{ $ratingFromDatabase == 2 ? 'selected' : '' }}>														
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star-o text-secondary"></i>
-																	<i class="fe fe-star-o text-secondary"></i>
-																	<i class="fe fe-star-o text-secondary"></i>
-																</option>
-																<option value="3" {{ $ratingFromDatabase == 3 ? 'selected' : '' }}>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star-o text-secondary"></i>
-																	<i class="fe fe-star-o text-secondary"></i>
-																</option>
-																<option value="4" {{ $ratingFromDatabase == 4 ? 'selected' : '' }}>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star-o text-secondary"></i>
-																</option>
-																<option value="5" {{ $ratingFromDatabase == 5 ? 'selected' : '' }}>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																	<i class="fe fe-star text-warning"></i>
-																</option>
-															</select>
-														</div>
-													</td>
-													
-													<td>
-														{{ $review->comment }}
-													{{-- </td>
-														<td>3 Nov 2019 <br><small>09.59 AM</small>
-													</td> --}}
-													{{-- <td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td> --}}
-												</tr>
-												@endforeach
-												
-												{{-- <tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient2.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Travis Trimble </a>
-														</h2>
-													</td>
-													
-												
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-02.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Darren Elder</a>
-														</h2>
-													</td>
-													
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>2 Nov 2019<br> <small>08.50 AM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient3.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Carl Kelly</a>
-														</h2>
-													</td>
-												
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-03.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Deborah Angel</a>
-														</h2>
-													</td>
-													
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>1 Nov 2019<br> <small>02.59 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient4.jpg') }}" alt="User Image"></a>
-															<a href="profile.html"> Michelle Fairfax</a>
-														</h2>
-													</td>
-													
-												
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-04.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Sofia Brient</a>
-														</h2>
-													</td>
-													
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>27 Sep 2019 <br><small>03.40 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient5.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Gina Moore</a>
-														</h2>
-													</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-05.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Marvin Campbell</a>
-														</h2>
-													</td>
-													
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>24 Sep 2019 <br><small>04.38 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient6.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Elsie Gilley</a>
-														</h2>
-													</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-06.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Katharine Berthold</a>
-														</h2>
-													</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>22 Aug 2019 <br><small>01.50 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient7.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Joan Gardner</a>
-														</h2>
-													</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-07.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Linda Tobin</a>
-														</h2>
-													</td>
-													
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>21 Jul 2019 <br><small>05.50 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient8.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Daniel Griffing</a>
-														</h2>
-													</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-08.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Paul Richard</a>
-														</h2>
-													</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>16 Jun 2019 <br><small>04.50 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient9.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Walter Roberson</a>
-														</h2>
-													</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-09.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. John Gibbs</a>
-														</h2>
-													</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>11 Mar 2019 <br><small>05.55 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/patient10.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Harry Williams</a>
-														</h2>
-													</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('images/doctor-thumb-10.jpg') }}" alt="User Image"></a>
-															<a href="profile.html">Dr. Olga Barlow</a>
-														</h2>
-													</td>
-													
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-													
-													<td>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit
-													</td>
-														<td>15 Feb 2019 <br><small>07.30 PM</small></td>
-													<td class="text-right">
-														<div class="actions">
-															<a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-															
-														</div>
-													</td>
-												</tr> --}}
-											</tbody>
-										</table>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $filledStars)
+									<svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#FAD97F">
+										<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+										<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+										<g id="SVGRepo_iconCarrier">
+											<path d="M923.2 429.6H608l-97.6-304-97.6 304H97.6l256 185.6L256 917.6l256-187.2 256 187.2-100.8-302.4z" stroke="#CCCCCC"></path>
+										</g>
+									</svg>
+                                    @else
+                                        @if ($remainingStar > 0 && $i == ($filledStars + 1))
+										<svg fill="#FAD97F" width="28px" height="28px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">
+											<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+											<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+											<g id="SVGRepo_iconCarrier">
+												<path d="M30.383 12.699c-0.1-0.303-0.381-0.519-0.713-0.519-0 0-0 0-0 0h-9.898l-3.059-9.412c-0.1-0.303-0.381-0.518-0.712-0.518-0.083 0-0.163 0.014-0.238 0.039l0.005-0.002c-0.226 0.078-0.399 0.256-0.468 0.48l-0.001 0.005-0.012-0.004-3.059 9.412h-9.897c-0.414 0-0.749 0.336-0.749 0.75 0 0.248 0.121 0.469 0.307 0.605l0.002 0.001 8.007 5.818-3.059 9.412c-0.023 0.069-0.037 0.149-0.037 0.232 0 0.414 0.336 0.75 0.75 0.75 0.165 0 0.318-0.053 0.442-0.144l-0.002 0.001 8.008-5.819 8.006 5.819c0.122 0.090 0.275 0.144 0.441 0.144 0.414 0 0.75-0.336 0.75-0.75 0-0.083-0.014-0.164-0.039-0.239l0.002 0.005-3.059-9.412 8.010-5.818c0.188-0.138 0.308-0.357 0.308-0.605 0-0.083-0.014-0.163-0.038-0.238l0.002 0.005zM20.779 18.461c-0.188 0.138-0.309 0.358-0.309 0.607 0 0.083 0.014 0.163 0.039 0.238l-0.002-0.005 2.514 7.736-6.581-4.783c-0.116-0.080-0.259-0.128-0.414-0.128-0.009 0-0.018 0-0.028 0l0.001-0v-16.701l2.514 7.737c0.1 0.303 0.381 0.519 0.713 0.519 0 0 0 0 0 0h8.135z"></path>
+											</g>
+										</svg>
+                                        @else
+										<svg width="28px" height="28px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="">
+											<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+											<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+											<g id="SVGRepo_iconCarrier">
+												<g id="icomoon-ignore"></g>
+												<path d="M19.38 12.803l-3.38-10.398-3.381 10.398h-11.013l8.925 6.397-3.427 10.395 8.896-6.448 8.895 6.448-3.426-10.395 8.925-6.397h-11.014zM20.457 19.534l2.394 7.261-6.85-4.965-6.851 4.965 2.64-8.005-0.637-0.456-6.228-4.464h8.471l2.606-8.016 2.605 8.016h8.471l-6.864 4.92 0.245 0.744z" stroke="#CCCCCC"></path>
+											</g>
+										</svg>
+                                        @endif
+                                    @endif
+                                @endfor
+                            </div>
+                        </td>
+                        <td>{{ $review->comment }}</td>
+                    </tr>
+            @endforeach
+        </tbody>
+    </table>
+@else
+    <p>لا يوجد تقييمات لحد الآن</p>
+@endif
 									</div>
 								</div>
 							</div>

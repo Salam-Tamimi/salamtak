@@ -1,4 +1,4 @@
-@extends('admin.Layout.master')
+@extends('hospital.Layout.master')
 @section('title', 'المستشفيات')
 @section('content')
 			{{-- l --}}
@@ -110,6 +110,9 @@
 												{{-- <td>{{ $hospital->image }}</td> --}}
 												<td>
 													<img src="{{ asset('storage/images/' . $hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;">
+													{{-- <img src="{{ asset('storage/' . $hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;"> --}}
+
+													{{-- <img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;"> --}}
 												</td> 
 												<td>{{ $hospital->virtual_tour }}</td>
 												@else

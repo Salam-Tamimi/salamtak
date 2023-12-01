@@ -1,5 +1,5 @@
-@include('admin.Layout.navbar')
+@include('hospital.Layout.navbar')
 
-@include('admin.Layout.sidebar') 
+@include('hospital.Layout.sidebar') 
 
 @yield('content')

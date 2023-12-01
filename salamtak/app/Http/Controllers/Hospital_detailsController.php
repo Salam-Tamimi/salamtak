@@ -184,6 +184,19 @@ class Hospital_detailsController extends Controller
             $imagePath = $request->file('image')->store('images', 'public');
             $validatedData['image'] = $imagePath;
         }
+
+
+// // Handle file upload
+// if ($request->hasFile('image')) {
+//     $imagePath = $request->file('image')->store('images', 'public');
+
+//     // Update the image field with the relative path or URL
+//     $hospital->update(['image' => $imagePath]); // Assuming $hospital is the model instance
+
+//     $validatedData['image'] = $imagePath;
+// }
+// $validatedData['image'] = $imagePath; // Store the temporary file path
+
         // Update the hospital_id of the currently logged-in user with the new hospital's ID
         User::where('id', $user->id)->update(['hospital_id' => $hospital->id]);
     }
