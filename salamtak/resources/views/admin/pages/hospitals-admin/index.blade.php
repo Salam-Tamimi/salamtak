@@ -26,8 +26,9 @@
 							<div class="card card-table">
 								<div class="card-header">
 									<h4 class="card-title">لائحة المستشفيات</h4>
-										<a class="btn btn-primary btn-sm float-left" href="{{ route('hospitals-admin.create') }}">
-											<i class="fas fa-th nav-icon"></i> إضافة مستشفى
+										<a class="btn btn-primary btn-sm float-left"style="font-size: 20px; padding-right:2%; padding-left:2%;" href="{{ route('hospitals-admin.create') }}">
+											{{-- <i class="fas fa-th nav-icon"></i> --}}
+											 إضافة مستشفى
 										</a>
 									</div>
 								</div>
@@ -47,14 +48,17 @@
 												@if(isset($hospitals) && count($hospitals) > 0)
 												@foreach ($hospitals as $hospital)
 													<tr>
-													<td><a href="{{ route('hospitals-doctors', $hospital->id) }}">{{ $hospital->name }}</a></td>
 													<td>
+														{{-- <a href="{{ route('hospitals-doctors', $hospital->id) }}">{{ $hospital->name }}</a></td> --}}
+														{{ $hospital->name }}
+														<td>
 														@if($hospital->image)
-															<img src="{{ asset($hospital->image) }}" alt="Hospital Image" width="100px">
+															<img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}															" width="100px">
 														@else
 															No Image Available
 														@endif
-													</td>																										<td>{{ $hospital->email }}</td>                              
+													</td>	
+													<td>{{ $hospital->email }}</td>                              
                                                     <td>{{ $hospital->mobile }}</td>	
                                                     <td>                                
 														{{-- <div style="margin-bottom: 5px; width: 100px;"> 
@@ -69,7 +73,7 @@
 																@method('DELETE')
 																@csrf
 																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">
-																	<i class="fas fa-trash"></i> 
+																	{{-- <i class="fas fa-trash"></i>  --}}
 																	حذف
 																</button>
 															</form>

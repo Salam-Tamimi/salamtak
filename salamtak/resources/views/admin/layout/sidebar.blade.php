@@ -4,34 +4,37 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<span>رئيسي</span>
-							</li>
+								<h5>لوحة تحكم {{ Auth::user()->name }}</h5>
+							</li> <br>
 							<li> 
-								<a href="{{ url('/admin') }}"><i class="fe fe-home"></i> <span>لوحة التحكم</span></a>
+								<a href="{{ url('/admin') }}"> <span style="font-size: 18px"> الرئيسية</span></a>
 							</li>
 							{{-- <li> 
 								<a href="{{ url('appointments-admin') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
 							</li> --}}
 							<li> 
-								<a href="{{ url('hospitals-admin') }}"><i class="fe fe-layout"></i> <span>المستشفيات</span></a>
+								<a href="{{ url('hospitals-admin') }}"style="font-size: 18px"> <span>المستشفيات</span></a>
 							</li>
 							{{-- <li> 
 								<a href="{{ url('departments-admin') }}"><i class="fe fe-users"></i> <span>الأقسام</span></a>
 							</li> --}}
 							<li> 
-								<a href="{{ url('/doctors-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
+								<a href="{{ url('/doctors-list') }}"style="font-size: 18px"> <span>الأطباء</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('patients-list') }}"><i class="fe fe-user"></i> <span>المرضى</span></a>
+								<a href="{{ url('patients-list') }}"style="font-size: 18px"><span>المرضى</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>
+								<a href="{{ url('reviews-admin') }}"style="font-size: 18px"> <span>التقييمات</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('/transactions-list') }}"><i class="fe fe-activity"></i> <span>المعاملات</span></a>
+								<a href="{{ url('/profile-hospital') }}"style="font-size: 18px">
+									الإعدادات
+								</a>							
 							</li>
-							<li> 
-								<a href="{{ url('/settings-admin') }}"><i class="fe fe-vector"></i> <span>الإعدادات</span></a>
+
+							{{-- <li> 
+								<a href="{{ url('/settings-admin') }}"> <span>الإعدادات</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> التقارير</span> <span class="menu-arrow"></span></a>
@@ -87,7 +90,7 @@
 									<li><a href="{{ url('tables-basic') }}">الجداول الأساسية </a></li>
 									<li><a href="{{ url('data-tables') }}">جدول البيانات </a></li>
 								</ul>
-							</li>
+							</li> --}}
 							{{-- <li class="submenu">
 								<a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">

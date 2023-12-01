@@ -97,7 +97,7 @@
                     </div>
                     <form class="d-flex mx-4">
                         <input class="form-control me-2 rounded-pill" type="search" placeholder="بحث" aria-label="Search">
-                        <span>&nbsp</span>
+                        <span>&nbsp;</span>
                         <button class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5" type="submit">بحث</button>
                     </form>
                     </div>                      

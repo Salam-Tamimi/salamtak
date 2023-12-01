@@ -26,7 +26,7 @@ class HospitalController extends Controller
     public function index()
 {
     $user = auth()->user();
-    dd($user->role);
+    // dd($user->role);
     if ($user->role === 'admin') {
         $hospitals = User::where('role', 'hospital')->get();
         // dd($hospitals);

@@ -142,10 +142,10 @@
 					<!-- /Notifications -->
 					
 					<!-- User Menu -->
-					<a href="{{ url('/profile-hospital') }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
+					{{-- <a href="{{ url('/profile-hospital') }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
 						{{ auth()->user()->name }}
 						<span class="user-img"><img class="rounded-circle" src="{{ asset('storage/images/'  . auth()->user()->image) }}" width="31" alt="صورة {{ auth()->user()->name }}"></span>
-					</a>
+					</a> --}}
 					{{-- <li class="nav-item dropdown has-arrow">
 						<div class="dropdown-menu">
 							<div class="user-header">
@@ -163,8 +163,26 @@
 						</div>
 					</li> --}}
 					<!-- /User Menu -->
-					
 				</ul>
+				<div style="margin-left: 5%;">
+				@if(auth()->check())
+				
+					<form action="{{ url('/logout') }}" method="POST" style="display: inline;margin-left:2%;">
+						@csrf
+						<button type="submit" class="btn rounded-pill" style="color: rgb(175, 42, 42)); text-decoration: underline; font-size: 15px; background: none; border: none; padding: 0; cursor: pointer;">
+							<svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17" stroke="rgb(175, 42, 42)" stroke-width="1.5" stroke-linecap="round"></path> <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="rgb(175, 42, 42)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+					&nbsp;تسجيل خروج
+						</button>
+					</form>
+				
+					<a class="btn rounded-pill px-0" href="{{ url('/profile-hospital') }}">
+						<svg width="45px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 7.063C16.5 10.258 14.57 13 12 13c-2.572 0-4.5-2.742-4.5-5.938C7.5 3.868 9.16 2 12 2s4.5 1.867 4.5 5.063zM4.102 20.142C4.487 20.6 6.145 22 12 22c5.855 0 7.512-1.4 7.898-1.857a.416.416 0 0 0 .09-.317C19.9 18.944 19.106 15 12 15s-7.9 3.944-7.989 4.826a.416.416 0 0 0 .091.317z" fill="rgb(29, 29, 29)"></path></g></svg>                        
+					</a>
+				@else
+					<a class="btn rounded" style="color: white; background-color:#FE8325" href="{{ url('/login') }}">تسجيل دخول</a>
+					{{-- <a class="btn rounded" style="color: white;text-decoration: underline;" href="{{ url('/register') }}">إنشاء حساب</a> --}}
+				@endif
+				</div>
 				<!-- /Header Right Menu -->
 				
             </div>

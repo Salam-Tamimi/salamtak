@@ -26,11 +26,11 @@
 							<div class="card card-table">
 								<div class="card-header">
 									<h4 class="card-title">لوحة تحكم {{ Auth::user()->name }}</h4>
-										<a class="btn btn-primary btn-sm float-left mx-4" href="{{ route('departments-admin.index') }}">
-											<i class="fas fa-th nav-icon"></i> أقسام المستشفى
+										<a class="btn btn-primary btn-sm float-left mx-4" style="font-size: 18px" href="{{ route('departments-admin.index') }}">
+											 أقسام المستشفى
 										</a>
-										<a class="btn btn-primary btn-sm float-left" href="{{ route('doctors-hospital.index') }}">
-											<i class="fas fa-th nav-icon"></i> أطباء المستشفى
+										<a class="btn btn-primary btn-sm float-left" style="font-size: 18px" href="{{ route('doctors-hospital.index') }}">
+											 أطباء المستشفى
 										</a>
 									</div>
 								</div>

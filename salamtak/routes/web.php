@@ -147,10 +147,12 @@ Route::middleware(['auth', 'role:doctor'])->group(function () {
     Route::get('/doctor-appointments/{doctor_id}', [AppointmentController::class, 'index'])->name('doctor-appointments.index');
     Route::post('/update-status/{appointment}', [AppointmentController::class, 'updateStatus']);
 });
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('hospitals-admin', HospitalController::class);
+});
 
 Route::middleware(['auth', 'role:hospital'])->group(function () {
     Route::resource('users', UserController::class);
-    Route::resource('hospitals-admin', HospitalController::class);
     Route::resource('hospitals-details', Hospital_detailsController::class);
     // Route::put('/hospitals-details/{id}', [Hospital_detailsController::class, 'update'])->name('hospitals-details.update');
 

@@ -6,15 +6,16 @@
 							<li class="menu-title"> 
 								<h5>لوحة تحكم {{ Auth::user()->name }}</h5>
 							</li> <br>
+							<li> 
+								<a href="{{ url('hospitals-details') }}" style="font-size: 18px"> <span>الرئيسية </span></a>
+							</li>
 							{{-- <li> 
 								<a href="{{ url('/admin') }}"><i class="fe fe-home"></i> <span>لوحة التحكم</span></a>
 							</li> --}}
 							<li> 
 								<a href="{{ url('/hospital-appointments') }}" style="font-size: 18px"> <span>الحجوزات</span></a>
 							</li>
-							<li> 
-								<a href="{{ url('hospitals-details') }}" style="font-size: 18px"> <span>المستشفيات</span></a>
-							</li>
+							
 							<li> 
 								<a href="{{ url('departments-admin') }}" style="font-size: 18px"> <span>الأقسام</span></a>
 							</li>
