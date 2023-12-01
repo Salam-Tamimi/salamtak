@@ -57,20 +57,20 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->hospital->image) }}" alt="صورة المستشفى"></a>
-															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->doctor->name }}  </a>
+															{{-- <a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->hospital->image) }}" alt="صورة المستشفى"></a> --}}
+															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->hospital->name }}  </a>
 														</h2>
 													</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->doctor->image) }}" alt="صورة الطبيب"></a>
+															{{-- <a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->doctor->image) }}" alt="صورة الطبيب"></a> --}}
 															<a href="{{ url('/admin-profile') }}" class="mx-2">{{ $appointment->doctor->name }}  </a>
 														</h2>
 													</td>
 													<td>{{ $appointment->department->name }}</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->user->image) }}" alt="User Image"></a>
+															{{-- <a href="{{ url('/admin-profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset($appointment->user->image) }}" alt="User Image"></a> --}}
 															<a href="{{ url('/admin-profile') }}"class="mx-2"> {{ $appointment->user->name }}</a>
 														</h2>
 													</td>

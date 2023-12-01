@@ -58,12 +58,20 @@ public function index()
             ->get();
         // Append the full image URL to each doctor object
         $doctors->each(function ($doctor) {
-            $doctor->image = asset('storage/' . $doctor->image);
+            if (request()->hasFile('image')) {
+                $doctor->image = $this->uploadImage(request()->file('image'), 'uploads');
+            }
         });
         
         return view('hospital.pages.doctors-hospital.index', compact('doctors'));
+        
     } elseif ($user->role === 'admin')  {
         $doctors = User::where('role', 'doctor')->get();
+        $doctors->each(function ($doctor) {
+            if (request()->hasFile('image')) {
+                $doctor->image = $this->uploadImage(request()->file('image'), 'uploads');
+            }
+        });
         return view('admin.pages.doctors-list.index', compact('doctors'));
 
     }

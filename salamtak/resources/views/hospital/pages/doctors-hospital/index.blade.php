@@ -51,7 +51,10 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset('storage/' . $doctor->image) }}" alt="{{ $doctor->name }}">
+															{{-- <img class="avatar-img rounded-circle" src="{{ asset('storage/' . $doctor->image) }}" alt="{{ $doctor->name }}"> --}}
+															@if($doctor->image)
+															<img src="{{ asset($doctor->image) }}" alt="صورة {{ $doctor->name }}" width="100px">
+															@endif
 															<a href="profile.html" class="mx-2">&nbsp;{{ $doctor->name }}</a>
 														</h2>
 													</td>

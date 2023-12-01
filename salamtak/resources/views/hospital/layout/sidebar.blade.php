@@ -4,7 +4,7 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<h5>لوحة تحكم {{ Auth::user()->name }}</h5>
+								<h5>  {{ Auth::user()->name }}</h5>
 							</li> <br>
 							<li> 
 								<a href="{{ url('hospitals-details') }}" style="font-size: 18px"> <span>الرئيسية </span></a>

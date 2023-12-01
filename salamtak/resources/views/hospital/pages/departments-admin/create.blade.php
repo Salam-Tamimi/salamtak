@@ -4,9 +4,9 @@
 			
 <br> <br> 
 
-<div class="container">
-    <h1>إضافة قسم جديد</h1>
-    <form method="POST" action="{{ route('departments-admin.store',Auth::user()->hospital_id) }}" enctype="multipart/form-data" style="width: 80%; margin: 50px auto;">
+<div class="container" dir="rtl" style="text-align: right">
+    <h1 dir="rtl" style="text-align: right; margin-right:10%; margin-top:4%">إضافة قسم جديد</h1>
+    <form method="POST" action="{{ route('departments-admin.store',Auth::user()->hospital_id) }}" enctype="multipart/form-data" dir="rtl" style="width: 80%; margin: 50px auto; text-align: right">
         @csrf
         <input type="hidden" name="hospital_id" value="{{ Auth::user()->hospital_id }}">
         <div class="form-group">

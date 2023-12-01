@@ -38,6 +38,8 @@
 												</tr>
 											</thead>
 											<tbody>
+												@if ($reviews)
+													
 												@foreach ($reviews as $review)
 													<tr>
 													<td>
@@ -115,6 +117,7 @@
 													</td> --}}
 												</tr>
 												@endforeach
+												@endif
 												
 												{{-- <tr>
 													<td>

@@ -94,7 +94,7 @@
     <hr class="my-4">
     <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
         <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">المستشفيات</div>
-        <h2 class="mb-5">المستشفيات الرئيسية </h2>
+        <h2 class="mb-5">المستشفيات الخاصة </h2>
     </div>
     
     <div class="row my-4">
@@ -102,10 +102,10 @@
             @foreach ($hospitals as $hospital)
                 <div class="col mb-3">
                     <div class="card mx-3">
-                        <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top">
+                        <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="height: 200px;">
                         <div class="card-body">
                             <h4 class="card-title">{{ $hospital->name }}</h4>
-                            <a href="{{ url('/hospital-single') }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);">حجز موعد</a>
+                            <a href="{{ url('/hospital-single') }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); margin-right:18%">حجز موعد</a>
                         </div>
                     </div>
                 </div>
