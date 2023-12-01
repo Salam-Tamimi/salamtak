@@ -4,28 +4,33 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<span>لوحة تحكم {{ Auth::user()->name }}</span>
-							</li>
+								<h5>لوحة تحكم {{ Auth::user()->name }}</h5>
+							</li> <br>
 							{{-- <li> 
 								<a href="{{ url('/admin') }}"><i class="fe fe-home"></i> <span>لوحة التحكم</span></a>
 							</li> --}}
 							<li> 
-								<a href="{{ url('/hospital-appointments') }}"><i class="fe fe-layout"></i> <span>الحجوزات</span></a>
+								<a href="{{ url('/hospital-appointments') }}" style="font-size: 18px"> <span>الحجوزات</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('hospitals-details') }}"><i class="fe fe-layout"></i> <span>المستشفيات</span></a>
+								<a href="{{ url('hospitals-details') }}" style="font-size: 18px"> <span>المستشفيات</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('departments-admin') }}"><i class="fe fe-users"></i> <span>الأقسام</span></a>
+								<a href="{{ url('departments-admin') }}" style="font-size: 18px"> <span>الأقسام</span></a>
 							</li>
 							<li> 
-								<a href="{{ url('/doctors-list') }}"><i class="fe fe-user-plus"></i> <span>الأطباء</span></a>
+								<a href="{{ url('/doctors-list') }}" style="font-size: 18px"> <span>الأطباء</span></a>
 							</li>
 							{{-- <li> 
 								<a href="{{ url('patients-list') }}"><i class="fe fe-user"></i> <span>المرضى</span></a>
 							</li> --}}
 							<li> 
-								<a href="{{ url('reviews-admin') }}"><i class="fe fe-star-o"></i> <span>التقييمات</span></a>
+								<a href="{{ url('reviews-admin') }}" style="font-size: 18px"><span>التقييمات</span></a>
+							</li>
+							<li> 
+								<a href="{{ url('/profile-hospital') }}"style="font-size: 18px">
+									الإعدادات
+								</a>							
 							</li>
 							{{-- <li> 
 								<a href="{{ url('/transactions-list') }}"><i class="fe fe-activity"></i> <span>المعاملات</span></a>

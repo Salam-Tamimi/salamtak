@@ -38,9 +38,9 @@
             <div class="header">
 	
 				
-				<a href="javascript:void(0);" id="toggle_btn">
+				{{-- <a href="javascript:void(0);" id="toggle_btn">
 					<i class="fe fe-text-align-right"></i>
-				</a>
+				</a> --}}
 
 				<!-- Logo -->
                 <div class="header-left">
@@ -55,13 +55,13 @@
 				<div class="top-nav-search">
 					<form>
 						<input type="text" class="form-control" placeholder="ابحث هنا">
-						<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+						<button class="btn" type="submit"></button>
 					</form>
 				</div>
 				
 				<!-- Mobile Menu Toggle -->
 				<a class="mobile_btn" id="mobile_btn">
-					<i class="fa fa-bars"></i>
+					{{-- <i class="fa fa-bars"></i> --}}
 				</a>
 				<!-- /Mobile Menu Toggle -->
 				
@@ -143,7 +143,8 @@
 					
 					<!-- User Menu -->
 					<a href="{{ url('/profile-hospital') }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
-						<span class="user-img"><img class="rounded-circle" src="{{ asset('storage/images/'  . auth()->user()->image) }}" width="31" alt="Ryan Taylor"></span>
+						{{ auth()->user()->name }}
+						<span class="user-img"><img class="rounded-circle" src="{{ asset('storage/images/'  . auth()->user()->image) }}" width="31" alt="صورة {{ auth()->user()->name }}"></span>
 					</a>
 					{{-- <li class="nav-item dropdown has-arrow">
 						<div class="dropdown-menu">
