@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class Doctor_detailsController extends Controller
 {
     public function __construct()
-{
-    $this->middleware(['auth', 'role:doctor']);
-}
+    {
+        $this->middleware(['auth', 'role:doctor']);
+    }
     /**
      * Display a listing of the resource.
      *

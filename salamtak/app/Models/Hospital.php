@@ -14,15 +14,19 @@ class Hospital extends Model
         'location', 
         'video', 
         'virtual_tour', 
-        'image',  
+        'image',
+        'user_id',  
     ];
 
 
-    public function users() 
-    {
-        return $this->belongsTo(User::class, 'hospital_id');
-    }
-    
+    // public function users() 
+    // {
+    //     return $this->belongsTo(User::class, 'hospital_id');
+    // }
+    public function user() 
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
 
 // public function hospital_departments() 
 // {
