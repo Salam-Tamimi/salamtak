@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/hospitals.css') }}">
 
-@endsection<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyZ37AIX2ZgT2MIweqQ8S1tQTKK4LPMOvx" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyZ37AIX2ZgT2MIweqQ8S1tQTKK4LPMOvx" crossorigin="anonymous">
+@endsection
 
 @section('content')
   <div class="contain">
@@ -138,8 +139,8 @@ use App\Models\User;
   <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-<script  src="./script.js"></script>
-<script src="/js/hospitals.js"></script>
+<script  src="{{ asset('script.js') }}"></script>
+<script src="{{ asset('/js/hospitals.js') }}"></script>
 @endsection
 
 

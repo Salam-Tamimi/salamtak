@@ -1,677 +1,345 @@
 {{-- @extends('layout.master')
-@section('title','سلامتك - صفحة المستشفى')
-@section('css')     
-        <link rel='stylesheet' id='elementor-frontend-css' href='https://truemarkets3d.net/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.15.2' type='text/css' media='all'/>
-        <link rel="stylesheet" href="/css/style.css">
+@section('title','صفحة المستشفى')
+@section('css')
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/hospitals.css') }}">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyZ37AIX2ZgT2MIweqQ8S1tQTKK4LPMOvx" crossorigin="anonymous">
 @endsection
 
-@section('content')                                                                                                                                                          <br> <br> <br> <br> <br> <br><br>  --}}
-            <div data-elementor-type="single-post" data-elementor-id="22" class="elementor elementor-22 elementor-location-single post-348 post type-post status-publish format-standard has-post-thumbnail hentry category-3d-banks-in-jordan" data-elementor-post-type="elementor_library">
-            <section class="elementor-section elementor-top-section elementor-element elementor-element-49c926a elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="49c926a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_direction&quot;:&quot;out-in&quot;,&quot;background_motion_fx_scale_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:4,&quot;sizes&quot;:[]},&quot;background_motion_fx_scale_range&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:20,&quot;end&quot;:80}},&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-e-bg-lazyload="">
-                <div class="elementor-background-overlay"></div>
-                <div class="elementor-container elementor-column-gap-default">
-                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9fce317" data-id="9fce317" data-element_type="column">
-                        <div class="elementor-widget-wrap elementor-element-populated">
-                            <div class="elementor-element elementor-element-2cadf75 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="2cadf75" data-element_type="widget" data-widget_type="theme-post-title.default">
-                                <div class="elementor-widget-container">
-                                    <style>
-                                        /*! elementor - v3.15.0 - 09-08-2023 */
-                                        .elementor-heading-title {
-                                            padding: 0;
-                                            margin: 0;
-                                            line-height: 1
-                                        }
-
-                                        .elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a {
-                                            color: inherit;
-                                            font-size: inherit;
-                                            line-height: inherit
-                                        }
-
-                                        .elementor-widget-heading .elementor-heading-title.elementor-size-small {
-                                            font-size: 15px
-                                        }
-
-                                        .elementor-widget-heading .elementor-heading-title.elementor-size-medium {
-                                            font-size: 19px
-                                        }
-
-                                        .elementor-widget-heading .elementor-heading-title.elementor-size-large {
-                                            font-size: 29px
-                                        }
-
-                                        .elementor-widget-heading .elementor-heading-title.elementor-size-xl {
-                                            font-size: 39px
-                                        }
-
-                                        .elementor-widget-heading .elementor-heading-title.elementor-size-xxl {
-                                            font-size: 59px
-                                        }
-                                    </style>
-                                    <h1 class="elementor-heading-title elementor-size-xl"style="margin-top:-5%;color:black;">مستشفى إربد التخصصي</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="elementor-section elementor-top-section elementor-element elementor-element-8199ad0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8199ad0" data-element_type="section">
-                <br><br> <br> <br>
-            <div class="elementor-widget-wrap elementor-element-populated">
-                    <div class="elementor-element elementor-element-53236121 elementor-widget elementor-widget-heading" data-id="53236121" data-element_type="widget" data-widget_type="heading.default">
-                        <div class="elementor-widget-container" style="margin-right:13%;">
-                            <h2 class="elementor-heading-title elementor-size-default"style="margin-top:-5%;color:black;">جولة افتراضية</h2>
-                        </div>
-                        </div>
-                        <div class="elementor-element elementor-element-3d473682 elementor-widget elementor-widget-theme-post-content" data-id="3d473682" data-element_type="widget" data-widget_type="theme-post-content.default">
-                        <div class="elementor-widget-container">
-                            <div data-elementor-type="wp-post" data-elementor-id="5435" class="elementor elementor-5435" data-elementor-post-type="post">
-                                            <section class="elementor-section elementor-top-section elementor-element elementor-element-c21427b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c21427b" data-element_type="section">
-                                                 <div class="elementor-container elementor-column-gap-default">
-                                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-67617b8" data-id="67617b8" data-element_type="column">
-                                                        <div class="elementor-widget-wrap elementor-element-populated">
-                                                                <div class="elementor-element elementor-element-49d8018 elementor-widget elementor-widget-html" data-id="49d8018" data-element_type="widget" data-widget_type="html.default">
-                                                                <div class="elementor-widget-container">
-                                                                {{-- <iframe width="100%" height="550" src="https://my.matterport.com/show/?m=vcETg2uLhLa&amp;cloudEdit=1&amp;sr=3.06,.19&amp;ss=471" allow="vr" id="showcase_iframe"></iframe>		 --}}
-                                                                <iframe width="100%" height="550" src="{{ $hospital->virtual_tour }}" allow="vr" id="showcase_iframe"></iframe>		
-                                                                </div>
-                                                                </div>
-                                                        </div>
-                                                   </div>
-                                                </div>
-                                            </section>
-                                    </div>
-                        </div>
-                    </div>
-            </div>
-
-            </section>
-
-
-            <section class="elementor-section elementor-top-section elementor-element elementor-element-fa077c2 elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="fa077c2" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_scale_direction&quot;:&quot;out-in&quot;,&quot;background_motion_fx_scale_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:4,&quot;sizes&quot;:[]},&quot;background_motion_fx_scale_range&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:20,&quot;end&quot;:80}},&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-e-bg-lazyload="">
-                <div class="elementor-background-overlay"></div>
-                <div class="elementor-container elementor-column-gap-default">
-                    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1fc8c38" data-id="1fc8c38" data-element_type="column">
-                        <div class="elementor-widget-wrap elementor-element-populated">
-                            <div class="elementor-element elementor-element-ed4d568 elementor-widget elementor-widget-heading" data-id="ed4d568" data-element_type="widget" data-widget_type="heading.default">
-                                <div class="elementor-widget-container">
-                                    <h3 class="elementor-heading-title elementor-size-default"style="color:black;">فيديو</h3>
-                                </div>
-                            </div>
-                            <!-- <div class="elementor-element elementor-element-b022a8f elementor-widget elementor-widget-video" data-id="b022a8f" data-element_type="widget" data-settings="{&quot;youtube_url&quot;:&quot;https:\/\/youtu.be\/UpfsvvWUGoA&quot;,&quot;video_type&quot;:&quot;youtube&quot;,&quot;controls&quot;:&quot;yes&quot;}" data-widget_type="video.default"> -->
-                                <div class="elementor-element elementor-element-b022a8f elementor-widget elementor-widget-video">
-                                {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/P6JGD8dNCB0?si=0r3jSgfahKhg0aMZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>   --}}
-                                <iframe width="560" height="315" src="{{ $hospital->video }}" allowfullscreen></iframe>  
-                                    <div class="elementor-widget-container">
-                                    <style>
-                                        /*! elementor - v3.15.0 - 09-08-2023 */
-                                        .elementor-widget-video .elementor-widget-container {
-                                            overflow: hidden;
-                                            transform: translateZ(0)
-                                        }
-
-                                        .elementor-widget-video .elementor-wrapper {
-                                            aspect-ratio: var(--video-aspect-ratio)
-                                        }
-
-                                        .elementor-widget-video .elementor-wrapper iframe,.elementor-widget-video .elementor-wrapper video {
-                                            height: 100%;
-                                            width: 100%;
-                                            display: flex;
-                                            border: none;
-                                            background-color: #000
-                                        }
-
-                                        @supports not (aspect-ratio: 1/1) {
-                                            .elementor-widget-video .elementor-wrapper {
-                                                position:relative;
-                                                overflow: hidden;
-                                                height: 0;
-                                                padding-bottom: calc(100% / var(--video-aspect-ratio))
-                                            }
-
-                                            .elementor-widget-video .elementor-wrapper iframe,.elementor-widget-video .elementor-wrapper video {
-                                                position: absolute;
-                                                top: 0;
-                                                right: 0;
-                                                bottom: 0;
-                                                left: 0
-                                            }
-                                        }
-
-                                        .elementor-widget-video .elementor-open-inline .elementor-custom-embed-image-overlay {
-                                            position: absolute;
-                                            top: 0;
-                                            right: 0;
-                                            bottom: 0;
-                                            left: 0;
-                                            background-size: cover;
-                                            background-position: 50%
-                                        }
-
-                                        .elementor-widget-video .elementor-custom-embed-image-overlay {
-                                            cursor: pointer;
-                                            text-align: center
-                                        }
-
-                                        .elementor-widget-video .elementor-custom-embed-image-overlay:hover .elementor-custom-embed-play i {
-                                            opacity: 1
-                                        }
-
-                                        .elementor-widget-video .elementor-custom-embed-image-overlay img {
-                                            display: block;
-                                            width: 100%;
-                                            aspect-ratio: var(--video-aspect-ratio);
-                                            -o-object-fit: cover;
-                                            object-fit: cover;
-                                            -o-object-position: center center;
-                                            object-position: center center
-                                        }
-
-                                        @supports not (aspect-ratio: 1/1) {
-                                            .elementor-widget-video .elementor-custom-embed-image-overlay {
-                                                position:relative;
-                                                overflow: hidden;
-                                                height: 0;
-                                                padding-bottom: calc(100% / var(--video-aspect-ratio))
-                                            }
-
-                                            .elementor-widget-video .elementor-custom-embed-image-overlay img {
-                                                position: absolute;
-                                                top: 0;
-                                                right: 0;
-                                                bottom: 0;
-                                                left: 0
-                                            }
-                                        }
-
-                                        .elementor-widget-video .e-hosted-video .elementor-video {
-                                            -o-object-fit: cover;
-                                            object-fit: cover
-                                        }
-
-                                        .e-con-inner>.elementor-widget-video,.e-con>.elementor-widget-video {
-                                            width: var(--container-widget-width);
-                                            --flex-grow: var(--container-widget-flex-grow)
-                                        }
-                                    </style>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-df0d007" data-id="df0d007" data-element_type="column">
-                        <div class="elementor-widget-wrap elementor-element-populated">
-                            <div class="elementor-element elementor-element-37a7214 elementor-widget elementor-widget-heading" data-id="37a7214" data-element_type="widget" data-widget_type="heading.default">
-                                <div class="elementor-widget-container">
-                                    <h3 class="elementor-heading-title elementor-size-default"style="color:black;">الموقع</h3>
-                                </div>
-                            </div>
-                            <div class="elementor-element elementor-element-ad88cc7 elementor-widget elementor-widget-google_maps" data-id="ad88cc7" data-element_type="widget" data-widget_type="google_maps.default">
-                                <div class="elementor-widget-container">
-                                    <style>
-                                        /*! elementor - v3.15.0 - 09-08-2023 */
-                                        .elementor-widget-google_maps .elementor-widget-container {
-                                            overflow: hidden
-                                        }
-
-                                        .elementor-widget-google_maps .elementor-custom-embed {
-                                            line-height: 0
-                                        }
-
-                                        .elementor-widget-google_maps iframe {
-                                            height: 300px
-                                        }
-                                    </style>
-                                    <div class="elementor-custom-embed">
-                                        {{-- <iframe loading="lazy" style="width:560px;height:315px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3363.713812319381!2d35.86525832444094!3d32.53378967376627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c76f239ac97a1%3A0x2efa0d63c5fff59a!2z2YXYs9iq2LTZgdmJINil2LHYqNivINin2YTYqtiu2LXYtdmK!5e0!3m2!1sar!2sjo!4v1693261639985!5m2!1sar!2sjo"></iframe> --}}
-                                        <iframe loading="lazy" style="width:560px;height:315px;" src="{{ $hospital->location }}"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-
-<!--  *********** sections *********** -->
-        <div class="container-xxl py-6 sections "><hr>
-            <div class="container">
-                <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">الأقسام</div>
-                    <h2 class="mb-5 text-center">أقسام المستشفى </h2>
-                </div>
-        <div class="row g-4 mx-4">
-            @foreach ( $departments as $department ) 
-            <div class="col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay="0.1s">
-                <div class="service-item rounded h-100">
-                    <div class="d-flex justify-content-between">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
-                        </div>
-                        <a class="service-btn" href="{{ url('/appointments') }}">
-                            <i class="fa fa-link fa-2x"></i>
-                        </a>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="mb-3"> {{ $department->name }}</h4>
-                        <span>احجز موعد عند طبيب {{ str_replace('قسم', '', $department->name) }}</span>
-                    </div>
-                </div>
-            </div>
-            @endforeach
+@section('content')                                                                                                                                                       <br> <br> <br> <br> <br> <br><br>  --}}
             
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> سلامتك - صفحة المستشفى  </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    
+    <!-- Favicon -->
+     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/Medical Care Logo 2 .png') }}">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+<link href="{{ asset('/css/hospital-single.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- JQUERY SCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('/css/nav_foot.css') }}">
+    {{-- @yield('css') --}}
+    <style type="text/css">
+        img.wp-smiley, img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 0.07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+        /*** Service ***/
+            .service-item {
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+                border: 1px solid transparent;
+                transition: .6s;
+            }
+
+            .service-item:hover {
+                box-shadow: 3px 3px 10px rgba(57, 137, 230, 0.4);
+                border-color: #0d51ac;
+                scale: 1.03;
+                font-size:x-large ;
+                color:#FE8325;
+            }
+
+            .service-item .service-icon,
+            .service-item .service-btn {
+                margin: -1px 0 0 -1px;
+                width: 65px;
+                height: 65px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #FFFFFF;
+                background: #0d51ac;
+                border-radius: 5px 0;
+                transition: .5s;
+            }
+
+            .service-item .service-btn {
+                margin: -1px -1px 0 0;
+                border-radius: 0 5px;
+                opacity: 0;
+            }
+
+            .service-item:hover .service-btn {
+                opacity: 1;
+            }
+
+            .container-xxl {
+            width: 100%;
+            padding-right: var(--bs-gutter-x, .75rem);
+            padding-left: var(--bs-gutter-x, .75rem);
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 7%;
+           }
+           
+    </style>
+
+
+</head>
+
+<body>
+    {{-- <div class="container-xxl bg-white p-0"> --}}
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+<div class="container-xxl position-relative p-0 ">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="{{ url('/') }}" class="navbar-brand p-0">
+                    <!-- <h1 class="m-0">BizConsult</h1> -->
+                    <img src="{{ asset('images/Medical Care Logo 2 .png') }}" alt="Logo" style="width: 110%;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav  py-0">
+                        <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
+                        <a href="{{ url('/') }}" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
+                            <div class="dropdown-menu m-0" >
+                                <a href="{{ url('/filter') }}" class="dropdown-item">حجز مواعيد</a>
+                                <a href="{{ url('/edit-appointment') }}" class="dropdown-item">ادارة المواعيد</a>
+                                <a href="{{ url('/lab') }}" class="dropdown-item">المختبرات الطبية</a>
+                                <a href="{{ url('/hospitals') }}" class="dropdown-item">المستشفيات</a>
+                                <!-- <a href="404.html" class="dropdown-item">مواعيد عيادات الاختصاص</a> -->
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
+                            <div class="dropdown-menu m-0">
+                                {{-- <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العظام</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأشعة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم القلب</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجراحة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الولادة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأطفال</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العلاج الطبيعي</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
+                                @php
+                                use App\Models\Department;
+                                $departments = Department::all();
+                                @endphp
+                                @foreach ($departments as $department)
+                                <a href="{{ url('/appointments-dates', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
+                        <a href="{{ url('/about') }}" class="nav-item nav-link">من نحن</a>
+
+                        <a href="{{ url('/contact') }}" class="nav-item nav-link">تواصل معنا</a>
+                    </div>
+                    <form class="d-flex mx-4">
+                        <input class="form-control me-2 rounded-pill" type="search" placeholder="بحث" aria-label="Search">
+                        <span>&nbsp</span>
+                        <button class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5" type="submit">بحث</button>
+                    </form>
+                    </div>                      
+                    {{-- <a class="btn rounded-pill" href="{{ url('/profile') }}">
+                        <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" style="width: 25px;"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#B3CDE6]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-420.000000, -2159.000000)" fill="#B3CDE6"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M374,2009 C371.794,2009 370,2007.206 370,2005 C370,2002.794 371.794,2001 374,2001 C376.206,2001 378,2002.794 378,2005 C378,2007.206 376.206,2009 374,2009 M377.758,2009.673 C379.124,2008.574 380,2006.89 380,2005 C380,2001.686 377.314,1999 374,1999 C370.686,1999 368,2001.686 368,2005 C368,2006.89 368.876,2008.574 370.242,2009.673 C366.583,2011.048 364,2014.445 364,2019 L366,2019 C366,2014 369.589,2011 374,2011 C378.411,2011 382,2014 382,2019 L384,2019 C384,2014.445 381.417,2011.048 377.758,2009.673" id="profile-[#B3CDE6]"> </path> </g> </g> </g> </g></svg>                   
+                    </a> --}}
+                    @if(auth()->check())
+                    {{-- <a class="btn rounded-pill" style="color: white;text-decoration: underline;font-size:15px;" href="{{ url('/logout') }}">
+                        <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                     &nbsp;تسجيل خروج
+                    </a> --}}
+                    <form action="{{ url('/logout') }}" method="POST" style="display: inline;margin-left:2%;">
+                        @csrf
+                        <button type="submit" class="btn rounded-pill" style="color: white; text-decoration: underline; font-size: 15px; background: none; border: none; padding: 0; cursor: pointer;">
+                            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                     &nbsp;تسجيل خروج
+                        </button>
+                    </form>
+                    
+                        <a class="btn rounded-pill px-0" href="{{ url('/edit-appointment') }}">
+                            <svg width="45px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 7.063C16.5 10.258 14.57 13 12 13c-2.572 0-4.5-2.742-4.5-5.938C7.5 3.868 9.16 2 12 2s4.5 1.867 4.5 5.063zM4.102 20.142C4.487 20.6 6.145 22 12 22c5.855 0 7.512-1.4 7.898-1.857a.416.416 0 0 0 .09-.317C19.9 18.944 19.106 15 12 15s-7.9 3.944-7.989 4.826a.416.416 0 0 0 .091.317z" fill="#ffffff"></path></g></svg>                        
+                        </a>
+                    @else
+                        <a class="btn rounded" style="color: white; background-color:#FE8325" href="{{ url('/login') }}">تسجيل دخول</a>
+                        <a class="btn rounded" style="color: white;text-decoration: underline;" href="{{ url('/register') }}">إنشاء حساب</a>
+                    @endif
+            </nav> <br> <br> <br><br> <br><br><br><br> <br>
+
+
+<div class="mx-4">
+    <h2 class="elementor-heading-title elementor-size-xl"style="margin-top:-5%;color:black;">مستشفى إربد التخصصي</h2>
+<br>
+<br>
+
+<!--  *********** departments start *********** -->
+<div class="container-xxl sections "><hr>
+    <div class="container">
+        <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">الأقسام</div>
+            <h2 class="mb-5 text-center">أقسام المستشفى </h2>
+        </div>
+<div class="row g-4 mx-4">
+    @foreach ( $departments as $department ) 
+    <div class="col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay="0.1s">
+        <div class="service-item rounded h-100">
+            <div class="d-flex justify-content-between">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16"><path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/></svg> 
+                </div>
+                <a class="service-btn" href="{{ url('/appointments') }}">
+                    <i class="fa fa-link fa-2x"></i>
+                </a>
+            </div>
+            <div class="p-5">
+                <h4 class="mb-3"> {{ $department->name }}</h4>
+                <span>احجز موعد عند طبيب {{ str_replace('قسم', '', $department->name) }}</span>
+            </div>
         </div>
     </div>
+    @endforeach
+    
 </div>
+</div>
+</div>
+<!--  *********** departments end *********** -->
+
+<div class="d-flex">
+    <div class="mx-4">
+        <h5>فيديو للمستشفى</h5>
+        <iframe width="560" height="315" src="{{ $hospital->video }}" allowfullscreen></iframe>  
+    </div>
+
+    <div class="mx-4">
+        <h5>موقع المستشفى</h5>
+        <iframe loading="lazy" style="width:560px;height:315px;" src="{{ $hospital->location }}"></iframe>
+    </div>
+
+</div>
+
+</div>
+
+
 {{-- @endsection
 
 @section('js') --}}
-      <script>
-            window.RS_MODULES = window.RS_MODULES || {};
-            window.RS_MODULES.modules = window.RS_MODULES.modules || {};
-            window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
-            window.RS_MODULES.defered = true;
-            window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
-            window.RS_MODULES.type = 'compiled';
-        </script>
-        <script type='text/javascript'>
-            const lazyloadRunObserver = ()=>{
-                const dataAttribute = 'data-e-bg-lazyload';
-                const lazyloadBackgrounds = document.querySelectorAll(`[${dataAttribute}]:not(.lazyloaded)`);
-                const lazyloadBackgroundObserver = new IntersectionObserver((entries)=>{
-                    entries.forEach((entry)=>{
-                        if (entry.isIntersecting) {
-                            let lazyloadBackground = entry.target;
-                            const lazyloadSelector = lazyloadBackground.getAttribute(dataAttribute);
-                            if (lazyloadSelector) {
-                                lazyloadBackground = entry.target.querySelector(lazyloadSelector);
-                            }
-                            if (lazyloadBackground) {
-                                lazyloadBackground.classList.add('lazyloaded');
-                            }
-                            lazyloadBackgroundObserver.unobserve(entry.target);
-                        }
-                    }
-                    );
-                }
-                ,{
-                    rootMargin: '100px 0px 100px 0px'
-                });
-                lazyloadBackgrounds.forEach((lazyloadBackground)=>{
-                    lazyloadBackgroundObserver.observe(lazyloadBackground);
-                }
-                );
-            }
-            ;
-            const events = ['DOMContentLoaded', 'elementor/lazyload/observe', ];
-            events.forEach((event)=>{
-                document.addEventListener(event, lazyloadRunObserver);
-            }
-            );
-        </script>
-        {{-- <link href="https://fonts.googleapis.com/css?family=Roboto:400%7CBarlow+Condensed:300%2C500%2C400&display=swap" rel="stylesheet" property="stylesheet" media="all" type="text/css"> --}}
-        <script type="text/javascript">
-            (function() {
-                var c = document.body.className;
-                c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-                document.body.className = c;
-            }
-            )();
-        </script>
-        <script>
-            if (typeof revslider_showDoubleJqueryError === "undefined") {
-                function revslider_showDoubleJqueryError(sliderID) {
-                    console.log("You have some jquery.js library include that comes after the Slider Revolution files js inclusion.");
-                    console.log("To fix this, you can:");
-                    console.log("1. Set 'Module General Options' -> 'Advanced' -> 'jQuery & OutPut Filters' -> 'Put JS to Body' to on");
-                    console.log("2. Find the double jQuery.js inclusion and remove it");
-                    return "Double Included jQuery Library";
-                }
-            }
-        </script>
-        <link rel="preload" as="font" id="rs-icon-set-fa-icon-woff" type="font/woff2" crossorigin="anonymous" href="https://truemarkets3d.net/wp-content/plugins/revslider/public/assets/fonts/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0" media="all"/>
-        <link rel="stylesheet" property="stylesheet" id="rs-icon-set-fa-icon-css" href="https://truemarkets3d.net/wp-content/plugins/revslider/public/assets/fonts/font-awesome/css/font-awesome.css" type="text/css" media="all"/>
-        <link rel='stylesheet' id='e-animations-css' href='https://truemarkets3d.net/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.15.2' type='text/css' media='all'/>
-        <link rel='stylesheet' id='rs-plugin-settings-css' href='https://truemarkets3d.net/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.6.15' type='text/css' media='all'/>
-        <style id='rs-plugin-settings-inline-css' type='text/css'>
-            #rs-demo-id {
-            }
-        </style>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/revslider/public/assets/js/rbtools.min.js?ver=6.6.15' defer async id='tp-tools-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/revslider/public/assets/js/rs6.min.js?ver=6.6.15' defer async id='revmin-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.8.0.1' id='jquery-blockui-js'></script>
-        <script type='text/javascript' id='wc-add-to-cart-js-extra'>
-            /* <![CDATA[ */
-            var wc_add_to_cart_params = {
-                "ajax_url": "\/wp-admin\/admin-ajax.php",
-                "wc_ajax_url": "\/?wc-ajax=%%endpoint%%",
-                "i18n_view_cart": "View cart",
-                "cart_url": "https:\/\/truemarkets3d.net\/cart\/",
-                "is_cart": "",
-                "cart_redirect_after_add": "no"
-            };
-            /* ]]> */
-        </script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=8.0.1' id='wc-add-to-cart-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.8.0.1' id='js-cookie-js'></script>
-        <script type='text/javascript' id='woocommerce-js-extra'>
-            /* <![CDATA[ */
-            var woocommerce_params = {
-                "ajax_url": "\/wp-admin\/admin-ajax.php",
-                "wc_ajax_url": "\/?wc-ajax=%%endpoint%%"
-            };
-            /* ]]> */
-        </script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=8.0.1' id='woocommerce-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/themes/manufacturing-industry-old/assets/js/navigation.js?ver=2.1.2' id='manufacturing-industry-navigation-jquery-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/themes/manufacturing-industry-old/assets/js/jquery.superfish.js?ver=6.3' id='jquery-superfish-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/comment-reply.min.js?ver=6.3' id='comment-reply-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.15.1' id='elementor-pro-webpack-runtime-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.15.2' id='elementor-webpack-runtime-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.15.2' id='elementor-frontend-modules-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2' id='wp-polyfill-inert-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.11' id='regenerator-runtime-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/dist/hooks.min.js?ver=c6aec9a8d4e5a5d543a1' id='wp-hooks-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/dist/i18n.min.js?ver=7701b0c3857f914212ef' id='wp-i18n-js'></script>
-        <script id="wp-i18n-js-after" type="text/javascript">
-            wp.i18n.setLocaleData({
-                'text direction\u0004ltr': ['ltr']
-            });
-        </script>
-        <script id="elementor-pro-frontend-js-before" type="text/javascript">
-            var ElementorProFrontendConfig = {
-                "ajaxurl": "https:\/\/truemarkets3d.net\/wp-admin\/admin-ajax.php",
-                "nonce": "771cce99a7",
-                "urls": {
-                    "assets": "https:\/\/truemarkets3d.net\/wp-content\/plugins\/elementor-pro\/assets\/",
-                    "rest": "https:\/\/truemarkets3d.net\/wp-json\/"
-                },
-                "shareButtonsNetworks": {
-                    "facebook": {
-                        "title": "Facebook",
-                        "has_counter": true
-                    },
-                    "twitter": {
-                        "title": "Twitter"
-                    },
-                    "linkedin": {
-                        "title": "LinkedIn",
-                        "has_counter": true
-                    },
-                    "pinterest": {
-                        "title": "Pinterest",
-                        "has_counter": true
-                    },
-                    "reddit": {
-                        "title": "Reddit",
-                        "has_counter": true
-                    },
-                    "vk": {
-                        "title": "VK",
-                        "has_counter": true
-                    },
-                    "odnoklassniki": {
-                        "title": "OK",
-                        "has_counter": true
-                    },
-                    "tumblr": {
-                        "title": "Tumblr"
-                    },
-                    "digg": {
-                        "title": "Digg"
-                    },
-                    "skype": {
-                        "title": "Skype"
-                    },
-                    "stumbleupon": {
-                        "title": "StumbleUpon",
-                        "has_counter": true
-                    },
-                    "mix": {
-                        "title": "Mix"
-                    },
-                    "telegram": {
-                        "title": "Telegram"
-                    },
-                    "pocket": {
-                        "title": "Pocket",
-                        "has_counter": true
-                    },
-                    "xing": {
-                        "title": "XING",
-                        "has_counter": true
-                    },
-                    "whatsapp": {
-                        "title": "WhatsApp"
-                    },
-                    "email": {
-                        "title": "Email"
-                    },
-                    "print": {
-                        "title": "Print"
-                    }
-                },
-                "woocommerce": {
-                    "menu_cart": {
-                        "cart_page_url": "https:\/\/truemarkets3d.net\/cart\/",
-                        "checkout_page_url": "https:\/\/truemarkets3d.net\/checkout\/",
-                        "fragments_nonce": "db302a9fd7"
-                    }
-                },
-                "facebook_sdk": {
-                    "lang": "en_US",
-                    "app_id": ""
-                },
-                "lottie": {
-                    "defaultAnimationUrl": "https:\/\/truemarkets3d.net\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"
-                }
-            };
-        </script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.15.1' id='elementor-pro-frontend-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2' id='elementor-waypoints-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2' id='jquery-ui-core-js'></script>
-        <script id="elementor-frontend-js-before" type="text/javascript">
-            var elementorFrontendConfig = {
-                "environmentMode": {
-                    "edit": false,
-                    "wpPreview": false,
-                    "isScriptDebug": false
-                },
-                "i18n": {
-                    "shareOnFacebook": "Share on Facebook",
-                    "shareOnTwitter": "Share on Twitter",
-                    "pinIt": "Pin it",
-                    "download": "Download",
-                    "downloadImage": "Download image",
-                    "fullscreen": "Fullscreen",
-                    "zoom": "Zoom",
-                    "share": "Share",
-                    "playVideo": "Play Video",
-                    "previous": "Previous",
-                    "next": "Next",
-                    "close": "Close",
-                    "a11yCarouselWrapperAriaLabel": "Carousel | Horizontal scrolling: Arrow Left & Right",
-                    "a11yCarouselPrevSlideMessage": "Previous slide",
-                    "a11yCarouselNextSlideMessage": "Next slide",
-                    "a11yCarouselFirstSlideMessage": "This is the first slide",
-                    "a11yCarouselLastSlideMessage": "This is the last slide",
-                    "a11yCarouselPaginationBulletMessage": "Go to slide"
-                },
-                "is_rtl": false,
-                "breakpoints": {
-                    "xs": 0,
-                    "sm": 480,
-                    "md": 768,
-                    "lg": 1025,
-                    "xl": 1440,
-                    "xxl": 1600
-                },
-                "responsive": {
-                    "breakpoints": {
-                        "mobile": {
-                            "label": "Mobile Portrait",
-                            "value": 767,
-                            "default_value": 767,
-                            "direction": "max",
-                            "is_enabled": true
-                        },
-                        "mobile_extra": {
-                            "label": "Mobile Landscape",
-                            "value": 880,
-                            "default_value": 880,
-                            "direction": "max",
-                            "is_enabled": false
-                        },
-                        "tablet": {
-                            "label": "Tablet Portrait",
-                            "value": 1024,
-                            "default_value": 1024,
-                            "direction": "max",
-                            "is_enabled": true
-                        },
-                        "tablet_extra": {
-                            "label": "Tablet Landscape",
-                            "value": 1200,
-                            "default_value": 1200,
-                            "direction": "max",
-                            "is_enabled": false
-                        },
-                        "laptop": {
-                            "label": "Laptop",
-                            "value": 1366,
-                            "default_value": 1366,
-                            "direction": "max",
-                            "is_enabled": false
-                        },
-                        "widescreen": {
-                            "label": "Widescreen",
-                            "value": 2400,
-                            "default_value": 2400,
-                            "direction": "min",
-                            "is_enabled": false
-                        }
-                    }
-                },
-                "version": "3.15.2",
-                "is_static": false,
-                "experimentalFeatures": {
-                    "e_dom_optimization": true,
-                    "e_optimized_assets_loading": true,
-                    "e_optimized_css_loading": true,
-                    "e_font_icon_svg": true,
-                    "additional_custom_breakpoints": true,
-                    "container": true,
-                    "e_swiper_latest": true,
-                    "theme_builder_v2": true,
-                    "editor_v2": true,
-                    "landing-pages": true,
-                    "nested-elements": true,
-                    "e_lazyload": true,
-                    "page-transitions": true,
-                    "notes": true,
-                    "loop": true,
-                    "form-submissions": true,
-                    "e_scroll_snap": true,
-                    "mega-menu": true
-                },
-                "urls": {
-                    "assets": "https:\/\/truemarkets3d.net\/wp-content\/plugins\/elementor\/assets\/"
-                },
-                "swiperClass": "swiper",
-                "settings": {
-                    "page": [],
-                    "editorPreferences": []
-                },
-                "kit": {
-                    "active_breakpoints": ["viewport_mobile", "viewport_tablet"],
-                    "global_image_lightbox": "yes",
-                    "lightbox_enable_counter": "yes",
-                    "lightbox_enable_fullscreen": "yes",
-                    "lightbox_enable_zoom": "yes",
-                    "lightbox_enable_share": "yes",
-                    "lightbox_title_src": "title",
-                    "lightbox_description_src": "description",
-                    "woocommerce_notices_elements": []
-                },
-                "post": {
-                    "id": 348,
-                    "title": "Arab%20Jordan%20Investment%20Bank%20%E2%80%93%20True%20Markets%203D",
-                    "excerpt": "",
-                    "featuredImage": "https:\/\/truemarkets3d.net\/wp-content\/uploads\/2022\/01\/arab-jordan-investment-bank-3d-virtual-tour-by-matterport-scanner.jpg"
-                }
-            };
-        </script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.15.2' id='elementor-frontend-js'></script>
-        <script type='text/javascript' src='https://truemarkets3d.net/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.15.1' id='pro-elements-handlers-js'></script>
-        <script id="rs-initialisation-scripts">
-            var tpj = jQuery;
 
-            var revapi25;
 
-            if (window.RS_MODULES === undefined)
-                window.RS_MODULES = {};
-            if (RS_MODULES.modules === undefined)
-                RS_MODULES.modules = {};
-            RS_MODULES.modules["gotocontact"] = {
-                once: RS_MODULES.modules["gotocontact"] !== undefined ? RS_MODULES.modules["gotocontact"].once : undefined,
-                init: function() {
-                    window.revapi25 = window.revapi25 === undefined || window.revapi25 === null || window.revapi25.length === 0 ? document.getElementById("goto_contact") : window.revapi25;
-                    if (window.revapi25 === null || window.revapi25 === undefined || window.revapi25.length == 0) {
-                        window.revapi25initTry = window.revapi25initTry === undefined ? 0 : window.revapi25initTry + 1;
-                        if (window.revapi25initTry < 20)
-                            requestAnimationFrame(function() {
-                                RS_MODULES.modules["gotocontact"].init()
-                            });
-                        return;
-                    }
-                    window.revapi25 = jQuery(window.revapi25);
-                    if (window.revapi25.revolution == undefined) {
-                        revslider_showDoubleJqueryError("goto_contact");
-                        return;
-                    }
-                    revapi25.revolutionInit({
-                        revapi: "revapi25",
-                        DPR: "dpr",
-                        sliderLayout: "fullwidth",
-                        visibilityLevels: "1240,1024,778,480",
-                        gridwidth: "1240,1024,778,480",
-                        gridheight: "500,300,200,100",
-                        lazyType: "smart",
-                        perspective: 600,
-                        perspectiveType: "global",
-                        editorheight: "715,625,761,721",
-                        responsiveLevels: "1240,1024,778,480",
-                        progressBar: {
-                            disableProgressBar: true
-                        },
-                        navigation: {
-                            onHoverStop: false
-                        },
-                        parallax: {
-                            levels: [5, 10, 15, 20, 25, -5, -10, -15, 45, 46, 47, 48, 49, 50, 51, 30],
-                            type: "mouse",
-                            origo: "slidercenter",
-                            speed: 0
-                        },
-                        viewPort: {
-                            global: true,
-                            globalDist: "-200px",
-                            enable: true
-                        },
-                        fallbacks: {
-                            allowHTML5AutoPlayOnAndroid: true
-                        },
-                    });
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-4">
+                <h5 class="text-white mb-4">ابقى على تواصل</h5>
+                <p ><i class="fa fa-phone-alt me-3"></i> &nbsp; 0797263731</p>
+                <p ><i class="fa fa-envelope me-3"></i> &nbsp; salamtak@example.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <h5 class="text-white mb-4">خدمة العملاء</h5>
+                <a class="btn btn-link" href="" style="text-align: right;">معلومت عنا </a>
+                <a class="btn btn-link" href=""style="text-align: right;">تواصل معنا </a>
+                <a class="btn btn-link" href=""style="text-align: right;">سياسة الخصوصية </a>
+                <a class="btn btn-link" href=""style="text-align: right;">الأحكام والشروط </a>
+            </div>
+            <!-- <div class="col-md-6 col-lg-3">
+                <h5 class="text-white mb-4">Popular Link</h5>
+                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="">Contact Us</a>
+                <a class="btn btn-link" href="">Privacy Policy</a>
+                <a class="btn btn-link" href="">Terms & Condition</a>
+                <a class="btn btn-link" href="">Career</a>
+            </div> -->
+            <div class="col-md-6 col-lg-4">
+                <h5 class="text-white mb-4">جاهز للبدء معنا ومتابعة جديدنا !</h5>
+                <p>اكتب بريدك الالكتروني ليصلك كل جديد</p>
+                <div class="position-relative w-100 mt-3">
+                    <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="اكتب بريدك الالكتروني" style="height: 48px;">
+                    <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-7 text-center text-md-start mb-3 mb-md-0">
+                    &copy; جميع الحقوق محفوظة <a class="border-bottom" href="#">سلامتك </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
 
-                }
-            }
-            // End of RevInitScript
 
-            if (window.RS_MODULES.checkMinimal !== undefined) {
-                window.RS_MODULES.checkMinimal();
-            }
-            ;</script>
-{{-- @endsectionkkj --}}
+
+<!-- JavaScript Libraries -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+
+{{-- @yield('js') --}}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- Template Javascript -->
+<script src="{{ asset('js/main.js') }}"></script>
+</body>
+
+</html>
+
+
+

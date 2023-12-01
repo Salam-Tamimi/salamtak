@@ -6,9 +6,9 @@
 							<li class="menu-title"> 
 								<h5>لوحة تحكم {{ Auth::user()->name }}</h5>
 							</li> <br>
-							<li> 
+							{{-- <li> 
 								<a href="{{ url('/admin') }}"> <span style="font-size: 18px"> الرئيسية</span></a>
-							</li>
+							</li> --}}
 							
 							<li> 
 								<a href="{{ url('hospitals-admin') }}"style="font-size: 18px"> <span>المستشفيات</span></a>

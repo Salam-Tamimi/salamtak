@@ -4,8 +4,8 @@
             <div class="row g-5">
                 <div class="col-md-6 col-lg-4">
                     <h5 class="text-white mb-4">ابقى على تواصل</h5>
-                    <p><i class="fa fa-phone-alt me-3"></i>+962 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p ><i class="fa fa-phone-alt me-3"></i> &nbsp; 0797263731</p>
+                    <p ><i class="fa fa-envelope me-3"></i> &nbsp; salamtak@example.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
