@@ -208,7 +208,7 @@
 
 <div class="mx-4">
     <h2 class="elementor-heading-title elementor-size-xl"style="margin-top:-5%;color:black;">{{ $hospital->hospitals->name }}  </h2>
-    <p style="font-size: 24px;">{{ $hospital->hospitals->location }}</p>
+    <p style="font-size: 24px;">الموقع: {{ $hospital->hospitals->location }}</p>
 
 <!--  *********** departments start *********** -->
 <div class="container-xxl sections "><hr>
