@@ -43,7 +43,7 @@ class LoginController extends Controller
                 return '/hospitals-details';
             case 'doctor':
                 // Redirect to profile-doctor
-                return '/profile-doctor';
+                return '/doctor-details';
             case 'admin':
                 // Redirect to hospitals-admin
                 return '/hospitals-admin';
