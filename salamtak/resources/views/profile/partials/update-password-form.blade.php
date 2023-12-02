@@ -35,14 +35,21 @@
             <x-primary-button style="font-size: 20px;padding: 0.5% 1%; background-color:rgb(68, 68, 198); color:white; border:none;">{{ __('حفظ') }}</x-primary-button>
 
             @if (session('status') === 'password-updated')
+            <script>
+                // Redirect the user back to the previous page after 2 seconds
+                setTimeout(function(){
+                    window.location.href = document.referrer;
+                });
+            </script> 
                 <p
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                    >{{ __('تم حفظ التعديلات.') }}</p>
-                    @endif
+                    >{{ __('تم حفظ التعديلات.') }}
+                </p>
+            @endif
         </div>
     </form>
 </section>

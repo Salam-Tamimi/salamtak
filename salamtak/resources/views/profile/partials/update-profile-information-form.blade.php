@@ -51,7 +51,13 @@
             <x-primary-button style="font-size: 20px;padding: 0.5% 1%; background-color:rgb(68, 68, 198); color:white; border:none;">{{ __('حفظ') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
-                <p 
+            <script>
+                // Redirect the user back to the previous page after 2 seconds
+                setTimeout(function(){
+                    window.location.href = document.referrer;
+                });
+            </script>    
+            <p 
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
