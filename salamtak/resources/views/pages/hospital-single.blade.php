@@ -1,16 +1,4 @@
-{{-- @extends('layout.master')
-@section('title','صفحة المستشفى')
-@section('css')
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('css/hospitals.css') }}">
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyZ37AIX2ZgT2MIweqQ8S1tQTKK4LPMOvx" crossorigin="anonymous">
-@endsection
-
-@section('content')                                                                                                                                                       <br> <br> <br> <br> <br> <br><br>  --}}
-            
+         
 
 <!DOCTYPE html>
 <html lang="en">
@@ -150,16 +138,6 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
-                                {{-- <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العظام</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأشعة</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم القلب</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجراحة</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الولادة</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأطفال</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العلاج الطبيعي</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
                                 @php
                                     use App\Models\Department;
                                     $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
@@ -176,7 +154,7 @@
                     </div>
                     <form class="d-flex mx-4">
                         <input class="form-control me-2 rounded-pill" type="search" placeholder="بحث" aria-label="Search">
-                        <span>&nbsp</span>
+                        <span>&nbsp;</span>
                         <button class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5" type="submit">بحث</button>
                     </form>
                     </div>                      

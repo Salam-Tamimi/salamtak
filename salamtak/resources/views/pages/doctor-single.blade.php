@@ -111,21 +111,11 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
-                                {{-- <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العظام</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأشعة</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم القلب</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجراحة</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الولادة</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأطفال</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العلاج الطبيعي</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
-                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
                                 @php
                                 use App\Models\Department;
-                                $departments = Department::all();
+                                $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
                                 @endphp
-                                @foreach ($departments as $department)
+                                @foreach ($Alldepartments as $department)
                                 <a href="{{ url('/appointments-dates', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
                                 @endforeach
                             </div>
@@ -169,9 +159,12 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
             <div id="blur">
-          <div class="d-flex justify-content-around flex-wrap mx-5 row ">
-    <img src="{{ asset('/images/doctor2.png') }}" alt="صورة الدكتور" style="width: 24%;">
-    <div class="col mt-5"> 
+          <div class="d-flex justify-content-around flex-wrap mx-5 row " style="margin-top: 3%">
+            @php
+            $avatarUrl = $doctor->image ?? ('/images/doctor1.png');
+            @endphp
+    <img src="{{ asset($avatarUrl) }}" alt="صورة الدكتور" style="width: 25%; height:25%">
+    <div class="col "> 
     <br> <br>
     <strong class="d-flex">
         <h2> {{ $doctor->name }}  &nbsp;</h2>    
@@ -187,12 +180,7 @@
     @endif
 
     <div>
-        {{-- <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" fill="#fcf531"></path> </g></svg>           
-        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" fill="#fcf531"></path> </g></svg>           
-        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" fill="#fcf531"></path> </g></svg>           
-        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" fill="#fcf531"></path> </g></svg>           
-        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" stroke="#e2fd1c" stroke-width="1.5"></path> </g></svg>                 --}}
-        
+      
         <div>
             @if ($doctor->appointments->isNotEmpty() && $doctor->appointments->first()->review)
 
@@ -255,7 +243,7 @@
    </div>
 
 
-   <div class="pt-5 col" >
+   <div class="col" >
     @php
     use App\Http\Controllers\AppointmentController;
     @endphp
@@ -290,98 +278,6 @@
     @endif
     
 
-       {{-- <section id="availability" class="availability availability--profile">
-     <div class="availability__calendar">
-        <div class="availability__next">
-            <span class="custom-arrow arrow--right"></span>
-        </div>
-        <div class="availability__previous">
-            <span class="custom-arrow"></span>
-        </div>
-        <div class="availability__content">
-            <div class="availability__day">
-                <div class="availability__day-header">اليـوم</div>
-                <availability-day class="ng-star-inserted">
-                    <div class="availability__time ng-star-inserted">
-                        <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-12T13:00:00.0000000&amp;DId=5816">01:00 م</a>
-                        </div>
-                        <div class="availability__time availability__time--booked ng-star-inserted">
-                            <span class="block ng-star-inserted" title="الموعد محجوز">01:20 م</span>
-                        </div>
-                            <div class="availability__time ng-star-inserted">
-                                <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-12T13:40:00.0000000&amp;DId=5816">01:40 م</a>
-                                </div>
-                                <div class="availability__time ng-star-inserted">
-                                    <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-12T14:00:00.0000000&amp;DId=5816">02:00 م</a>
-                                </div>
-                                <div class="availability__time availability__time--booked ng-star-inserted">
-                                    <span class="block ng-star-inserted" title="الموعد محجوز">02:20 م</span>
-                                </div>
-                            </availability-day>
-                            <div class="availability__more-button ng-star-inserted">
-                                <span class="ng-star-inserted">المزيد&nbsp;</span>
-                                <span class="custom-arrow arrow--down ng-star-inserted"></span>
-                            </div>
-                            <div class="btn btn--book ng-star-inserted rounded-pill">إحجز</div>
-                        </div>
-                        <div class="availability__day">
-                            <div class="availability__day-header">غـداً</div><availability-day class="ng-star-inserted">
-                                <div class="availability__time availability__time--booked ng-star-inserted">
-                                    <span class="block ng-star-inserted" title="الموعد محجوز">11:20 ص</span>
-                                </div>
-                                <div class="availability__time ng-star-inserted">
-                                    <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-13T11:20:00.0000000&amp;DId=5816">11:20 ص</a>
-                                </div>
-                                <div class="availability__time ng-star-inserted">
-                                    <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-13T11:40:00.0000000&amp;DId=5816">11:40 ص</a>
-                                </div>
-                                <div class="availability__time ng-star-inserted">
-                                    <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-13T12:00:00.0000000&amp;DId=5816">12:00 م</a>
-                                    </div>
-                                    <div class="availability__time availability__time--booked ng-star-inserted">
-                                        <span class="block ng-star-inserted" title="الموعد محجوز">12:20 م</span>
-                                    </div>
-                                </availability-day>
-                                <div class="availability__more-button ng-star-inserted">
-                                    <span class="ng-star-inserted">المزيد &nbsp;</span>
-                                    <span class="custom-arrow arrow--down ng-star-inserted"></span>
-                                </div>
-                                <div class="btn btn--book ng-star-inserted rounded-pill">إحجز</div>
-                            </div>
-                            <div class="availability__day">
-                                <div class="availability__day-header">إثنين 8/14</div>
-                                <availability-day class="ng-star-inserted">
-                                    <div class="availability__time ng-star-inserted">
-                                        <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-14T11:00:00.0000000&amp;DId=5816">11:00 ص</a>
-                                    </div>
-                                    <div class="availability__time availability__time--booked ng-star-inserted">
-                                        <span class="block ng-star-inserted" title="الموعد محجوز">11:20 ص</span>
-                                    </div>
-                                    <div class="availability__time ng-star-inserted">
-                                        <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-14T11:40:00.0000000&amp;DId=5816">11:40 ص</a>
-                                    </div>
-                                    <div class="availability__time ng-star-inserted">
-                                        <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-14T12:00:00.0000000&amp;DId=5816">12:00 م</a>
-                                    </div>
-                                    <div class="availability__time ng-star-inserted">
-                                        <a class="block ng-star-inserted" href="/ar/Jordan/doctor/Booking/Request?Destination=inclinic&amp;sc=1&amp;slotDateTime=2023-08-14T12:20:00.0000000&amp;DId=5816">12:20 م</a>
-                                    </div>
-                                </availability-day>
-                                <div class="availability__more-button ng-star-inserted">
-                                    <span class="ng-star-inserted">المزيد &nbsp;</span>
-                                    <span class="custom-arrow arrow--down ng-star-inserted"></span>
-                                </div>
-                                <div class="btn btn--book ng-star-inserted rounded-pill">إحجز</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="availability__info" href="/ar/Jordan/dr/دكتورة-لجين-مرابحة-نسائية-وتوليد_5816?Destination=inclinic">
-                        <div class="ng-star-inserted">
-                            <span>المواعيد المتاحة من</span>
-                            <span class="availability__info-date"> 01:00 م</span>
-                        </div>
-                    </a>
-                </section> --}}
    </div>
 
     </div>
@@ -393,44 +289,8 @@
         </div><br>
     </div>
 <hr>
-{{-- <!-- *******feedback******* -->
-<div class="main" id="reviews">
- <section class="container review">
-            <div class="title">
-                <h2 style="color: var(--dark);">تقييمات الطبيب</h2>
-                <div class="underline"></div>
-            </div>
-        
-            <article class="reviewcard">
-                <div class="img-container">
-                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="person-img">
-                </div> 
-                <h4 class="author">اسم المعلق</h4>
-                
-                <p class="info">
-                    ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر        
-                </p>
-        
-                <div class="button-container">
-                <button class="prev-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                        <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                    </svg>
-                </button>
-                <button class="next-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                    </svg>
-                </button>
-                </div>
-        
-                <!-- <button class="random-btn"><svg fill="#0d51ac" width="40px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>random</title> <path d="M0 24q0 0.832 0.576 1.44t1.44 0.576h1.984q2.048 0 3.904-0.8t3.168-2.144 2.144-3.2 0.8-3.872q0-2.464 1.728-4.224t4.256-1.76h4v1.984q0 0.672 0.384 1.152t0.864 0.704 1.12 0.128 1.056-0.544l4-4q0.608-0.64 0.576-1.44t-0.576-1.408l-4-4q-0.48-0.448-1.088-0.544t-1.12 0.128-0.864 0.704-0.352 1.12v2.016h-4q-2.016 0-3.872 0.8t-3.2 2.112-2.144 3.2-0.768 3.872q0 2.496-1.76 4.256t-4.256 1.76h-1.984q-0.832 0-1.44 0.576t-0.576 1.408zM0 8.032q0 0.832 0.576 1.408t1.44 0.576h1.984q1.408 0 2.592 0.608t2.080 1.664q0.672-2.048 1.984-3.68-2.912-2.592-6.656-2.592h-1.984q-0.832 0-1.44 0.608t-0.576 1.408zM13.376 23.456q2.848 2.56 6.624 2.56h4v2.016q0 0.64 0.384 1.152t0.864 0.704 1.12 0.096 1.056-0.544l4-4q0.608-0.608 0.576-1.44t-0.576-1.376l-4-4q-0.48-0.48-1.088-0.576t-1.12 0.128-0.864 0.736-0.352 1.12v1.984h-4q-1.376 0-2.592-0.576t-2.048-1.664q-0.704 2.048-1.984 3.68z"></path> </g></svg></button> -->
-            </article>
-    </section>
-</div>
-<!-- ******* end feedback******* --> --}}
 
-<div class="reviews-container">
+<div class="reviews-container" id="reviews">
     <div class="title">
         <h2 style="color: var(--primary);">تقييمات الطبيب</h2>
         <div class="underline"></div>
@@ -488,6 +348,9 @@
             </div>
         @endif
     @endforeach
+    @empty($Allreviews)
+    <h6>لايوجد تقييمات لهذا الطبيب</h6>
+    @endempty
     {{-- Reviews end --}}
 </div>
 
