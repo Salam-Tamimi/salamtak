@@ -1,4 +1,6 @@
-@extends('layout.master')
+@extends('layout-doctor')
+
+@section('title', 'مواعيد الطبيب')
 
 @section('content')
     <div class="container">

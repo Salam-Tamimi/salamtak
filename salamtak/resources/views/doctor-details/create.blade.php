@@ -1,7 +1,11 @@
+@extends('layout-doctor')
 
-    <div class="container">
-        <h2>اضافة معلومات</h2>
-        <form method="POST" action="{{ route('doctor-details.store') }}" enctype="multipart/form-data">
+@section('title', 'مواعيد الطبيب')
+
+@section('content')
+    <div class="container" dir="rtl" style="text-align: right">
+        <h2 style="text-align: right">اضافة معلومات</h2>
+        <form method="POST" action="{{ route('doctor-details.store') }}" enctype="multipart/form-data" dir="rtl" style="text-align: right">
             @csrf
 
             <div class="form-group">
@@ -36,3 +40,4 @@
             <button type="submit" class="btn btn-primary">إضافة</button>
         </form>
     </div>
+@endsection
