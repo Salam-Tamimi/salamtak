@@ -39,6 +39,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet"> 
+
 </head>
 <body>
 
@@ -91,7 +92,13 @@
                 </div>
             </div>
         </div>
+        <div style="text-align:center; margin-top:1%;">
+            <a href="{{ route('home') }}"><button class="btn" >الرجوع الى الصفحة الرئيسية</button></a>
+        </div>
+
     </div>
+
+    
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Bootstrap JS -->
