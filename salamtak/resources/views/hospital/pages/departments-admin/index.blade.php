@@ -63,7 +63,7 @@
 														<div class="actions">
 															<div style="margin-bottom: 5px; width: 100px;"> 
 																<a class="btn btn-info btn-sm" href="{{ route('departments-admin.edit', $department->id) }}" style="width: 100%;">
-																	<i class="fas fa-pencil-alt"></i>
+																	{{-- <i class="fas fa-pencil-alt"></i> --}}
 																	تعديل
 																</a>
 															</div>
@@ -72,7 +72,7 @@
 																@method('DELETE')
 																@csrf
 																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">
-																	<i class="fas fa-trash"></i> 
+																	{{-- <i class="fas fa-trash"></i>  --}}
 																	حذف
 																</button>
 															</form>

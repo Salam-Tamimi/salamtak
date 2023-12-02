@@ -38,10 +38,10 @@ use App\Models\User;
   @endphp --}}
       <div class="col-md-4 mb-3">
           <div class="card">
-              <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="width:100%;">
-              <div class="card-body" style="padding: 2%;">
-                  <h4 class="card-title">{{ $hospital->name }}</h4>
-                  <a href="{{ route('hospital.single', ['hospital_id' => $hospital->hospital_id]) }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); margin-right:20%;">حجز موعد</a>
+            <h4 class="card-title" style="color: rgb(27, 27, 27); text-align:right;">{{ $hospital->name }}</h4>
+              <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="width:100%; height:250px;">
+              <div class="card-body" style="padding: 2%;margin-right:75%; width:100%;">
+                  <a href="{{ route('hospital.single', ['hospital_id' => $hospital->hospital_id]) }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); ">حجز موعد</a>
               </div>
           </div>
       </div>
