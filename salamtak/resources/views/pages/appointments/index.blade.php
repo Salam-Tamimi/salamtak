@@ -167,14 +167,14 @@
 
 
         {{-- @foreach ($doctors as $doctor) --}}
-        @foreach ($paginator as $doctor)
+        @foreach ($doctors as $doctor)
         @php
             $avatarUrl = $doctor->image ?? ('/images/doctor1.png');
         @endphp
-        <div class="card  col-lg-3 col-md-6 col-sm-12" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
+        <div class="card  col-lg-3 col-md-6 col-sm-12 my-4" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
           <div class="p-3 doctorscard">
             <div>
-                <h5 class="card-title">{{ $doctor->hospitals->name }}</h5>
+                {{-- <h5 class="card-title">{{ $doctor->hospitals->name }}</h5> --}}
                 <img src="{{ asset($avatarUrl) }}" class="img-fluid rounded-start" style="height:300px;" alt="doctor image">
                 <div>
                     @if ($doctor->doctors->appointments->isNotEmpty() && $doctor->doctors->appointments->first()->review)
@@ -245,9 +245,9 @@
      </div>
 
     <!-- Pagination -->
-    <div class="d-flex justify-content-center">
+    {{-- <div class="d-flex justify-content-center">
         {{ $paginator->links() }}
-    </div>
+    </div> --}}
 
                 {{-- <div class="d-flex justify-content-center ">   
 

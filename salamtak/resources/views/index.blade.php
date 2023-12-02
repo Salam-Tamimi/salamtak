@@ -105,10 +105,10 @@
             @foreach ($hospitals as $hospital)
                 <div class="col mb-3">
                     <div class="card mx-3">
+                        <h4 class="card-title" style="color: black;">{{ $hospital->name }}</h4>
                         <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="height: 200px;">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ $hospital->name }}</h4>
-                            <a href="{{ url('/hospital-single') }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); margin-right:18%">حجز موعد</a>
+                        <div class="card-body" style="width: 300px;">
+                            <a href="{{ route('hospital.single', ['hospital_id' => $hospital->hospital_id]) }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); margin-right:35%;">حجز موعد</a>
                         </div>
                     </div>
                 </div>
@@ -260,7 +260,7 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
                             @endphp
                         <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset($avatarUrl) }}" alt="صورة المريض">
                          <div class="ps-3">
-                                <h6 class="mb-1">{{ $review->user->name }}</h6>
+                                {{-- <h6 class="mb-1">{{ $review->user->name }}</h6> --}}
                                 <small>{{ $review->department->name }}</small>
                             </div>
                         </div>
