@@ -1,11 +1,9 @@
-         
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title> سلامتك - صفحة المستشفى  </title>
+    <title> @yield('title') </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -27,78 +25,13 @@
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
-<link href="{{ asset('/css/hospital-single.css') }}" rel="stylesheet">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- JQUERY SCRIPT -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ asset('/css/nav_foot.css') }}">
-    {{-- @yield('css') --}}
-    <style type="text/css">
-        img.wp-smiley, img.emoji {
-            display: inline !important;
-            border: none !important;
-            box-shadow: none !important;
-            height: 1em !important;
-            width: 1em !important;
-            margin: 0 0.07em !important;
-            vertical-align: -0.1em !important;
-            background: none !important;
-            padding: 0 !important;
-        }
-        /*** Service ***/
-            .service-item {
-                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-                border: 1px solid transparent;
-                transition: .6s;
-            }
-
-            .service-item:hover {
-                box-shadow: 3px 3px 10px rgba(57, 137, 230, 0.4);
-                border-color: #0d51ac;
-                scale: 1.03;
-                font-size:x-large ;
-                color:#FE8325;
-            }
-
-            .service-item .service-icon,
-            .service-item .service-btn {
-                margin: -1px 0 0 -1px;
-                width: 65px;
-                height: 65px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #FFFFFF;
-                background: #0d51ac;
-                border-radius: 5px 0;
-                transition: .5s;
-            }
-
-            .service-item .service-btn {
-                margin: -1px -1px 0 0;
-                border-radius: 0 5px;
-                opacity: 0;
-            }
-
-            .service-item:hover .service-btn {
-                opacity: 1;
-            }
-
-            .container-xxl {
-            width: 100%;
-            padding-right: var(--bs-gutter-x, .75rem);
-            padding-left: var(--bs-gutter-x, .75rem);
-            margin-right: auto;
-            margin-left: auto;
-            margin-bottom: 7%;
-           }
-           
-    </style>
-
-
+    @yield('css')
 </head>
 
 <body>
@@ -113,7 +46,7 @@
 
 
         <!-- Navbar & Hero Start -->
-<div class="container-xxl position-relative p-0 ">
+        <div class="container-xxl position-relative p-0 ">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
                     <!-- <h1 class="m-0">BizConsult</h1> -->
@@ -126,28 +59,38 @@
                     <div class="navbar-nav  py-0">
                         <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
                         <a href="{{ url('/') }}" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
+                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
                             <div class="dropdown-menu m-0" >
                                 <a href="{{ url('/filter') }}" class="dropdown-item">حجز مواعيد</a>
                                 <a href="{{ url('/edit-appointment') }}" class="dropdown-item">ادارة المواعيد</a>
                                 <a href="{{ url('/lab') }}" class="dropdown-item">المختبرات الطبية</a>
                                 <a href="{{ url('/hospitals') }}" class="dropdown-item">المستشفيات</a>
                                 <!-- <a href="404.html" class="dropdown-item">مواعيد عيادات الاختصاص</a> -->
-                            </div>
+                            </div> --}}
                         </div>
+                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
+                                {{-- <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العظام</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأشعة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم القلب</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجراحة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الولادة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأطفال</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العلاج الطبيعي</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
                                 @php
-                                    use App\Models\Department;
-                                    $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
+                                use App\Models\Department;
+                                $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
                                 @endphp
                                 @foreach ($Alldepartments as $department)
                                 <a href="{{ url('/appointments-dates', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link">من نحن</a>
 
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">تواصل معنا</a>
