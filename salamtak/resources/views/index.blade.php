@@ -217,7 +217,9 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
                             <h5> د. {{ $doctor->name }}</h5>
                             <p class="mb-4">{{ $doctor->doctors->departments->name }}</p>
                             {{-- <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('images/team-1.jpg') }}" alt=""> --}}
+                             <a href="{{ url('/doctor-single', ['doctor_id' => $doctor->doctors->id]) }}">
                             <img class="img-fluid rounded-circle w-100 mb-4" src="{{ $doctor->image }}" alt="">
+                             </a>
                             <div class="d-flex justify-content-center">
                                 <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
@@ -253,8 +255,11 @@ $doctors = $doctors->sortByDesc(function ($doctor) {
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                         <p>{{ $review->review->comment }}</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ $review->user->image }}">
-                            <div class="ps-3">
+                            @php
+                            $avatarUrl = $review->user->image ?? 'https://bootdey.com/img/Content/avatar/avatar7.png';
+                            @endphp
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset($avatarUrl) }}" alt="صورة المريض">
+                         <div class="ps-3">
                                 <h6 class="mb-1">{{ $review->user->name }}</h6>
                                 <small>{{ $review->department->name }}</small>
                             </div>

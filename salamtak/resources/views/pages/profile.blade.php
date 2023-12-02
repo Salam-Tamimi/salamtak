@@ -108,7 +108,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                                  <h4 class="card-title"> د. {{ $appointment->doctor->name }} </h4>
                                  <p class="card-text"> اليوم: {{ $appointment->day_of_week }}<br>
                                    التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
-                                    تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}
+                                    تمت عملية الحجز: {{ $appointment->created_at->format(' Y-m-d ') }}
                                  </p>
                                      <div class="d-flex btns ">
                                          <button class="btn disabled" style="background-color:#c4c4c4;margin-right:35%;text-align:center;"><h4>احجز </h4></button> 
