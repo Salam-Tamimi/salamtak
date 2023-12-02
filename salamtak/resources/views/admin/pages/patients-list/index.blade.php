@@ -19,9 +19,9 @@
 						</div>
 					</div>
 					<!-- /Page Header -->
-					<div class="row my-4 mx-2">
+					{{-- <div class="row my-4 mx-2">
 						<a href="{{ route('users.create') }}" data-toggle="modal" class="btn btn-success float-right mt-2">إضافة</a>
-					</div>
+					</div> --}}
 
 					
 					<div class="row">
@@ -44,7 +44,7 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset($user->image) }}" alt="User Image">
+															<img class="avatar-img rounded-circle" src="{{ asset($user->image) }}" style="width:50px;" alt="User Image">
 															<a href="profile.html" class="mx-2">&nbsp;{{ $user->name }}</a>
 														</h2>
 													</td>
@@ -58,7 +58,7 @@
 																@method('DELETE')
 																@csrf
 																<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" style="width: 100%;">
-																	<i class="fas fa-trash"></i> 
+																	{{-- <i class="fas fa-trash"></i>  --}}
 																	حذف
 																</button>
 															</form>

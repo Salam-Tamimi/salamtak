@@ -20,7 +20,7 @@ class UserController extends Controller
         $user = auth()->user();
 
         if ($user->role === 'admin') {
-            $users = User::where('role', 'admin')->get();
+            $users = User::where('role', 'user')->get();
             return view('admin.pages.patients-list.index', compact('users'));
         } elseif ($user->role === 'user') {
             return redirect('/');

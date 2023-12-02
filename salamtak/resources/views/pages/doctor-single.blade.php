@@ -99,18 +99,29 @@
                     <div class="navbar-nav  py-0">
                         <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
                         <a href="{{ url('/') }}" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
+                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
                             <div class="dropdown-menu m-0" >
                                 <a href="{{ url('/filter') }}" class="dropdown-item">حجز مواعيد</a>
                                 <a href="{{ url('/edit-appointment') }}" class="dropdown-item">ادارة المواعيد</a>
                                 <a href="{{ url('/lab') }}" class="dropdown-item">المختبرات الطبية</a>
                                 <a href="{{ url('/hospitals') }}" class="dropdown-item">المستشفيات</a>
                                 <!-- <a href="404.html" class="dropdown-item">مواعيد عيادات الاختصاص</a> -->
-                            </div>
+                            </div> --}}
                         </div>
+                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
+                                {{-- <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العيون</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العظام</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأشعة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم القلب</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجراحة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الولادة</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الأطفال</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم العلاج الطبيعي</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
+                                <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
                                 @php
                                 use App\Models\Department;
                                 $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
@@ -120,14 +131,13 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link">من نحن</a>
 
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">تواصل معنا</a>
                     </div>
                     <form class="d-flex mx-4">
                         <input class="form-control me-2 rounded-pill" type="search" placeholder="بحث" aria-label="Search">
-                        <span>&nbsp</span>
+                        <span>&nbsp;</span>
                         <button class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5" type="submit">بحث</button>
                     </form>
                     </div>                      
