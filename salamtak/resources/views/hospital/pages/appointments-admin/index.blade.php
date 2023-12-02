@@ -33,6 +33,14 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
+										@php
+												use App\Models\Appointment;
+												// Assuming you already have $hospitalId
+												$hospitalId = Auth::user()->hospital_id;
+												// Retrieve all appointments for the hospital
+												$appointments = Appointment::where('hospital_id', $hospitalId)->get();
+												@endphp	
+												@if(isset($appointments) && count($appointments) > 0)
 										<table class="table table-hover table-center mb-0">
 											<thead>
 												<tr>
@@ -46,14 +54,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												@php
-												use App\Models\Appointment;
-												// Assuming you already have $hospitalId
-												$hospitalId = Auth::user()->hospital_id;
-												// Retrieve all appointments for the hospital
-												$appointments = Appointment::where('hospital_id', $hospitalId)->get();
-												@endphp	
-												@if(isset($appointments) && count($appointments) > 0)
+												
 												@foreach ($appointments as $appointment)
 													<tr>
 													<td>

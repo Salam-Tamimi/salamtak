@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>مواعيد الطبيب</title>
-</head>
-<body>
+@extends('layout-doctor')
 
+@section('title', 'مواعيد الطبيب')
+
+@section('content')
     <div class="container mt-5">
         <h1 class="text-right">جدول المواعيد</h1> <br>
     
@@ -43,6 +38,8 @@
             </tbody>
         </table>
     </div>
+
+    @endsection
     <!-- Include the full version of jQuery instead of the slim version -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 

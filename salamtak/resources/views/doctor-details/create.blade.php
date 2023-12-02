@@ -1,8 +1,4 @@
- {{-- @extends('layout.master') 
- @section('content') --}}
 
-
- 
     <div class="container">
         <h2>اضافة معلومات</h2>
         <form method="POST" action="{{ route('doctor-details.store') }}" enctype="multipart/form-data">
@@ -40,4 +36,3 @@
             <button type="submit" class="btn btn-primary">إضافة</button>
         </form>
     </div>
-{{-- @endsection --}}

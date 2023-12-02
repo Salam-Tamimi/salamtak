@@ -1,9 +1,12 @@
-@extends('layout.master')
+@extends('layout-doctor')
+
+@section('title', 'جدول الطبيب')
+
 @section('content')
-<br> <br> <br> <br>
-    <div class="my-4 mx-3">
+
+    <div class="my-4 mx-3" dir="rtl" style="text-align: right;">
         <div class="container">
-            <h3>جدول الطبيب</h3>
+            <h3 dir="rtl" style="text-align: right">جدول الطبيب</h3>
             <a href="{{ route('doctor-schaduale.create') }}" class="btn btn-success mb-2">إضافة جدول</a>
             @if (count($schedules) > 0)
                 <table class="table">

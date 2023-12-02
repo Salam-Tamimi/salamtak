@@ -79,6 +79,9 @@ Route::get('/profile-hospital', function () {
 Route::get('/profile-admin', function () {
     return view('admin.profile');
 });
+Route::get('/profile-doctor', function () {
+    return view('doctor-profile');
+});
 
 // Route::get('/hospitals', [HospitalController::class, 'index']);
 
@@ -150,6 +153,8 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'role:doctor'])->group(function () {
     Route::get('/doctor-appointments/{doctor_id}', [AppointmentController::class, 'index'])->name('doctor-appointments.index');
     Route::post('/update-status/{appointment}', [AppointmentController::class, 'updateStatus']);
+    Route::resource('doctor-details', Doctor_detailsController::class);
+
 });
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('hospitals-admin', HospitalController::class);
@@ -165,7 +170,6 @@ Route::middleware(['auth', 'role:hospital'])->group(function () {
     Route::resource('hospitals-details', Hospital_detailsController::class);
     // Route::put('/hospitals-details/{id}', [Hospital_detailsController::class, 'update'])->name('hospitals-details.update');
     Route::resource('doctors-hospital', DoctorController::class);
-    Route::resource('doctor-details', Doctor_detailsController::class);
     
     Route::get('/hospital-appointments', function () {
         return view('hospital.pages.appointments-admin.index');
