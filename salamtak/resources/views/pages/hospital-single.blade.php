@@ -161,10 +161,10 @@
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الباطني</a>
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
                                 @php
-                                use App\Models\Department;
-                                $departments = Department::all();
+                                    use App\Models\Department;
+                                    $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
                                 @endphp
-                                @foreach ($departments as $department)
+                                @foreach ($Alldepartments as $department)
                                 <a href="{{ url('/appointments-dates', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
                                 @endforeach
                             </div>

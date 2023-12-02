@@ -22,7 +22,10 @@
 <!-- start of hero -->
 @php
 use App\Models\User;
-  $hospitals = User::where('role', 'hospital')->get();
+  // $hospitals = User::where('role', 'hospital')->get();
+  $hospitals = User::where('role', 'hospital')
+                ->whereNotNull('hospital_id')
+                ->get();
 @endphp
 <a class="navbar-brand" href="{{ url()->previous() }}"style="text-decoration: underline;">
   <i class="fas fa-arrow-right"></i> الرجوع 
@@ -36,9 +39,9 @@ use App\Models\User;
       <div class="col-md-4 mb-3">
           <div class="card">
               <img src="{{ $hospital->image }}" alt="{{ $hospital->name }}" class="card-img-top" style="width:100%;">
-              <div class="card-body">
+              <div class="card-body" style="padding: 2%;">
                   <h4 class="card-title">{{ $hospital->name }}</h4>
-                  <a href="{{ route('hospital.single', ['hospital_id' => $hospital->hospital_id]) }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);">حجز موعد</a>
+                  <a href="{{ route('hospital.single', ['hospital_id' => $hospital->hospital_id]) }}" class="btn btn-primary" style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); margin-right:20%;">حجز موعد</a>
               </div>
           </div>
       </div>

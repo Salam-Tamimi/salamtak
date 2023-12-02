@@ -89,7 +89,10 @@
 {{-- hospital start --}}
     @php
         use App\Models\User;
-        $hospitals = User::where('role', 'hospital')->get();
+        // $hospitals = User::where('role', 'hospital')->get();
+        $hospitals = User::where('role', 'hospital')
+                ->whereNotNull('hospital_id')
+                ->get();
     @endphp
     <hr class="my-4">
     <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -124,11 +127,11 @@
                     <h2 class="mb-5">الأقسام الرئيسية </h2>
                 </div>
                 <div class="row g-4 mx-4">
-                @php
+                    @php
                     use App\Models\Department;
-                    $departments = Department::all();
+                    $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
                 @endphp
-                    @foreach ($departments as $department)
+                    @foreach ($Alldepartments as $department)
                     <div class="col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay="0.1s">
                         <div class="service-item rounded h-100">
                             <div class="d-flex justify-content-between">
