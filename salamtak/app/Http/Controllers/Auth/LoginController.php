@@ -31,29 +31,27 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        // Check if the user has the 'user' role and if there is a stored previous URL
-        if ($user->role === 'user' && Session::has('previous_url')) {
-            // Redirect the user to the stored URL
-            return redirect(Session::pull('previous_url'));
-        }
-    
-        // If there is no stored URL or the user does not have the 'user' role,
-        // redirect based on the user's role
-        switch ($user->role) {
+        // Redirect based on user's role
+        $role = $user->role;
+
+        switch ($role) {
             case 'user':
+                // Redirect to the same page
                 return '/';
             case 'hospital':
+                // Redirect to hospital-details
                 return '/hospital-details';
             case 'doctor':
+                // Redirect to profile-doctor
                 return '/profile-doctor';
             case 'admin':
+                // Redirect to hospitals-admin
                 return '/hospitals-admin';
             default:
-                // Redirect to the default path if role is not recognized
+                // Redirect to the default path
                 return $this->redirectTo;
         }
     }
-    
 
     /**
      * Show the application's login form.
@@ -86,10 +84,10 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    // protected function storePreviousUrl(Request $request)
-    // {
-    //     Session::put('previous_url', url()->previous());
-    // }
+    protected function storePreviousUrl(Request $request)
+    {
+        Session::put('previous_url', url()->previous());
+    }
 
     
 }

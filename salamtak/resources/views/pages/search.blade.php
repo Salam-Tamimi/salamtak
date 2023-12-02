@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> الأطباء </title>
+    <title> @yield('title') </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -31,7 +31,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ asset('/css/nav_foot.css') }}">
-    {{-- @yield('css') --}}
+    @yield('css')
 </head>
 
 <body>
@@ -59,15 +59,16 @@
                     <div class="navbar-nav  py-0">
                         <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
                         <a href="{{ url('/') }}" class="nav-item nav-link active">الصفحة الرئيسية</a>                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
+                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الخدمات</a>
                             <div class="dropdown-menu m-0" >
                                 <a href="{{ url('/filter') }}" class="dropdown-item">حجز مواعيد</a>
                                 <a href="{{ url('/edit-appointment') }}" class="dropdown-item">ادارة المواعيد</a>
                                 <a href="{{ url('/lab') }}" class="dropdown-item">المختبرات الطبية</a>
                                 <a href="{{ url('/hospitals') }}" class="dropdown-item">المستشفيات</a>
                                 <!-- <a href="404.html" class="dropdown-item">مواعيد عيادات الاختصاص</a> -->
-                            </div>
+                            </div> --}}
                         </div>
+                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">الأقسام</a>
                             <div class="dropdown-menu m-0">
@@ -83,21 +84,20 @@
                                 <a href="{{ url('/appointments') }}" class="dropdown-item">قسم الجلدية</a> --}}
                                 @php
                                 use App\Models\Department;
-                                $departments = Department::all();
+                                $Alldepartments = Department::groupBy('name')->select('name', \DB::raw('MAX(id) as id'))->get();
                                 @endphp
-                                @foreach ($departments as $department)
+                                @foreach ($Alldepartments as $department)
                                 <a href="{{ url('/appointments-dates', ['department_id' => $department->id]) }}" class="dropdown-item">{{ $department->name }}</a>
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ url('/hospitals') }}" class="nav-item nav-link">المستشفيات</a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link">من نحن</a>
 
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">تواصل معنا</a>
                     </div>
                     <form class="d-flex mx-4">
                         <input class="form-control me-2 rounded-pill" type="search" placeholder="بحث" aria-label="Search">
-                        <span>&nbsp</span>
+                        <span>&nbsp;</span>
                         <button class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5" type="submit">بحث</button>
                     </form>
                     </div>                      
@@ -162,12 +162,16 @@
 
 
         {{-- @foreach ($doctors as $doctor) --}}
+        
         @foreach ($searchAppointment as $doctor)
+        @php
+            $avatarUrl = $doctor->image ?? ('/images/doctor1.png');
+        @endphp
         <div class="card  col-lg-3 col-md-6 col-sm-12" style="border: 1px solid #dee2e6; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;margin-right:5%;">
           <div class="p-3 doctorscard">
             <div>
                 <h5 class="card-title">{{ $doctor->hospitals->name }}</h5>
-                <img src="{{ asset('/images/doctor1.png') }}" class="img-fluid rounded-start" style="height:300px;" alt="doctor image" >
+                <img src="{{ asset($avatarUrl) }}" class="img-fluid rounded-start" style="height:300px;" alt="doctor image">
                 <div>
                     @if ($doctor->doctors->appointments->isNotEmpty() && $doctor->doctors->appointments->first()->review)
 
