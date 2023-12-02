@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label for="image">صورة للمستشفى:</label>
-            <input type="file" class="form-control" name="image" accept="image/*" required>
+            <input type="file" class="form-control" name="image" accept="image/*" >
         </div>
 
         <div class="form-group">

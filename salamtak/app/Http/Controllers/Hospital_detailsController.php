@@ -17,32 +17,7 @@ class Hospital_detailsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-//     public function __construct()
-// {
-//     $this->middleware('auth');
-//     $this->middleware('role:hospital')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-//     $this->middleware('role:admin')->only(['index','create2', 'store2',]);
-// }
 
-    // public function index()
-    // {
-    //     if (Auth::id()) {
-    //         $role = Auth()->user()->role;
-    //         if ($role == 'hospital') {
-    //             // $id = Auth::user()->id;
-    //             // $user = User::find($id);
-    //             // $hospitaluser = Hospital::where('id', $user)->get();
-    //             // return view('hospital.pages.hospitals-admin.index', compact('hospitaluser'));
-    //             $activeDepartments = Department::where('is_active', true)->get();
-    //             $hospitals = Hospital::all();
-    //             $departments = Department::all();
-    //             return View::make('hospital.pages.hospitals-admin.index', compact('hospitals', 'activeDepartments', 'departments'));
-    //         } elseif ($role == 'admin') {
-    //             $hospitals = Hospital::all();
-    //             return view('admin.pages.hospitals-admin.index', compact('hospitals'));
-    //         }
-    //     }
-    // }
     
     public function index()
      {
@@ -111,10 +86,10 @@ class Hospital_detailsController extends Controller
             'virtual_tour' => 'nullable',
             'image' => 'required|image',
         ]);
-        Hospital::create($validatedData);
         if ($request->hasFile('image')) {
             $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
         }
+        Hospital::create($validatedData);
     
     }
 
@@ -176,12 +151,12 @@ public function uploadImage($file, $path)
         ]);
         $validatedData['user_id'] = $user->id;
         // Create a new hospital record
-        $hospital = Hospital::create($validatedData);
-
         // Handle file upload
         if ($request->hasFile('image')) {
             $validatedData['image'] = $this->uploadImage($request->file('image'), 'uploads');
         }       
+        $hospital = Hospital::create($validatedData);
+
 
         // Update the hospital_id of the currently logged-in user with the new hospital's ID
         User::where('id', $user->id)->update(['hospital_id' => $hospital->id]);

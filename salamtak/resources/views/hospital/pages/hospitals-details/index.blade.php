@@ -109,7 +109,10 @@
 												<td>{{ $hospital->video }}</td>
 												{{-- <td>{{ $hospital->image }}</td> --}}
 												<td>
-													<img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;">
+													@if($hospital->image)
+														<img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}" width="100px">
+                                                    @endif
+													{{-- <img src="{{ asset($hospital->image) }}" alt="صورة {{ $hospital->name }}" style="max-width: 100px; max-height: 100px;"> --}}
 												</td>
 												{{-- <td>{{ $hospital->virtual_tour }}</td> --}}
 												@else
