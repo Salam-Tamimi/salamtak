@@ -37,8 +37,8 @@ public function store(LoginRequest $request): RedirectResponse
             // Redirect to the same page
             return redirect()->intended(RouteServiceProvider::HOME);
         case 'hospital':
-            // Redirect to hospital-details
-            return redirect('/hospital-details');
+            // Redirect to salam.tamimi99@gmail.com
+            return redirect('/hospitals-details');
         case 'doctor':
             // Redirect to profile-doctor
             return redirect('/profile-doctor');

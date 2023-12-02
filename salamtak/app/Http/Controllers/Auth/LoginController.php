@@ -39,8 +39,8 @@ class LoginController extends Controller
                 // Redirect to the same page
                 return '/';
             case 'hospital':
-                // Redirect to hospital-details
-                return '/hospital-details';
+                // Redirect to salam.tamimi99@gmail.com
+                return '/hospitals-details';
             case 'doctor':
                 // Redirect to profile-doctor
                 return '/profile-doctor';
