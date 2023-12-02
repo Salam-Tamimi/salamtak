@@ -126,8 +126,10 @@ Route::middleware(['auth', 'role:doctor'])->group(function () {
     Route::resource('doctor-details', Doctor_detailsController::class);
 
 });
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('hospitals-admin', HospitalController::class);
+
     Route::get('/admin-appointments', function () {
         return view('admin.pages.appointments-admin.index');
     });

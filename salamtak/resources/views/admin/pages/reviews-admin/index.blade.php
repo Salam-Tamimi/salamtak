@@ -44,23 +44,23 @@
 													<tr>
 													<td>
 														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset($review->appointment->user->image) }}" alt="User Image">
-															<p>{{ $review->appointment->user->name }}</p>
+															<img class="avatar-img rounded-circle" src="{{ asset($review->appointments->user->image) }}" style="width: 60px;" alt="User Image">
+															<p>{{ $review->appointments->user->name }}</p>
 														</h2>
 													</td>
 													<td>
 														<h2 class="table-avatar">
-															<img class="avatar-img rounded-circle" src="{{ asset($review->appointment->doctor->image) }}" alt="User Image">
-															<p>{{ $review->appointment->doctor->name }}</p>
+															<img class="avatar-img rounded-circle" src="{{ asset($review->appointments->doctor->image) }}" style="width: 60px;" alt="User Image">
+															<p>{{ $review->appointments->doctor->name }}</p>
 														</h2>
 													</td>
 
 													<td>
-														<p>{{ $review->appointment->hospital->name }}</p>
+														<p>{{ $review->appointments->hospital->name }}</p>
 													</td>
 													
 													<td>
-														<div class="form-group">
+														{{-- <div class="form-group">
 															<label for="rating">Rating:</label>
 															<select name="rating" id="rating" class="form-control">
 																<option value="1" {{ $ratingFromDatabase == 1 ? 'selected' : '' }}>														
@@ -99,7 +99,7 @@
 																	<i class="fe fe-star text-warning"></i>
 																</option>
 															</select>
-														</div>
+														</div> --}}
 													</td>
 													
 													<td>
