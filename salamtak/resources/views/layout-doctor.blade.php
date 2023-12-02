@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>@yield('title')</title>
+    <title>@yield('صفحة الطبيب')</title>
     <style>
         .sidebar {
             height: 100%;
@@ -55,14 +55,16 @@
     @php
     use App\Models\Doctor_schaduale;
     $doctor_id = auth()->user()->doctor_id;
-  @endphp
+@endphp
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>القائمة</h2>
         <ul>
             <li><a href="{{ route('doctor-details.index') }}">الصفحة الرئيسية</a></li>
             <li><a href="{{ route('doctor-schaduale.index') }}">جدول الدوام الأسبوعي</a></li>
-            <li><a href="{{ route('doctor-appointments.index', ['doctor_id' => $doctor_id]) }}">جدول الحجوزات</a></li>
+            @if ($doctor_id)
+                <li><a href="{{ route('doctor-appointments.index', ['doctor_id' => $doctor_id]) }}">جدول الحجوزات</a></li>
+            @endif
                 @if(auth()->check())
                     <li>
                        <a href="{{ url('/profile-doctor') }}" >الإعدادات</a>

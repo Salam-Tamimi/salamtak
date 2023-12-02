@@ -4,14 +4,16 @@
 
 @section('content')
 @php
-  use App\Models\Doctor_schaduale;
-  $doctor_id = auth()->user()->doctor_id;
+    use App\Models\Doctor_schaduale;
+    $doctor_id = auth()->user()->doctor_id;
 @endphp
 
 <div >
   <a href="{{ route('doctor-details.create') }}" class="btn btn-primary m-4">إضافة معلومات</a>
   <a href="{{ route('doctor-schaduale.create') }}" class="btn btn-primary m-4">إضافة جدول الدوام الأسبوعي</a>
+  @if ($doctor_id)
   <a href="{{ route('doctor-appointments.index', ['doctor_id' => $doctor_id]) }}" class="btn btn-primary m-4">جدول الحجوزات</a>
+@endif
 </div>
 
         {{-- <div id="blur"> --}}
