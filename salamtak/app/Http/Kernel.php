@@ -37,6 +37,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Http\Middleware\TrustProxies::class,
+    //         \App\Http\Middleware\AuthenticateAppointment::class, 
+    // \Illuminate\Http\Middleware\TrustProxies::class,
         ],
 
         'api' => [
@@ -65,6 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
-        'admin' => \App\Http\Middleware\AdminMiddleware::class
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        // 'AuthenticateAppointment' => \App\Http\Middleware\AuthenticateAppointment::class,
     ];
 }

@@ -83,54 +83,24 @@ Route::get('/profile-doctor', function () {
     return view('doctor-profile');
 });
 
-// Route::get('/hospitals', [HospitalController::class, 'index']);
-
-
-// Route::get('/appointments/{department_id}', function ($departmentId) {
-//     return view('pages.appointments', ['department_id' => $departmentId]);
-// });
-
 
 
 Route::get('/about', function () {
     return view('pages.about');
 });
-// Route::get('/contact', function () {
-//     return view('pages.contact');
-// });
-// Route::get('/doctor-single', function () {
-//     return view('pages.doctor-single');
-// });
-// Route::get('/doctor-single/{doctor_id}', function ($doctor_id) {
-//     return view('pages.doctor-single', ['doctor_id' => $doctor_id]);
-// });
+
 Route::get('/doctor-single/{doctor_id}', [DoctorController::class, 'doctorSingle'])->name('doctors.doctor-single');
 // Route for showing the review creation form
 Route::get('/reviews/create/{appointment}', [ReviewController::class, 'create'])->name('reviews.create');
 // Route for storing reviews
 Route::post('/reviews/create/{appointment}', [ReviewController::class, 'store'])->name('reviews.store');
 
-// Route::get('/hospital-single', function () {
-//     return view('pages.hospital-single');
-// });
+
 Route::get('/hospital-single/{hospital_id}', [Hospital_detailsController::class, 'showHospital'])->name('hospital.single');
 Route::resource('contact', ContactController::class);
-// Route::resource('contact', ContactController::class);
+
 //////// *********     ADMIN ROUTES     *********** /////////
 
-// Route::prefix('admin')->group(function () {
-//     Route::resource('users', 'AdminController');
-// });
-
-// Route::prefix('hospital')->group(function () {
-//     Route::resource('users', 'HospitalController');
-// });
-
-// Route::prefix('doctor')->group(function () {
-//     Route::resource('users', 'DoctorController');
-// });
-
-// Route::resource('users', 'UserController'); // For the "user" role
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('users', AdminController::class);
@@ -175,10 +145,7 @@ Route::middleware(['auth', 'role:hospital'])->group(function () {
         return view('hospital.pages.appointments-admin.index');
     });
 });
-    // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
-    // Route::get('/appointments/create/{doctor_id}', 'AppointmentController@create')->name('appointments.create');
-    // Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create');
-    Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create');
+    Route::get('/appointments/create/{doctor_id}', [AppointmentController::class, 'create'])->name('appointments.create')->middleware(['auth', 'verified']);
 
     Route::post('/appointments/create/{doctor_id}', [AppointmentController::class, 'store'])->name('appointments.store');
     Route::get('/appointments/success', [AppointmentController::class, 'success'])->name('appointments.success');    // Route::get('/get-booked-times', 'AppointmentController@getBookedTimes');
@@ -196,28 +163,12 @@ Route::middleware(['auth', 'role:hospital'])->group(function () {
     Route::get('search/{department_id}', [AppointmentController::class, 'searchAppointment'])->name('searchAppointment');
 
 
-    // Route::post('/appointments', 'AppointmentController@store')->name('appointments.store');
-    // Route::resource('appointments', AppointmentController::class);
-    Route::resource('departments-admin', DepartmentController::class);
+     Route::resource('departments-admin', DepartmentController::class);
     Route::resource('reviews-admin', ReviewController::class);
     Route::resource('patients-list', UserController::class);
     Route::resource('doctor-schaduale', DoctorSchadualeController::class);
     
 
-// Route::resource('success', AppointmentController::class);
-// Route::middleware(['auth'])->group(function () {
-//     // Common dashboard routes for all roles
-//     Route::resource('dashboard', DashboardController::class);
-
-//     // Additional routes for specific roles (e.g., admin, hospital, doctor)
-//     Route::resource('admin/dashboard', AdminDashboardController::class)->middleware('admin');
-//     Route::resource('hospital/dashboard', HospitalDashboardController::class)->middleware('hospital');
-//     Route::resource('doctor/dashboard', DoctorDashboardController::class)->middleware('doctor');
-// });
-
-// Route::get('/patient-list', function () {
-//     return view('admin.pages.patient-list');
-// });
 
 Route::get('/transactions-list', function () {
     return view('admin.pages.transactions-list');
