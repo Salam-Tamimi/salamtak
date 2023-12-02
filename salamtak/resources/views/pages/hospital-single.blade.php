@@ -207,9 +207,8 @@
 
 
 <div class="mx-4">
-    <h2 class="elementor-heading-title elementor-size-xl"style="margin-top:-5%;color:black;">مستشفى إربد التخصصي</h2>
-<br>
-<br>
+    <h2 class="elementor-heading-title elementor-size-xl"style="margin-top:-5%;color:black;">{{ $hospital->hospitals->name }}  </h2>
+    <p style="font-size: 24px;">{{ $hospital->hospitals->location }}</p>
 
 <!--  *********** departments start *********** -->
 <div class="container-xxl sections "><hr>
@@ -267,12 +266,12 @@
         </div>
     @endif
     
-    @if ($hospital->hospitals->location)
+    {{-- @if ($hospital->hospitals->location)
     <div class="mx-4">
         <h5>موقع المستشفى</h5>
         <iframe loading="lazy" style="width:560px;height:315px;" src="{{ $hospital->hospitals->location }}"></iframe>
     </div>
-    @endif
+    @endif --}}
 
 </div>
 
