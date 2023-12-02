@@ -222,7 +222,7 @@ $avatarUrl = $user->image ?? ('https://bootdey.com/img/Content/avatar/avatar7.pn
                                     <p class="card-text">
                                        اليوم: {{ $appointment->day_of_week }}<br>
                                       التوقيت: {{ $appointment->start_time }} - {{ $appointment->end_time }}<br>
-                                       تمت عملية الحجز: {{ $appointment->created_at->format('H:i:s Y-m-d ') }}</p>
+                                       تمت عملية الحجز: {{ $appointment->created_at->format(' Y-m-d ') }}</p>
                                     <div class="d-flex">
                                       <a href="{{ route('appointments.edit', ['id' => $appointment->id]) }}" class="btn mx-3 btn-success border" style="color:white; font-size:20px;">
                                         <button class="btn btn-success update-appointment" style="color:white; font-size:20px; padding:0px;" ><p>تعديل الموعد</p></button>
